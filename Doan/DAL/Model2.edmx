@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="sosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="sosModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bill">
           <Key>
             <PropertyRef Name="order_id" />
@@ -82,7 +82,7 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
           <Property Name="quantity" Type="int" />
           <Property Name="total" Type="float" />
         </EntityType>
-        <Association Name="FK__bill__user_id__6383C8BA">
+        <Association Name="FK__bill__user_id__5070F446">
           <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
           <End Role="bill" Type="Self.bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -94,7 +94,7 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__discount___produ__656C112C">
+        <Association Name="FK__discount___produ__52593CB8">
           <End Role="product" Type="Self.product" Multiplicity="1" />
           <End Role="discount_info" Type="Self.discount_info" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -106,7 +106,7 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__order_det__order__68487DD7">
+        <Association Name="FK__order_det__order__5535A963">
           <End Role="bill" Type="Self.bill" Multiplicity="0..1" />
           <End Role="order_detail_id" Type="Self.order_detail_id" Multiplicity="*" />
           <ReferentialConstraint>
@@ -118,7 +118,7 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__order_det__produ__693CA210">
+        <Association Name="FK__order_det__produ__5629CD9C">
           <End Role="product" Type="Self.product" Multiplicity="0..1" />
           <End Role="order_detail_id" Type="Self.order_detail_id" Multiplicity="*" />
           <ReferentialConstraint>
@@ -130,7 +130,7 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__product__catetor__60A75C0F">
+        <Association Name="FK__product__catetor__4D94879B">
           <End Role="catetory" Type="Self.catetory" Multiplicity="0..1" />
           <End Role="product" Type="Self.product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,7 +142,7 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__shopping___produ__6D0D32F4">
+        <Association Name="FK__shopping___produ__59FA5E80">
           <End Role="product" Type="Self.product" Multiplicity="0..1" />
           <End Role="shopping_cart" Type="Self.shopping_cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -154,7 +154,7 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__shopping___user___6C190EBB">
+        <Association Name="FK__shopping___user___59063A47">
           <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
           <End Role="shopping_cart" Type="Self.shopping_cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -166,7 +166,7 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="sosModelStoreContainer">
+        <EntityContainer Name="sosModel1StoreContainer">
           <EntitySet Name="bill" EntityType="Self.bill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="catetory" EntityType="Self.catetory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
@@ -181,39 +181,40 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
 [discount_info].[discount_end_date] AS [discount_end_date]
 FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__bill__user_id__6383C8BA" Association="Self.FK__bill__user_id__6383C8BA">
+          <AssociationSet Name="FK__bill__user_id__5070F446" Association="Self.FK__bill__user_id__5070F446">
             <End Role="customer" EntitySet="customer" />
             <End Role="bill" EntitySet="bill" />
           </AssociationSet>
-          <AssociationSet Name="FK__discount___produ__656C112C" Association="Self.FK__discount___produ__656C112C">
+          <AssociationSet Name="FK__discount___produ__52593CB8" Association="Self.FK__discount___produ__52593CB8">
             <End Role="product" EntitySet="product" />
             <End Role="discount_info" EntitySet="discount_info" />
           </AssociationSet>
-          <AssociationSet Name="FK__order_det__order__68487DD7" Association="Self.FK__order_det__order__68487DD7">
+          <AssociationSet Name="FK__order_det__order__5535A963" Association="Self.FK__order_det__order__5535A963">
             <End Role="bill" EntitySet="bill" />
             <End Role="order_detail_id" EntitySet="order_detail_id" />
           </AssociationSet>
-          <AssociationSet Name="FK__order_det__produ__693CA210" Association="Self.FK__order_det__produ__693CA210">
+          <AssociationSet Name="FK__order_det__produ__5629CD9C" Association="Self.FK__order_det__produ__5629CD9C">
             <End Role="product" EntitySet="product" />
             <End Role="order_detail_id" EntitySet="order_detail_id" />
           </AssociationSet>
-          <AssociationSet Name="FK__product__catetor__60A75C0F" Association="Self.FK__product__catetor__60A75C0F">
+          <AssociationSet Name="FK__product__catetor__4D94879B" Association="Self.FK__product__catetor__4D94879B">
             <End Role="catetory" EntitySet="catetory" />
             <End Role="product" EntitySet="product" />
           </AssociationSet>
-          <AssociationSet Name="FK__shopping___produ__6D0D32F4" Association="Self.FK__shopping___produ__6D0D32F4">
+          <AssociationSet Name="FK__shopping___produ__59FA5E80" Association="Self.FK__shopping___produ__59FA5E80">
             <End Role="product" EntitySet="product" />
             <End Role="shopping_cart" EntitySet="shopping_cart" />
           </AssociationSet>
-          <AssociationSet Name="FK__shopping___user___6C190EBB" Association="Self.FK__shopping___user___6C190EBB">
+          <AssociationSet Name="FK__shopping___user___59063A47" Association="Self.FK__shopping___user___59063A47">
             <End Role="customer" EntitySet="customer" />
             <End Role="shopping_cart" EntitySet="shopping_cart" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="sosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="sosModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="bill">
           <Key>
             <PropertyRef Name="order_id" />
@@ -225,8 +226,8 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <Property Name="payment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="payment_status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="total" Type="Double" />
-          <NavigationProperty Name="customer" Relationship="Self.FK__bill__user_id__6383C8BA" FromRole="bill" ToRole="customer" />
-          <NavigationProperty Name="order_detail_id" Relationship="Self.FK__order_det__order__68487DD7" FromRole="bill" ToRole="order_detail_id" />
+          <NavigationProperty Name="customer" Relationship="Self.FK__bill__user_id__5070F446" FromRole="bill" ToRole="customer" />
+          <NavigationProperty Name="order_detail_id" Relationship="Self.FK__order_det__order__5535A963" FromRole="bill" ToRole="order_detail_id" />
         </EntityType>
         <EntityType Name="catetory">
           <Key>
@@ -234,7 +235,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           </Key>
           <Property Name="catetory_id" Type="Int32" Nullable="false" />
           <Property Name="catetory_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="products" Relationship="Self.FK__product__catetor__60A75C0F" FromRole="catetory" ToRole="product" />
+          <NavigationProperty Name="products" Relationship="Self.FK__product__catetor__4D94879B" FromRole="catetory" ToRole="product" />
         </EntityType>
         <EntityType Name="customer">
           <Key>
@@ -247,8 +248,8 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <Property Name="first_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="last_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="phone_num" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="bills" Relationship="Self.FK__bill__user_id__6383C8BA" FromRole="customer" ToRole="bill" />
-          <NavigationProperty Name="shopping_cart" Relationship="Self.FK__shopping___user___6C190EBB" FromRole="customer" ToRole="shopping_cart" />
+          <NavigationProperty Name="bills" Relationship="Self.FK__bill__user_id__5070F446" FromRole="customer" ToRole="bill" />
+          <NavigationProperty Name="shopping_cart" Relationship="Self.FK__shopping___user___59063A47" FromRole="customer" ToRole="shopping_cart" />
         </EntityType>
         <EntityType Name="order_detail_id">
           <Key>
@@ -258,8 +259,8 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <Property Name="order_id" Type="Int32" />
           <Property Name="product_id" Type="Int32" />
           <Property Name="quantity" Type="Int32" />
-          <NavigationProperty Name="bill" Relationship="Self.FK__order_det__order__68487DD7" FromRole="order_detail_id" ToRole="bill" />
-          <NavigationProperty Name="product" Relationship="Self.FK__order_det__produ__693CA210" FromRole="order_detail_id" ToRole="product" />
+          <NavigationProperty Name="bill" Relationship="Self.FK__order_det__order__5535A963" FromRole="order_detail_id" ToRole="bill" />
+          <NavigationProperty Name="product" Relationship="Self.FK__order_det__produ__5629CD9C" FromRole="order_detail_id" ToRole="product" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -275,11 +276,11 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <Property Name="current_price" Type="Double" />
           <Property Name="start_date" Type="DateTime" Precision="3" />
           <Property Name="end_date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="catetory" Relationship="Self.FK__product__catetor__60A75C0F" FromRole="product" ToRole="catetory" />
-          <NavigationProperty Name="order_detail_id" Relationship="Self.FK__order_det__produ__693CA210" FromRole="product" ToRole="order_detail_id" />
-          <NavigationProperty Name="shopping_cart" Relationship="Self.FK__shopping___produ__6D0D32F4" FromRole="product" ToRole="shopping_cart" />
           <Property Name="quantity" Type="Int32" />
-          <NavigationProperty Name="discount_info" Relationship="sosModel.FK__discount___produ__656C112C" FromRole="product" ToRole="discount_info" />
+          <NavigationProperty Name="catetory" Relationship="Self.FK__product__catetor__4D94879B" FromRole="product" ToRole="catetory" />
+          <NavigationProperty Name="order_detail_id" Relationship="Self.FK__order_det__produ__5629CD9C" FromRole="product" ToRole="order_detail_id" />
+          <NavigationProperty Name="discount_info" Relationship="Self.FK__discount___produ__52593CB8" FromRole="product" ToRole="discount_info" />
+          <NavigationProperty Name="shopping_cart" Relationship="Self.FK__shopping___produ__59FA5E80" FromRole="product" ToRole="shopping_cart" />
         </EntityType>
         <EntityType Name="shopping_cart">
           <Key>
@@ -290,10 +291,20 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <Property Name="product_id" Type="Int32" />
           <Property Name="quantity" Type="Int32" />
           <Property Name="total" Type="Double" />
-          <NavigationProperty Name="customer" Relationship="Self.FK__shopping___user___6C190EBB" FromRole="shopping_cart" ToRole="customer" />
-          <NavigationProperty Name="product" Relationship="Self.FK__shopping___produ__6D0D32F4" FromRole="shopping_cart" ToRole="product" />
+          <NavigationProperty Name="customer" Relationship="Self.FK__shopping___user___59063A47" FromRole="shopping_cart" ToRole="customer" />
+          <NavigationProperty Name="product" Relationship="Self.FK__shopping___produ__59FA5E80" FromRole="shopping_cart" ToRole="product" />
         </EntityType>
-        <Association Name="FK__bill__user_id__6383C8BA">
+        <EntityType Name="discount_info">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="discount_percentage" Type="Decimal" Precision="2" Scale="2" />
+          <Property Name="discount_start_date" Type="DateTime" Precision="3" />
+          <Property Name="discount_end_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="product" Relationship="Self.FK__discount___produ__52593CB8" FromRole="discount_info" ToRole="product" />
+        </EntityType>
+        <Association Name="FK__bill__user_id__5070F446">
           <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
           <End Role="bill" Type="Self.bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -305,7 +316,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__order_det__order__68487DD7">
+        <Association Name="FK__order_det__order__5535A963">
           <End Role="bill" Type="Self.bill" Multiplicity="0..1" />
           <End Role="order_detail_id" Type="Self.order_detail_id" Multiplicity="*" />
           <ReferentialConstraint>
@@ -317,7 +328,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__product__catetor__60A75C0F">
+        <Association Name="FK__product__catetor__4D94879B">
           <End Role="catetory" Type="Self.catetory" Multiplicity="0..1" />
           <End Role="product" Type="Self.product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -329,7 +340,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__shopping___user___6C190EBB">
+        <Association Name="FK__shopping___user___59063A47">
           <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
           <End Role="shopping_cart" Type="Self.shopping_cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -341,7 +352,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__order_det__produ__693CA210">
+        <Association Name="FK__order_det__produ__5629CD9C">
           <End Role="product" Type="Self.product" Multiplicity="0..1" />
           <End Role="order_detail_id" Type="Self.order_detail_id" Multiplicity="*" />
           <ReferentialConstraint>
@@ -353,7 +364,19 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__shopping___produ__6D0D32F4">
+        <Association Name="FK__discount___produ__52593CB8">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="discount_info" Type="Self.discount_info" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="discount_info">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__shopping___produ__59FA5E80">
           <End Role="product" Type="Self.product" Multiplicity="0..1" />
           <End Role="shopping_cart" Type="Self.shopping_cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -365,73 +388,51 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="sosEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="sosEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="bills" EntityType="Self.bill" />
           <EntitySet Name="catetories" EntityType="Self.catetory" />
           <EntitySet Name="customers" EntityType="Self.customer" />
           <EntitySet Name="order_detail_id" EntityType="Self.order_detail_id" />
           <EntitySet Name="products" EntityType="Self.product" />
           <EntitySet Name="shopping_cart" EntityType="Self.shopping_cart" />
-          <AssociationSet Name="FK__bill__user_id__6383C8BA" Association="Self.FK__bill__user_id__6383C8BA">
+          <EntitySet Name="discount_info" EntityType="Self.discount_info" />
+          <AssociationSet Name="FK__bill__user_id__5070F446" Association="Self.FK__bill__user_id__5070F446">
             <End Role="customer" EntitySet="customers" />
             <End Role="bill" EntitySet="bills" />
           </AssociationSet>
-          <AssociationSet Name="FK__order_det__order__68487DD7" Association="Self.FK__order_det__order__68487DD7">
+          <AssociationSet Name="FK__order_det__order__5535A963" Association="Self.FK__order_det__order__5535A963">
             <End Role="bill" EntitySet="bills" />
             <End Role="order_detail_id" EntitySet="order_detail_id" />
           </AssociationSet>
-          <AssociationSet Name="FK__product__catetor__60A75C0F" Association="Self.FK__product__catetor__60A75C0F">
+          <AssociationSet Name="FK__product__catetor__4D94879B" Association="Self.FK__product__catetor__4D94879B">
             <End Role="catetory" EntitySet="catetories" />
             <End Role="product" EntitySet="products" />
           </AssociationSet>
-          <AssociationSet Name="FK__shopping___user___6C190EBB" Association="Self.FK__shopping___user___6C190EBB">
+          <AssociationSet Name="FK__shopping___user___59063A47" Association="Self.FK__shopping___user___59063A47">
             <End Role="customer" EntitySet="customers" />
             <End Role="shopping_cart" EntitySet="shopping_cart" />
           </AssociationSet>
-          <AssociationSet Name="FK__order_det__produ__693CA210" Association="Self.FK__order_det__produ__693CA210">
+          <AssociationSet Name="FK__order_det__produ__5629CD9C" Association="Self.FK__order_det__produ__5629CD9C">
             <End Role="product" EntitySet="products" />
             <End Role="order_detail_id" EntitySet="order_detail_id" />
           </AssociationSet>
-          <AssociationSet Name="FK__shopping___produ__6D0D32F4" Association="Self.FK__shopping___produ__6D0D32F4">
-            <End Role="product" EntitySet="products" />
-            <End Role="shopping_cart" EntitySet="shopping_cart" />
-          </AssociationSet>
-          <EntitySet Name="discount_info" EntityType="sosModel.discount_info" />
-          <AssociationSet Name="FK__discount___produ__656C112C" Association="sosModel.FK__discount___produ__656C112C">
+          <AssociationSet Name="FK__discount___produ__52593CB8" Association="Self.FK__discount___produ__52593CB8">
             <End Role="product" EntitySet="products" />
             <End Role="discount_info" EntitySet="discount_info" />
           </AssociationSet>
+          <AssociationSet Name="FK__shopping___produ__59FA5E80" Association="Self.FK__shopping___produ__59FA5E80">
+            <End Role="product" EntitySet="products" />
+            <End Role="shopping_cart" EntitySet="shopping_cart" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="discount_info">
-          <Key>
-            <PropertyRef Name="product_id" />
-          </Key>
-          <Property Name="product_id" Type="Int32" Nullable="false" />
-          <Property Name="discount_percentage" Type="Decimal" Precision="2" Scale="2" />
-          <Property Name="discount_start_date" Type="DateTime" Precision="3" />
-          <Property Name="discount_end_date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="product" Relationship="sosModel.FK__discount___produ__656C112C" FromRole="discount_info" ToRole="product" />
-        </EntityType>
-        <Association Name="FK__discount___produ__656C112C">
-          <End Type="sosModel.product" Role="product" Multiplicity="1" />
-          <End Type="sosModel.discount_info" Role="discount_info" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="product">
-              <PropertyRef Name="product_id" />
-            </Principal>
-            <Dependent Role="discount_info">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="sosModelStoreContainer" CdmEntityContainer="sosEntities">
+        <EntityContainerMapping StorageEntityContainer="sosModel1StoreContainer" CdmEntityContainer="sosEntities1">
           <EntitySetMapping Name="bills">
-            <EntityTypeMapping TypeName="sosModel.bill">
+            <EntityTypeMapping TypeName="sosModel1.bill">
               <MappingFragment StoreEntitySet="bill">
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -444,7 +445,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="catetories">
-            <EntityTypeMapping TypeName="sosModel.catetory">
+            <EntityTypeMapping TypeName="sosModel1.catetory">
               <MappingFragment StoreEntitySet="catetory">
                 <ScalarProperty Name="catetory_id" ColumnName="catetory_id" />
                 <ScalarProperty Name="catetory_name" ColumnName="catetory_name" />
@@ -452,7 +453,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="customers">
-            <EntityTypeMapping TypeName="sosModel.customer">
+            <EntityTypeMapping TypeName="sosModel1.customer">
               <MappingFragment StoreEntitySet="customer">
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="username" ColumnName="username" />
@@ -465,7 +466,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="order_detail_id">
-            <EntityTypeMapping TypeName="sosModel.order_detail_id">
+            <EntityTypeMapping TypeName="sosModel1.order_detail_id">
               <MappingFragment StoreEntitySet="order_detail_id">
                 <ScalarProperty Name="order_detail_id1" ColumnName="order_detail_id" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
@@ -475,9 +476,8 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="products">
-            <EntityTypeMapping TypeName="sosModel.product">
+            <EntityTypeMapping TypeName="sosModel1.product">
               <MappingFragment StoreEntitySet="product">
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="product_name" ColumnName="product_name" />
                 <ScalarProperty Name="product_ingredients" ColumnName="product_ingredients" />
@@ -488,11 +488,12 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
                 <ScalarProperty Name="current_price" ColumnName="current_price" />
                 <ScalarProperty Name="start_date" ColumnName="start_date" />
                 <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="shopping_cart">
-            <EntityTypeMapping TypeName="sosModel.shopping_cart">
+            <EntityTypeMapping TypeName="sosModel1.shopping_cart">
               <MappingFragment StoreEntitySet="shopping_cart">
                 <ScalarProperty Name="cart_id" ColumnName="cart_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -503,12 +504,12 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="discount_info">
-            <EntityTypeMapping TypeName="sosModel.discount_info">
+            <EntityTypeMapping TypeName="sosModel1.discount_info">
               <MappingFragment StoreEntitySet="discount_info">
-                <ScalarProperty Name="discount_end_date" ColumnName="discount_end_date" />
-                <ScalarProperty Name="discount_start_date" ColumnName="discount_start_date" />
-                <ScalarProperty Name="discount_percentage" ColumnName="discount_percentage" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="discount_percentage" ColumnName="discount_percentage" />
+                <ScalarProperty Name="discount_start_date" ColumnName="discount_start_date" />
+                <ScalarProperty Name="discount_end_date" ColumnName="discount_end_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -527,7 +528,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

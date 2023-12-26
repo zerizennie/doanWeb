@@ -34,7 +34,7 @@ namespace Doan.DAL
     
         public virtual catetory catetory { get; set; }
         public virtual ICollection<order_detail_id> order_detail_id { get; set; }
-        public virtual ICollection<shopping_cart> shopping_cart { get; set; }
         public virtual discount_info discount_info { get; set; }
+        public virtual ICollection<shopping_cart> shopping_cart { get; set; }
     }
 }

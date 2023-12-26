@@ -7899,6 +7899,11 @@ textarea.form-control-lg {
   padding-left: 3rem !important;
 }
 
+.pull-right {
+    float: right !important;
+
+}
+
 .gap-0 {
   gap: 0 !important;
 }

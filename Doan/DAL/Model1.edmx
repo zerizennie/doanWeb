@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sosModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="sosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bill">
           <Key>
             <PropertyRef Name="order_id" />
@@ -23,6 +23,8 @@
           </Key>
           <Property Name="catetory_id" Type="int" Nullable="false" />
           <Property Name="catetory_name" Type="varchar" MaxLength="40" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isDelete" Type="bit" />
         </EntityType>
         <EntityType Name="customer">
           <Key>
@@ -166,7 +168,7 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="sosModel1StoreContainer">
+        <EntityContainer Name="sosModelStoreContainer">
           <EntitySet Name="bill" EntityType="Self.bill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="catetory" EntityType="Self.catetory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
@@ -214,7 +216,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="sosModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="sosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="bill">
           <Key>
             <PropertyRef Name="order_id" />
@@ -235,6 +237,8 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           </Key>
           <Property Name="catetory_id" Type="Int32" Nullable="false" />
           <Property Name="catetory_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isDelete" Type="Boolean" />
           <NavigationProperty Name="products" Relationship="Self.FK__product__catetor__4D94879B" FromRole="catetory" ToRole="product" />
         </EntityType>
         <EntityType Name="customer">
@@ -388,7 +392,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="sosEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="sosEntities00" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="bills" EntityType="Self.bill" />
           <EntitySet Name="catetories" EntityType="Self.catetory" />
           <EntitySet Name="customers" EntityType="Self.customer" />
@@ -430,9 +434,9 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="sosModel1StoreContainer" CdmEntityContainer="sosEntities1">
+        <EntityContainerMapping StorageEntityContainer="sosModelStoreContainer" CdmEntityContainer="sosEntities00">
           <EntitySetMapping Name="bills">
-            <EntityTypeMapping TypeName="sosModel1.bill">
+            <EntityTypeMapping TypeName="sosModel.bill">
               <MappingFragment StoreEntitySet="bill">
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -445,15 +449,17 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="catetories">
-            <EntityTypeMapping TypeName="sosModel1.catetory">
+            <EntityTypeMapping TypeName="sosModel.catetory">
               <MappingFragment StoreEntitySet="catetory">
                 <ScalarProperty Name="catetory_id" ColumnName="catetory_id" />
                 <ScalarProperty Name="catetory_name" ColumnName="catetory_name" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="customers">
-            <EntityTypeMapping TypeName="sosModel1.customer">
+            <EntityTypeMapping TypeName="sosModel.customer">
               <MappingFragment StoreEntitySet="customer">
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="username" ColumnName="username" />
@@ -466,7 +472,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="order_detail_id">
-            <EntityTypeMapping TypeName="sosModel1.order_detail_id">
+            <EntityTypeMapping TypeName="sosModel.order_detail_id">
               <MappingFragment StoreEntitySet="order_detail_id">
                 <ScalarProperty Name="order_detail_id1" ColumnName="order_detail_id" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
@@ -476,7 +482,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="products">
-            <EntityTypeMapping TypeName="sosModel1.product">
+            <EntityTypeMapping TypeName="sosModel.product">
               <MappingFragment StoreEntitySet="product">
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="product_name" ColumnName="product_name" />
@@ -493,7 +499,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="shopping_cart">
-            <EntityTypeMapping TypeName="sosModel1.shopping_cart">
+            <EntityTypeMapping TypeName="sosModel.shopping_cart">
               <MappingFragment StoreEntitySet="shopping_cart">
                 <ScalarProperty Name="cart_id" ColumnName="cart_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -504,7 +510,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="discount_info">
-            <EntityTypeMapping TypeName="sosModel1.discount_info">
+            <EntityTypeMapping TypeName="sosModel.discount_info">
               <MappingFragment StoreEntitySet="discount_info">
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="discount_percentage" ColumnName="discount_percentage" />

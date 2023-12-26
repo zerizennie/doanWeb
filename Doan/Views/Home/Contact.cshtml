@@ -1,19 +1,139 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Liên hệ";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+<main>
 
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+    <div class="info-contact">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-12 col-12">
+                <div class="img"><img src="~/Content/assets/images/logo.png" alt="MĂMĂM BAKERY"></div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-12 col-12">
+                <div class="over">
+                    <ul>
+                        <li><span>Địa chỉ:</span> Số 99, Đường Nguyễn Văn Nguyễn, Phường Tân Định, Quận 1, TP.Hồ Chí Minh</li>
+                        <li><span>Điện thoại:</span><a href="tel:09xxxxxxxxxx">09xxxxxxxxxx</a></li>
+                        <li><span>Email: </span><a href="mailto:mamambakery@gmail.com">mamambakery@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.24702906861!2d106.68524157520145!3d10.79238258935733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528d2805a04ab%3A0x5fee194509d269a1!2zOTkgxJAuIE5ndXnhu4VuIFbEg24gTmd1eeG7hW4sIFBoxrDhu51uZyBUw6JuIMSQ4buLbmgsIFF14bqtbiAxLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1702952530108!5m2!1svi!2s" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="clear"></div>
+
+    <!--<div class="form-contact">
+
+        <form id="formContact" name="formContact" method="POST" action="" class="validate" onsubmit="return checkform(this)">
+            <div class="form-group">
+                <div class="textContact">
+                    <p>Nếu quý khách có thắc mắc, ý kiến phản hồi hay đóng góp xin vui lòng điền vào Form dưới đây và gửi cho chúng tôi.</p>
+
+                    <p>Mămăm xin chân thành cảm ơn!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" class="required" value="" title="Vui lòng nhập họ tên liên lạc" placeholder="Họ tên" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="email" id="email" class="required" value="" title="Vui lòng nhập email" placeholder="Email" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="phone" id="phone" class="required" value="" title="Vui lòng nhập điện thoại liên lạc" placeholder="Điện thoại" />
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <input type="text" name="subject" id="subject" class="required" value="" placeholder="Tiêu đề" title="Vui lòng nhập tiêu đề liên lạc" />
+                    </div>
+                    <div class="form-group">
+                        <textarea class="required" id="content" name="content" placeholder="Nội dung liên lạc" title="Vui lòng nhập nội dung liên lạc"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button id="do_submit" name="do_submit" type="submit" value="1"><span>Gửi</span></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>-->
+
+    @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { onsubmit = "return validateForm()" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-contact">
+            <div class="form-group">
+                <div class="textContact">
+                    <p>Nếu quý khách có thắc mắc, ý kiến phản hồi hay đóng góp xin vui lòng điền vào Form dưới đây và gửi cho chúng tôi.</p>
+
+                    <p>Mămăm xin chân thành cảm ơn!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" class="required" value="" title="Vui lòng nhập họ tên liên lạc" placeholder="Họ tên" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="email" id="email" class="required" value="" title="Vui lòng nhập email" placeholder="Email" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="phone" id="phone" class="required" value="" title="Vui lòng nhập điện thoại liên lạc" placeholder="Điện thoại" />
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <input type="text" name="subject" id="subject" class="required" value="" placeholder="Tiêu đề" title="Vui lòng nhập tiêu đề liên lạc" />
+                    </div>
+                    <div class="form-group">
+                        <textarea class="required" id="content" name="content" placeholder="Nội dung liên lạc" title="Vui lòng nhập nội dung liên lạc"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button id="do_submit" name="do_submit" type="submit" value="1"><span>Gửi</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-danger" id="error-message" style="width:80%; margin-left:10%">
+            @ViewBag.ErrorMessage
+            <button type="button" class="close float-end" onclick="closeErrorMessage()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <script>
+            function closeErrorMessage() {
+                var errorMessage = document.getElementById("error-message");
+                errorMessage.style.display = "none";
+            }
+        </script>
+    }
+
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+    {
+        <div class="alert alert-success" id="success-message" style="width:80%; margin-left:10%">
+            @ViewBag.SuccessMessage
+            <button type="button" class="close float-end" onclick="closeSuccessMessage()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <script>
+            function closeSuccessMessage() {
+                var successMessage = document.getElementById("success-message");
+                successMessage.style.display = "none";
+            }
+        </script>
+    }
+
+
 </main>

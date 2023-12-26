@@ -13,13 +13,13 @@ namespace Doan.Repository
     {
         DbSet<Tbl_Entity> _dbSet;
 
-        private sosEntities1 _DBEntity;
+        private sosEntities00 _DBEntity;
 
         public GenericRepository()
         {
         }
 
-        public GenericRepository(sosEntities1 DBEntity)
+        public GenericRepository(sosEntities00 DBEntity)
         {
             _DBEntity= DBEntity;
             _dbSet= _DBEntity.Set<Tbl_Entity>();
@@ -121,6 +121,10 @@ namespace Doan.Repository
             {
                 return _dbSet.OrderBy(orderByPredict).ToList();
             }
+        }
+
+        private class sos1Entities
+        {
         }
     }
 }

@@ -343,6 +343,10 @@ button:focus:not(:focus-visible) {
   outline: 0;
 }
 
+.pull-right {
+    float:right !important;
+}
+
 input,
 button,
 select,

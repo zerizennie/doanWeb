@@ -21,6 +21,8 @@ namespace Doan.DAL
     
         public int catetory_id { get; set; }
         public string catetory_name { get; set; }
+        public Nullable<bool> isActive { get; set; }
+        public Nullable<bool> isDelete { get; set; }
     
         public virtual ICollection<product> products { get; set; }
     }

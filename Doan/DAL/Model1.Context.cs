@@ -13,10 +13,10 @@ namespace Doan.DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class sosEntities1 : DbContext
+    public partial class sosEntities00 : DbContext
     {
-        public sosEntities1()
-            : base("name=sosEntities1")
+        public sosEntities00()
+            : base("name=sosEntities00")
         {
         }
     

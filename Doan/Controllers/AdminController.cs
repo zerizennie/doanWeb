@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Doan.DAL;
+using Doan.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,19 @@ namespace Doan.Controllers
         public ActionResult Dashboard()
         {
             return View();
+        }
+        public ActionResult Categories()
+        {
+            var categories = GetCategories();
+            return View(categories);
+        }
+
+        private List<catetory> GetCategories()
+        {
+            using (var unitOfWork = new GenericUnitOfWork())
+            {
+                return unitOfWork.GetRepositoryInstance<catetory>().GetAllRecordsIQueryable().Where(i => i.isDelete == false).ToList();
+            }
         }
     }
 }

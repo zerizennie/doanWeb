@@ -17,9 +17,9 @@
             </div>
             <div class="formAccount">
                 <div class="row-log">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-3 col-form-label" })
+                    @Html.LabelFor(m => m.Username, new { @class = "col-md-3 col-form-label" })
                     <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "height:33px" })
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", style = "height:33px" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -38,10 +38,24 @@
                     </div>
                 </div>
                 <div class="row-log">
-                    @Html.LabelFor(m => m.FullName, new { @class = "col-md-3 col-form-label" })
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-3 col-form-label" })
                     <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", style = "height:33px" })
-                        @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row-log">
+                    @Html.LabelFor(m => m.FirstName, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row-log">
+                    @Html.LabelFor(m => m.LastName, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="row-log">
@@ -49,20 +63,6 @@
                     <div class="col-md-9">
                         @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", style = "height:33px" })
                         @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="row-log">
-                    @Html.LabelFor(m => m.Birthday, new { @class = "col-md-3 col-form-label" })
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.Birthday, new { @class = "form-control datepicker", style = "height:33px", autocomplete = "off", placeholder = "mm/dd/YYYY" })
-                        @Html.ValidationMessageFor(m => m.Birthday, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="row-log">
-                    @Html.LabelFor(m => m.Address, new { @class = "col-md-3 col-form-label" })
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", style = "height:33px" })
-                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="row-log">

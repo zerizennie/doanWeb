@@ -71,6 +71,10 @@ namespace Doan.Models
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Tài khoản")]
+        public string Username { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "{0} dài ít nhất {2} ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu")]
@@ -83,24 +87,17 @@ namespace Doan.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "Họ tên")]
-        public string FullName { get; set; }
+        [Display(Name = "Tên")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Họ")]
+        public string LastName { get; set; }
 
         [Required]
         [Display(Name = "Số điện thoại")]
         public string Phone { get; set; }
 
-        [Required]
-        [Display(Name = "Ngày sinh")]
-        [DataType(DataType.Date)]
-        public DateTime Birthday { get; set; }
-
-        [Required]
-        [Display(Name = "Địa chỉ")]
-        public string Address
-        {
-            get; set;
-        }
     }
 
     public class ResetPasswordViewModel

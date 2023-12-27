@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Doan.Models;
 using Doan;
+using Doan.DAL;
 
 namespace mamambakery.Controllers
 {
@@ -28,6 +29,9 @@ namespace mamambakery.Controllers
             UserManager = userManager;
             SignInManager = signInManager;
         }
+
+        sosEntities00 db = new sosEntities00();
+        
 
         public ApplicationSignInManager SignInManager
         {
@@ -162,7 +166,14 @@ namespace mamambakery.Controllers
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    //// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    //db.customers.Add(user);
+                    //db.SaveChanges();
+
+                    Session["Tài khoản"] = user.UserName.ToString();
+                    Session["Email"] = user.Email.ToString();
+
+                    Session["IsLogin"] = "1";
 
                     return RedirectToAction("Index", "Home");
                 }

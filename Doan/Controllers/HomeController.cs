@@ -1,7 +1,13 @@
-﻿using System;
+﻿using Doan.DAL;
+using Doan.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
@@ -98,11 +104,145 @@ namespace Doan.Controllers
             return View();
         }
 
-        public ActionResult Review()
-        {
-            ViewBag.Message = "Your review page.";
+        //public ActionResult Review()
+        //{
+        //    ViewBag.Message = "Your review page.";
 
+        //    return View();
+        //}
+
+        sosEntities00 db = new sosEntities00();
+        //public ActionResult Register()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Register(customer user)
+        //{
+        //    //if (db.customers.Any(x => x.username == user.username))
+        //    //{
+        //    //    ViewBag.Notification = "Tài khoản đã tồn tại";
+        //    //}
+        //    //else
+        //    //{
+        //    //    db.customers.Add(user);
+        //    //    db.SaveChanges();
+
+        //    //    Session["user_id"] = user.user_id.ToString();
+        //    //    Session["username"] = user.user_id.ToString();
+        //    //    return RedirectToAction("Index", "Home");
+        //    //}
+
+        //    if(ModelState.IsValid)
+        //    {
+        //        db.customers.Add(user);
+        //        db.SaveChanges();
+
+        //        Session["Tài khoản"] = user.user_id.ToString();
+        //        Session["Mật khẩu"] = user.password.ToString();
+        //        Session["Xác nhận mật khẩu"] = user.password.ToString();
+        //        Session["Email"] = user.email.ToString();
+        //        Session["Tên"] = user.first_name.ToString();
+        //        Session["Họ"] = user.last_name.ToString();
+        //        Session["Số điện thoại"] = user.phone_num.ToString();
+        //        return RedirectToAction("Index", "Home");
+        //    }
+
+        //    else
+        //    {
+        //        return ViewBag.Notification = "Tài khoản đã tồn tại";
+        //    }
+        //}
+
+        //GET: Register
+
+        public ActionResult Register()
+        {
             return View();
+        }
+
+        //POST: Register
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(customer _user)
+        {
+            if (ModelState.IsValid)
+            {
+                var check = db.customers.FirstOrDefault(s => s.email == _user.email);
+                if (check == null)
+                {
+                    _user.password = GetMD5(_user.password);
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    db.customers.Add(_user);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.error = "Email already exists";
+                    return View();
+                }
+
+
+            }
+            return View();
+        }
+
+        private static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x2");
+
+            }
+            return byte2String;
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string email, string password)
+        {
+            if (ModelState.IsValid)
+            {
+
+
+                var f_password = GetMD5(password);
+                var data = db.customers.Where(s => s.email.Equals(email) && s.password.Equals(f_password)).ToList();
+                if (data.Count() > 0)
+                {
+                    //add session
+                    Session["FullName"] = data.FirstOrDefault().first_name + " " + data.FirstOrDefault().last_name;
+                    Session["Email"] = data.FirstOrDefault().email;
+                    Session["idUser"] = data.FirstOrDefault().user_id;
+                    return RedirectToAction("Index","Home");
+                }
+                else
+                {
+                    ViewBag.error = "Login failed";
+                    return RedirectToAction("Login");
+                }
+            }
+            return View();
+        }
+
+
+        //Logout
+        public ActionResult Logout()
+        {
+            Session.Clear();//remove session
+            return RedirectToAction("Login");
         }
     }
 }

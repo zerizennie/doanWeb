@@ -104,12 +104,12 @@ namespace Doan.Controllers
             return View();
         }
 
-        //public ActionResult Review()
-        //{
-        //    ViewBag.Message = "Your review page.";
+        public ActionResult Review()
+        {
+            ViewBag.Message = "Your review page.";
 
-        //    return View();
-        //}
+            return View();
+        }
 
         sosEntities00 db = new sosEntities00();
         //public ActionResult Register()

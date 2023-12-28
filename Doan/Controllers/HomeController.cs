@@ -3,6 +3,7 @@ using Doan.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
@@ -97,11 +98,23 @@ namespace Doan.Controllers
         }
 
 
-        public ActionResult Product()
+       
+        public ActionResult MenuProduct()
         {
-            ViewBag.Message = "Your product page.";
+            var items = db.catetories.ToList();
+            var categoryDetails = items.Select(c => new categoryDetail { catetory_id = c.catetory_id, catetory_name = c.catetory_name }).ToList();
+            return PartialView("_MenuProduct", categoryDetails);
+        }
 
-            return View();
+        public ActionResult Product(int? id)
+        {
+            var items = db.products.ToList();
+            if (id != null)
+            {
+                items = items.Where(x => x.catetory_id == id).ToList();
+            }
+            var productDetails = items.Select(p => new productDetail { product_id = p.product_id, product_name = p.product_name, product_price = p.product_price, product_image = p.product_image, catetory_id = p.catetory_id }).ToList();
+            return View(productDetails);
         }
 
         public ActionResult Review()
@@ -244,5 +257,8 @@ namespace Doan.Controllers
             Session.Clear();//remove session
             return RedirectToAction("Login");
         }
+
+
     }
+
 }

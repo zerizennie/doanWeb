@@ -259,7 +259,7 @@ body {
 .row {
   display: flex;
   flex-wrap: wrap;
-  width: 95%;
+  width: 100%;
 }
 
 
@@ -818,6 +818,9 @@ font-weight: bold;
     display: inline-block;
     object-fit: contain;
   }
+  .row{
+      width:95%;
+  }
   .over {
     width: 100%;
     display: inline-block;
@@ -932,10 +935,6 @@ font-weight: bold;
         margin-left:7%
     }
 
-    .row {
-        width: 90%;
-    }
-
     .row-log {
         width: 107%;
         justify-content: space-between;
@@ -1012,39 +1011,6 @@ font-weight: bold;
   #dropdown-menu.show {
     display: block;
   }
-
-  .wrapper .bottom_nav ul li.dropdown {
-    position: relative;
-  }
-
-  .wrapper .bottom_nav ul li.dropdown .submenu {
-    display: none;
-    position: absolute;
-    width: 100%; /* Độ rộng của submenu */
-    background: var(--main-color);
-    box-sizing: border-box;
-    z-index: 2;
-    left: 100%; /* Đặt submenu bên phải của menu cha */
-    top: 0; /* Đặt submenu ngang hàng với menu cha */
-    
-  }
-  .wrapper .bottom_nav ul li.dropdown .submenu li {
-    display: block; /* Thay đổi display thành inline-block */
-  }
-  .wrapper .bottom_nav ul li.dropdown .submenu li a {
-    color: #fff;
-    font-size: 16px;
-    text-transform: capitalize;
-    display: block; /* Đặt mỗi mục trên một dòng riêng biệt */
-    background-color: #77CCC8; /* Nền xanh */
-    padding: 10px;
-    text-align: justify;
-  }
-  
-  .wrapper .bottom_nav ul li.dropdown .submenu li a:hover {
-    color: #000;
-  }
-
 
 }
 
@@ -1198,39 +1164,6 @@ font-weight: bold;
         #dropdown-menu.show {
             display: block;
         }
-
-    .wrapper .bottom_nav ul li.dropdown {
-        position: relative;
-    }
-
-        .wrapper .bottom_nav ul li.dropdown .submenu {
-            display: none;
-            position: absolute;
-            width: 100%; /* Độ rộng của submenu */
-            background: var(--main-color);
-            box-sizing: border-box;
-            z-index: 2;
-            left: 100%; /* Đặt submenu bên phải của menu cha */
-            top: 0; /* Đặt submenu ngang hàng với menu cha */
-        }
-
-            .wrapper .bottom_nav ul li.dropdown .submenu li {
-                display: block;
-            }
-
-                .wrapper .bottom_nav ul li.dropdown .submenu li a {
-                    color: #fff;
-                    font-size: 16px;
-                    text-transform: capitalize;
-                    display: block; /* Đặt mỗi mục trên một dòng riêng biệt */
-                    background-color: #77CCC8; /* Nền xanh */
-                    padding: 10px;
-                    text-align: justify;
-                }
-
-                    .wrapper .bottom_nav ul li.dropdown .submenu li a:hover {
-                        color: #000;
-                    }
 
     .col {
         padding-left: 5%;
@@ -1492,37 +1425,6 @@ font-weight: bold;
     display: block;
   }
 
-  .wrapper .bottom_nav ul li.dropdown .submenu {
-    display: none;
-    position: absolute;
-    width: auto; /* Độ rộng của submenu */
-    background: var(--main-color);
-    box-sizing: border-box;
-    margin-top: 7px;
-    margin-left: -20px;
-    z-index: 2;
-  }
-
-    .wrapper .bottom_nav ul li.dropdown .submenu li a {
-        color: #fff;
-        font-size: 16px;
-        text-transform: capitalize;
-        display: block; /* Đặt mỗi mục trên một dòng riêng biệt */
-        background-color: #77CCC8; /* Nền xanh */
-        padding: 10px 20px;
-        text-align: justify;
-        padding-left: 20px;
-    }
-  
-  .wrapper .bottom_nav ul li.dropdown .submenu li a:hover {
-    color: #000;
-  }
-
-  .row{
-      width:95%;
-  }
-
-
     .log-bg-in {
         width: 500px;
     }
@@ -1538,11 +1440,12 @@ font-weight: bold;
 
 .products{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
   grid-gap: 50px;
-  margin: 50px auto;
+  margin: 30px auto;
   max-width: 1240px;
   padding: 20px;
+  padding-top:0;
 }
 .product{
   padding: 10px;
@@ -1550,24 +1453,36 @@ font-weight: bold;
   cursor: pointer;
 }
 
-.product img{
-  width: 100%;
-  height: 400px;
-  display: block;
-  border: 2px solid #fff;
-  cursor: pointer;
-  object-fit: contain; 
+    .product .name {
+        text-align: center;
+        padding-top: 30px;
+        text-transform: uppercase;
+        color: #fa6e4f;
+        font-size: 30px;
+        font-weight: bolder;
+    }
+
+.product a
+
+{
+    text-decoration: none;
 }
-.product .name{
-  text-align: center;
-  padding-top: 30px;
-  text-transform: uppercase;
-  color: #fa6e4f;
-  font-size: 30px;
-  font-weight: bolder;
+
+.product img {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    min-height: 200px;
+    display: block;
+    border: 2px solid #fff;
+    cursor: pointer;
+    object-fit: contain;
+}
+  cursor: pointer;
 }
 .product .ingredients{
   padding: 10px auto;
+  text-align: center;
   line-height: 1.5;
 }
 .product .price{
@@ -1597,4 +1512,46 @@ font-weight: bold;
   max-width: 1240px;
   padding: 20px;
   text-align: center;
+}
+
+.sidebar {
+    float: left;
+    width: 90%;
+    margin-top: 30px;
+    margin-left: 5%;
+}
+.sidebar_title h5 {
+    font-size: 25px;
+    margin-bottom: 21px;
+    padding-left:5%;
+}
+
+.sidebar_categories li.active a {
+    color: #fa6e4f;
+}
+
+.sidebar_categories li.active:hover a {
+    color: #fa6e4f;
+}
+
+.sidebar_categories li a {
+    font-size: 20px;
+    line-height: 40px;
+    color: #51545f;
+}
+
+.sidebar_categories li a:hover {
+    color: #fa6e4f
+    
+}
+
+.sidebar_categories li a span {
+    margin-right: 5px;
+}
+
+@media(min-width:768px)
+{
+    .main_content {
+        border-left: solid 1.5px #EB836F;
+    }
 }

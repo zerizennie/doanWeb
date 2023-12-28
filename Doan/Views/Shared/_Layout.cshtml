@@ -44,25 +44,12 @@
             </a>
             <ul class="menu" id="dropdown-menu">
                 <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
-                <li class="dropdown">
-                    <a href="@Url.Action("Product", "Home")">Sản phẩm</a>
-                    <ul class="submenu">
-                        <div>
-                        <li><a href="#">Donut</a></li>
-                        <li><a href="#">Cheesecake</a></li>
-                        <li><a href="#">Macaron</a></li>
-                        <li><a href="#">Tart</a></li>
-                        <li><a href="#">Pudding</a></li>
-                        <li><a href="#">Puff Pastry</a></li>
+                <li><a href="@Url.Action("Product", "Home")">Sản phẩm</a></li>
+                <li><a href="@Url.Action("About", "Home")">Giới thiệu</a></li>
+                <li><a href="@Url.Action("Review", "Home")">Review</a></li>
+                <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
+            </ul>
         </div>
-
-        </ul>
-        </li>
-        <li><a href="@Url.Action("About", "Home")">Giới thiệu</a></li>
-        <li><a href="@Url.Action("Review", "Home")">Review</a></li>
-        <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
-        </ul>
-    </div>
     </div>
 
     @RenderBody()

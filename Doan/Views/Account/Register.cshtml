@@ -1,11 +1,11 @@
-﻿@model Doan.Models.RegisterViewModel
+﻿@*@model Doan.Models.RegisterViewModel
 @{
     ViewBag.Title = "Đăng ký";
 }
 
 <main>
 
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+    @using(Html.BeginForm("Register", "Home", FormMethod.Post, new { role = "form" }))
     {
         @Html.AntiForgeryToken()
         <div class="log-bg-in">
@@ -17,9 +17,9 @@
             </div>
             <div class="formAccount">
                 <div class="row-log">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-3 col-form-label" })
+                    @Html.LabelFor(m => m.Username, new { @class = "col-md-3 col-form-label" })
                     <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "height:33px" })
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", style = "height:33px" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -38,10 +38,24 @@
                     </div>
                 </div>
                 <div class="row-log">
-                    @Html.LabelFor(m => m.FullName, new { @class = "col-md-3 col-form-label" })
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-3 col-form-label" })
                     <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", style = "height:33px" })
-                        @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row-log">
+                    @Html.LabelFor(m => m.FirstName, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row-log">
+                    @Html.LabelFor(m => m.LastName, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="row-log">
@@ -52,24 +66,15 @@
                     </div>
                 </div>
                 <div class="row-log">
-                    @Html.LabelFor(m => m.Birthday, new { @class = "col-md-3 col-form-label" })
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.Birthday, new { @class = "form-control datepicker", style = "height:33px", autocomplete = "off", placeholder = "mm/dd/YYYY" })
-                        @Html.ValidationMessageFor(m => m.Birthday, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="row-log">
-                    @Html.LabelFor(m => m.Address, new { @class = "col-md-3 col-form-label" })
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", style = "height:33px" })
-                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="row-log">
                     <div class="offset-md-2 col-md-9">
                         <input type="submit" value="Đăng ký" class="btn btn-outline-dark" style="margin-top:20px;margin-bottom:-10px;width:75%" />
                     </div>
                 </div>
+
+                <div>
+                    @ViewBag.error
+                </div>
+
             </div>
         </div>
     }
@@ -77,4 +82,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@

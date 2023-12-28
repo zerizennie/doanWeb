@@ -11,7 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
-
+using BotDetect.Web.Mvc;
 namespace Doan.Controllers
 {
     public class HomeController : Controller
@@ -210,14 +210,18 @@ namespace Doan.Controllers
             return View();
         }
 
+        public string CaptchaCode { get; set; }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CaptchaValidationActionFilter("CaptchaCode", "ExampleCaptcha", "Incorrect!")]
         public ActionResult Login(string email, string password)
         {
             if (ModelState.IsValid)
             {
 
-
+                
                 var f_password = GetMD5(password);
                 var data = db.customers.Where(s => s.email.Equals(email) && s.password.Equals(f_password)).ToList();
                 if (data.Count() > 0)
@@ -231,6 +235,7 @@ namespace Doan.Controllers
                 else
                 {
                     ViewBag.error = "Login failed";
+                    MvcCaptcha.ResetCaptcha("ExampleCaptcha");
                     return RedirectToAction("Login");
                 }
             }

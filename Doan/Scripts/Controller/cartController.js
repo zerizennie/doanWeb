@@ -52,7 +52,7 @@
         $('.btn-delete').off('click').on('click', function (e) {
             e.preventDefault();
             $.ajax({
-                data: { id: $(this).data('id') },
+                data: { ID: $(this).data('product_id') },
                 url: '/Cart/Delete',
                 dataType: 'json',
                 type: 'POST',

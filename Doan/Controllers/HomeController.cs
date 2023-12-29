@@ -284,7 +284,6 @@ namespace Doan.Controllers
             return RedirectToAction("Login");
         }
 
-
     }
 
 }

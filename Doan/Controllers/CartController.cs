@@ -38,21 +38,40 @@ namespace Doan.Controllers
 
         }
 
-        private JsonResult Delete(long productId)
+        public JsonResult Delete(long productID)
         {
+            //var sessionCart = (List<CartItem>)Session[CartSession];
+            //sessionCart.RemoveAll(x => x.product_id == productID); //xoa san pham theo id
+            //Session[CartSession] = sessionCart;
+            //return
+            //    Json(new
+            //    {
+            //        status = true
+            //    });
+
             var sessionCart = (List<CartItem>)Session[CartSession];
-            sessionCart.RemoveAll(x => x.product_id == productId); //xoa san pham theo id
+
+            // Tìm sản phẩm cần xóa theo productID
+            foreach (var item in sessionCart)
+            {
+                if (item.product.product_id == productID)
+                {
+                    sessionCart.Remove(item);
+                    break;
+                }
+            }
             Session[CartSession] = sessionCart;
             return
                 Json(new
                 {
                     status = true
                 });
+
         }
-        
+
         public JsonResult Update(string cartModel)
         {
-            var jsonCart = new JavaScriptSerializer().Deserialize<List<CartItem>>(CartModel);
+            var jsonCart = new JavaScriptSerializer().Deserialize<List<CartItem>>(cartModel);
             var sessionCart = (List<CartItem>)Session[CartSession];
 
             foreach (var item in sessionCart)

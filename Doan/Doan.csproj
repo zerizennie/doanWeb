@@ -313,6 +313,7 @@
     <Content Include="Content\assets\images\set-tart-2.png" />
     <Content Include="Content\assets\images\teacher.png" />
     <Content Include="Content\assets\images\tiramisu.png" />
+    <Content Include="Content\assets\js\cartController.js" />
     <Content Include="Content\assets\js\jquery-1.11.0.min.js" />
     <Content Include="Content\assets\js\jquery-migrate-1.2.1.min.js" />
     <Content Include="Content\assets\js\script.js" />

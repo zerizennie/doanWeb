@@ -109,12 +109,26 @@ namespace Doan.Controllers
         public ActionResult LoadProduct(int? id)
         {
             var items = db.products.ToList();
+            // Lọc sản phẩm theo categoryId chỉ định
             if (id != null)
             {
                 items = items.Where(x => x.catetory_id == id).ToList();
             }
             var productDetails = items.Select(p => new productDetail { product_id = p.product_id, product_name = p.product_name, product_price = p.product_price, product_image = p.product_image,product_ingredients=p.product_ingredients, catetory_id = p.catetory_id }).ToList();
             return PartialView("_LoadProduct",productDetails);
+        }
+
+        public ActionResult CateProduct(int id)
+        {
+            
+            var items = db.products.ToList();
+            // Lọc sản phẩm theo categoryId chỉ định
+            if (id >= 0)
+            {
+                items = items.Where(x => x.catetory_id == id).ToList();
+            }
+            var productDetails = items.Select(p => new productDetail { product_id = p.product_id, product_name = p.product_name, product_price = p.product_price, product_image = p.product_image, product_ingredients = p.product_ingredients, catetory_id = p.catetory_id }).ToList();
+            return View(productDetails);
         }
 
         public ActionResult Product()

@@ -106,15 +106,22 @@ namespace Doan.Controllers
             return PartialView("_MenuProduct", categoryDetails);
         }
 
-        public ActionResult Product(int? id)
+        public ActionResult LoadProduct(int? id)
         {
             var items = db.products.ToList();
             if (id != null)
             {
                 items = items.Where(x => x.catetory_id == id).ToList();
             }
-            var productDetails = items.Select(p => new productDetail { product_id = p.product_id, product_name = p.product_name, product_price = p.product_price, product_image = p.product_image, catetory_id = p.catetory_id }).ToList();
-            return View(productDetails);
+            var productDetails = items.Select(p => new productDetail { product_id = p.product_id, product_name = p.product_name, product_price = p.product_price, product_image = p.product_image,product_ingredients=p.product_ingredients, catetory_id = p.catetory_id }).ToList();
+            return PartialView("_LoadProduct",productDetails);
+        }
+
+        public ActionResult Product()
+        {
+            ViewBag.Message = "Your product page.";
+
+            return View();
         }
 
         public ActionResult Review()

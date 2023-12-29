@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Doan.Models.productDetail>
+
+    @if (Model != null && Model.Any())
+    {
+    foreach (var item in Model)
+    {
+    <div class="product">
+        <img src="@item.product_image" alt="@item.product_name">
+        <p class="name"><a href="@item.product_id" style="color: #fa6e4f">@item.product_name</a></p>
+        <p class="price"><span>@item.product_price</span></p>
+        <p class="ingredients">@item.product_ingredients</p>
+        <p class="cart"><a href="#" style="color:#ffffff">Thêm vào giỏ hàng<i class="bx bx-cart-alt"></i></a></p>
+    </div>
+    }
+    }

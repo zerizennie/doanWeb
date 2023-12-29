@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Doan.Models.categoryDetail>
+
+    @if (Model != null && Model.Any())
+    {
+        <ul class="sidebar_categories">
+            @foreach (var item in Model)
+            {
+                <li><a href="javascript:void(0);" class="categoryLink" data-id="@item.catetory_id">@item.catetory_name</a></li>
+            }
+            <li><a href="javascript:void(0);" class="categoryLink active-category" data-id="">Tất cả sản phẩm</a></li>
+        </ul>
+
+        
+    }

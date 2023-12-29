@@ -34,4 +34,13 @@ namespace Doan.Models
         public SelectList catetory { get; set; }
 
     }
+
+    public class GetProducViewModel
+    {
+        public List<productDetail> Data { get; set; }
+        public int TotalItems { get; set; }
+        public int CurrentPage { get; set; }
+        public int PageSize { get; set; }
+        public double NumberPages { get; set; }
+    }
 }

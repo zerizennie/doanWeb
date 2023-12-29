@@ -1,13 +1,112 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewBag.Title = "Sản phẩm";
+}
+<main>
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar_title">
+                    <h5>Danh mục sản phẩm</h5>
+                </div>
+            </div>
+            @Html.Action("MenuProduct", "Home")
+        </div>
+        <div class="col-md-9">
+            <!-- Main Content -->
+            <div class="main_content">
+                <!-- Products -->
+                <div class="products">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    <div>
-        @RenderBody()
+                </div>
+                <div style="margin-left:70%">
+                    <ul class="pagination">
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+</main>
+@section styles {
+<style>
+    .categoryLink.active-category {
+        color: #fa6e4f; /* Màu chữ của danh mục sản phẩm đang được chọn */
+    }
+</style>
+}
+
+@section scripts{
+<script>
+    $(document).ready(function () {
+        LoadData(null, 1, 6);
+
+        $('.categoryLink').click(function () {
+            $('.categoryLink').removeClass('active-category');
+            $(this).addClass('active-category');
+            var categoryId = $(this).data('id');
+            LoadData(categoryId, null, null);
+        });
+        
+    });
+
+    //Lấy dữ liệu
+    function LoadData(id, page, pageSize) {
+        $.ajax({
+            url: '/Home/HienThiSP',
+            type: 'GET',
+            data: { id: id, page: page, pageSize: pageSize },
+            success: function (res) {
+                if (res.TotalItems > 0) {
+                    var items = res.Data;
+                    var html = "";
+                    for (let i = 0; i < res.Data.length; i++) {
+                        html += '<div class="product">';
+                        html += '<img src="' + items[i].product_image + '" alt="' + items[i].product_name + '">';
+                        html += '<p class="name"><a href="' + items[i].product_id + '" style="color: #fa6e4f">' + items[i].product_name + '</a></p>';
+                        html += '<p class="price"><span>' + items[i].product_price + ' vnđ</span></p>';
+                        html += '<p class="ingredients"> Thành phần: ' + items[i].product_ingredients + '</p>';
+                        html += '<p class="cart"><a href="#" style="color:#ffffff">Thêm vào giỏ hàng<i class="bx bx-cart-alt"></i></a></p>';
+                        html += '</div>';
+                    }
+                    $('.products').html(html);
+                    Pagination(res.CurrentPage, res.NumberPages, res.PageSize);
+                }
+                else {
+                    $('.products').html('<p class="name" style="color: #fa6e4f; font-size:22px">Hiện chưa có sản phẩm!</p>');
+                    $('.pagination').html('');
+                }
+
+            }
+        });
+    }
+
+    //Phân trang
+    function Pagination(currentPage, numberPages, pageSize) {
+        if (numberPages > 0) {
+            var str = '';
+            if (currentPage != 1) {
+                str += '<li class="page-item"><a class="page-link" onclick="NextPage(' + (currentPage - 1) + ',' + pageSize + ')" href="javascript:void(0);">Trước</a></li>';
+            }
+
+            for (let i = 1; i <= numberPages; i++) {
+                if (currentPage === i) {
+                    str += '<li class="page-item active"><a class="page-link" href="javascript:void(0);">' + i + '</a></li>';
+                }
+                else {
+                    str += '<li class="page-item"><a class="page-link" onclick="NextPage(' + i + ',' + pageSize + ')" href="javascript:void(0);">' + i + '</a></li>';
+                }
+            }
+            if (currentPage != numberPages)
+                str += '<li class="page-item"><a class="page-link" onclick="NextPage(' + (currentPage + 1) + ',' + pageSize + ')" href="javascript:void(0);">Sau</a></li>';
+            $('.pagination').html(str);
+        }
+    }
+
+    //Load lại danh mục sp ở phân trang
+    function NextPage(page, pageSize) {
+        var id = $('.active-category').data('id'); // Lấy giá trị id từ danh mục sản phẩm được chọn
+        LoadData(id, page, pageSize);
+    }
+
+</script>
+}

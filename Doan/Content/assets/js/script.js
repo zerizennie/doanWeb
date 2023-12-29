@@ -120,7 +120,7 @@ document.getElementById('do_submit').addEventListener('click', function(event) {
   var nameInput = document.getElementById('name');
   var phoneInput = document.getElementById('phone');
   var emailInput = document.getElementById('email');
-  var titleInput = document.getElementById('title');
+  var subjectInput = document.getElementById('subject');
   var contentInput = document.getElementById('content');
   
   if (nameInput.value.trim() === '' && emailInput.value.trim() === '' && phoneInput.value.trim() === '' && subjectInput.value.trim() === '' && contentInput.value.trim() === '') {

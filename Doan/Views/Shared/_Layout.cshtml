@@ -15,6 +15,8 @@
 </head>
 <body>
 
+    <!--Layout menu-->
+
     <div class="wrapper">
         <div class="top_nav">
             <img style="max-height: 80%;object-fit:contain" src="@Url.Content("~/Content/assets/images/logo.png")" />
@@ -27,7 +29,7 @@
             <div class="right">
                 <div>
                     <div><a href="@Url.Action("Login", "Home")" class="user-icon"><i class="fa-regular fa-user"></i></a></div>
-                    <div><a href="@Url.Action("Cart", "Shopping")" class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></a></div>
+                    <div><a href="@Url.Action("Index", "Cart")" class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></a></div>
                     <div><a href="@Url.Action("Delivery", "Order")" class="deli-icon"><i class="fa-solid fa-truck"></i></a></div>
                 </div>
             </div>
@@ -42,25 +44,12 @@
             </a>
             <ul class="menu" id="dropdown-menu">
                 <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
-                <li class="dropdown">
-                    <a href="@Url.Action("Product", "Home")">Sản phẩm</a>
-                    <ul class="submenu">
-                        <div>
-                        <li><a href="#">Donut</a></li>
-                        <li><a href="#">Cheesecake</a></li>
-                        <li><a href="#">Macaron</a></li>
-                        <li><a href="#">Tart</a></li>
-                        <li><a href="#">Pudding</a></li>
-                        <li><a href="#">Puff Pastry</a></li>
+                <li><a href="@Url.Action("Product", "Home")">Sản phẩm</a></li>
+                <li><a href="@Url.Action("About", "Home")">Giới thiệu</a></li>
+                <li><a href="@Url.Action("Review", "Home")">Review</a></li>
+                <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
+            </ul>
         </div>
-
-        </ul>
-        </li>
-        <li><a href="@Url.Action("About", "Home")">Giới thiệu</a></li>
-        <li><a href="@Url.Action("Review", "Home")">Review</a></li>
-        <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
-        </ul>
-    </div>
     </div>
 
     @RenderBody()
@@ -69,6 +58,7 @@
     <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
         <i class="fa-solid fa-angles-up"></i>
     </button>
+    <!--Ket thuc-->
 </body>
 
 

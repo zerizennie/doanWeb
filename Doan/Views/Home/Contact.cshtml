@@ -26,43 +26,6 @@
 
     <div class="clear"></div>
 
-    <!--<div class="form-contact">
-
-        <form id="formContact" name="formContact" method="POST" action="" class="validate" onsubmit="return checkform(this)">
-            <div class="form-group">
-                <div class="textContact">
-                    <p>Nếu quý khách có thắc mắc, ý kiến phản hồi hay đóng góp xin vui lòng điền vào Form dưới đây và gửi cho chúng tôi.</p>
-
-                    <p>Mămăm xin chân thành cảm ơn!</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <input type="text" name="name" id="name" class="required" value="" title="Vui lòng nhập họ tên liên lạc" placeholder="Họ tên" />
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="email" id="email" class="required" value="" title="Vui lòng nhập email" placeholder="Email" />
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="phone" id="phone" class="required" value="" title="Vui lòng nhập điện thoại liên lạc" placeholder="Điện thoại" />
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <input type="text" name="subject" id="subject" class="required" value="" placeholder="Tiêu đề" title="Vui lòng nhập tiêu đề liên lạc" />
-                    </div>
-                    <div class="form-group">
-                        <textarea class="required" id="content" name="content" placeholder="Nội dung liên lạc" title="Vui lòng nhập nội dung liên lạc"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button id="do_submit" name="do_submit" type="submit" value="1"><span>Gửi</span></button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>-->
-
     @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { onsubmit = "return validateForm()" }))
     {
         @Html.AntiForgeryToken()

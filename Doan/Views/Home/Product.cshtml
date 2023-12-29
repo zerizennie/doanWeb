@@ -1,13 +1,28 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<Doan.Models.productDetail>
+    @{
+    ViewBag.Title = "Sản phẩm";
+    }
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    <div>
-        @RenderBody()
-    </div>
-</body>
-</html>
+    <main>
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <div class="sidebar_title">
+                        <h5>Danh mục sản phẩm</h5>
+                    </div>
+                </div>
+                @Html.Action("MenuProduct","Home")
+            </div>
+            <div class="col-md-9">
+                <!-- Main Content -->
+                <div class="main_content">
+                    <!-- Products -->
+                    <div class="products">
+                        @Html.Action("LoadProduct","Home")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+

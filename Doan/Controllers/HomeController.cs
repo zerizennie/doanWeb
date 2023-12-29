@@ -3,6 +3,7 @@ using Doan.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
@@ -11,7 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
-
+using BotDetect.Web.Mvc;
 namespace Doan.Controllers
 {
     public class HomeController : Controller
@@ -97,6 +98,39 @@ namespace Doan.Controllers
         }
 
 
+       
+        public ActionResult MenuProduct()
+        {
+            var items = db.catetories.ToList();
+            var categoryDetails = items.Select(c => new categoryDetail { catetory_id = c.catetory_id, catetory_name = c.catetory_name }).ToList();
+            return PartialView("_MenuProduct", categoryDetails);
+        }
+
+        public ActionResult LoadProduct(int? id)
+        {
+            var items = db.products.ToList();
+            // Lọc sản phẩm theo categoryId chỉ định
+            if (id != null)
+            {
+                items = items.Where(x => x.catetory_id == id).ToList();
+            }
+            var productDetails = items.Select(p => new productDetail { product_id = p.product_id, product_name = p.product_name, product_price = p.product_price, product_image = p.product_image,product_ingredients=p.product_ingredients, catetory_id = p.catetory_id }).ToList();
+            return PartialView("_LoadProduct",productDetails);
+        }
+
+        public ActionResult CateProduct(int id)
+        {
+            
+            var items = db.products.ToList();
+            // Lọc sản phẩm theo categoryId chỉ định
+            if (id >= 0)
+            {
+                items = items.Where(x => x.catetory_id == id).ToList();
+            }
+            var productDetails = items.Select(p => new productDetail { product_id = p.product_id, product_name = p.product_name, product_price = p.product_price, product_image = p.product_image, product_ingredients = p.product_ingredients, catetory_id = p.catetory_id }).ToList();
+            return View(productDetails);
+        }
+
         public ActionResult Product()
         {
             ViewBag.Message = "Your product page.";
@@ -104,12 +138,12 @@ namespace Doan.Controllers
             return View();
         }
 
-        //public ActionResult Review()
-        //{
-        //    ViewBag.Message = "Your review page.";
+        public ActionResult Review()
+        {
+            ViewBag.Message = "Your review page.";
 
-        //    return View();
-        //}
+            return View();
+        }
 
         sosEntities00 db = new sosEntities00();
         //public ActionResult Register()
@@ -210,14 +244,18 @@ namespace Doan.Controllers
             return View();
         }
 
+        public string CaptchaCode { get; set; }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CaptchaValidationActionFilter("CaptchaCode", "ExampleCaptcha", "Incorrect!")]
         public ActionResult Login(string email, string password)
         {
             if (ModelState.IsValid)
             {
 
-
+                
                 var f_password = GetMD5(password);
                 var data = db.customers.Where(s => s.email.Equals(email) && s.password.Equals(f_password)).ToList();
                 if (data.Count() > 0)
@@ -231,6 +269,7 @@ namespace Doan.Controllers
                 else
                 {
                     ViewBag.error = "Login failed";
+                    MvcCaptcha.ResetCaptcha("ExampleCaptcha");
                     return RedirectToAction("Login");
                 }
             }
@@ -244,5 +283,7 @@ namespace Doan.Controllers
             Session.Clear();//remove session
             return RedirectToAction("Login");
         }
+
     }
+
 }

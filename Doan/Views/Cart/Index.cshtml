@@ -1,8 +1,7 @@
 ﻿@model List<Doan.DAL.CartItem>
 
 @section scripts{
-
-    <script src="~/Scripts/Controllers/cartController.js"></script>
+    <script src="/Content/assets/js/cartController.js"></script>
 }
 <h2>GIỎ HÀNG CỦA BẠN</h2>
 <div class="content">
@@ -31,16 +30,17 @@
                             <td><input type="number" class="txtQuantity" data-id="@item.product.product_id" value="@item.quantity" /></td>
                             <td>@item.product.product_price</td>
                             <td>@(Convert.ToDecimal(item.product.product_price * item.quantity))</td>
-                            <td><a href="@Url.Action("Delete", "Cart", new { @productId=@item.product.product_id })" class="btn-delete">Xoá</a></td>
+                            <td><a href="#" data-id="@item.product.product_id" class="btn-delete">Xoá</a></td>
                         </tr>
                     }
                 </tbody>
             </table>
+            <
 
-            <button id="btnContinue" class="btn"><a href="~/Home/Product">Tiếp tục mua hàng</a></button>
-            <button id="btnUpdate" class="btn"><a href="@Url.Action("Update","Cart")">Cập nhật giỏ hàng</a></button>
-            <button id="btnDeleteAll" class="btn"><a href="@Url.Action("DeleteAll","Cart")">Xoá giỏ hàng</a></button>
-            <button id="btnPayment" class="btn">Thanh toán</button>
+            <button id="btnContinue" class="btn" style="background-color: #77CCC8">Tiếp tục mua hàng</button>
+            <button id="btnUpdate" class="btn" style="background-color: #77CCC8">Cập nhật giỏ hàng</button>
+            <button id="btnDeleteAll" class="btn" style="background-color: #77CCC8">Xoá giỏ hàng</button>
+            <button id="btnPayment" class="btn" style="background-color: #77CCC8">Thanh toán</button>
         }
         else
         {

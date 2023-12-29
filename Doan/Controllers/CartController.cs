@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Doan.DAL;
 using Doan.Models;
+using Newtonsoft.Json;
 
 namespace Doan.Controllers
 {
@@ -47,10 +48,9 @@ namespace Doan.Controllers
                 {
                     status = true
                 });
-
         }
         
-        public JsonResult Update(string CartModel)
+        public JsonResult Update(string cartModel)
         {
             var jsonCart = new JavaScriptSerializer().Deserialize<List<CartItem>>(CartModel);
             var sessionCart = (List<CartItem>)Session[CartSession];

@@ -26,7 +26,7 @@
                         <tr>
                             <td>@item.product.product_id</td>
                             <td>@item.product.product_name</td>
-                            <td><img style="display: block; width: 60%" src="@item.product.product_image"/></td>
+                            <td><img style="display: block; width: 60%" src="@item.product.product_image" /></td>
                             <td><input type="number" class="txtQuantity" data-id="@item.product.product_id" value="@item.quantity" /></td>
                             <td>@item.product.product_price</td>
                             <td>@(Convert.ToDecimal(item.product.product_price * item.quantity))</td>
@@ -34,8 +34,10 @@
                         </tr>
                     }
                 </tbody>
+                <tr>
+                    <td>TỔNG TIỀN: @Model.Sum(item => item.product.product_price * item.quantity ) </td>
+                </tr>
             </table>
-            <
 
             <button id="btnContinue" class="btn" style="background-color: #77CCC8">Tiếp tục mua hàng</button>
             <button id="btnUpdate" class="btn" style="background-color: #77CCC8">Cập nhật giỏ hàng</button>

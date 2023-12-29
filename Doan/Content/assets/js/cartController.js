@@ -59,6 +59,10 @@ var cart = {
                 }
             })
         });
+
+        $('#btnPayment').off('click').on('click', function () {
+            window.location.href = "/Cart/Payment"
+        });
     }
 }
 

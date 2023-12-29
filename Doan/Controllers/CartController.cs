@@ -125,66 +125,66 @@ namespace Doan.Controllers
             return View(list);
         }
 
-        //[HttpPost]
-        //public ActionResult Payment(string shipName, string mobile, string address, string email)
-        //{
-        //    var order = new Order();
-        //    order.CreatedDate = DateTime.Now;
-        //    order.ShipAddress = address;
-        //    order.ShipMobile = mobile;
-        //    order.ShipName = shipName;
-        //    order.ShipEmail = email;
+        [HttpPost]
+        public ActionResult Payment(string shipName, string mobile, string address, string email)
+        {
+            var order = new bill();
+            order.order_date = DateTime.Now;
+            order.order_address = address;
+            order.customer.phone_num = mobile;
+            order.customer.last_name = shipName;
+            order.customer.email = email;
 
-        //    try
-        //    {
+            try
+            {
 
-        //        Thêm Order
-        //        db.Order.Add(order);
-        //        db.SaveChanges();
-        //        var id = order.ID;
+                //Thêm Order
+                db.bills.Add(order);
+                db.SaveChanges();
+                var id = order.order_id;
 
-        //        var cart = (List<CartItem>)Session[CartSession];
+                var cart = (List<CartItem>)Session[CartSession];
 
-        //        decimal total = 0;
-        //        foreach (var item in cart)
-        //        {
-        //            var orderDetail = new OrderDetail();
-        //            orderDetail.ProductID = item.product.id;
-        //            orderDetail.OrderID = id;
-        //            orderDetail.Price = item.product.unit_price;
-        //            orderDetail.Quantity = item.Quantity;
-        //            db.OrderDetail.Add(orderDetail);
-        //            db.SaveChanges();
-        //            total += (item.product.unit_price.GetValueOrDefault(0) * item.Quantity);
-        //        }
-        //        string content = System.IO.File.ReadAllText(Server.MapPath("~/content/template/neworder.html"));
+                decimal total = 0;
+                foreach (var item in cart)
+                {
+                    var orderDetail = new order_detail_id();
+                    orderDetail.product_id = item.product.product_id;
+                    orderDetail.order_id = id;
+                    orderDetail.product.product_price = item.product.product_price
+                    orderDetail.quantity = item.quantity;
+                    db.OrderDetail.Add(orderDetail);
+                    db.SaveChanges();
+                    total += (item.product.product_price.GetValueOrDefault(0) * item.Quantity);
+                }
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/content/template/neworder.html"));
 
-        //        content = content.Replace("{{CustomerName}}", shipName);
-        //        content = content.Replace("{{Phone}}", mobile);
-        //        content = content.Replace("{{Email}}", email);
-        //        content = content.Replace("{{Address}}", address);
-        //        content = content.Replace("{{Total}}", total.ToString("N0"));
-        //        var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+                content = content.Replace("{{CustomerName}}", shipName);
+                content = content.Replace("{{Phone}}", mobile);
+                content = content.Replace("{{Email}}", email);
+                content = content.Replace("{{Address}}", address);
+                content = content.Replace("{{Total}}", total.ToString("N0"));
+               // var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
 
-        //        Để Gmail cho phép SmtpClient kết nối đến server SMTP của nó với xác thực
-        //       là tài khoản gmail của bạn, bạn cần thiết lập tài khoản email của bạn như sau:
-        //        Vào địa chỉ https://myaccount.google.com/security  Ở menu trái chọn mục Bảo mật, sau đó tại mục Quyền truy cập 
-        //        của ứng dụng kém an toàn phải ở chế độ bật
-        //          Đồng thời tài khoản Gmail cũng cần bật IMAP
-        //        Truy cập địa chỉ https://mail.google.com/mail/#settings/fwdandpop
+               // Để Gmail cho phép SmtpClient kết nối đến server SMTP của nó với xác thực
+               //là tài khoản gmail của bạn, bạn cần thiết lập tài khoản email của bạn như sau:
+               // Vào địa chỉ https://myaccount.google.com/security  Ở menu trái chọn mục Bảo mật, sau đó tại mục Quyền truy cập 
+               // của ứng dụng kém an toàn phải ở chế độ bật
+               //   Đồng thời tài khoản Gmail cũng cần bật IMAP
+               // Truy cập địa chỉ https://mail.google.com/mail/#settings/fwdandpop
 
-        //        new MailHelper().SendMail(email, "Đơn hàng mới từ Tiệm Bánh", content);
-        //        new MailHelper().SendMail(toEmail, "Đơn hàng mới từ Tiệm Bánh", content);
-        //        Xóa hết giỏ hàng
-        //        Session[CartSession] = null;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ghi log
-        //        return Redirect("/Cart/UnSuccess");
-        //    }
-        //    return Redirect("/Cart/Success");
-        //}
+               // new MailHelper().SendMail(email, "Đơn hàng mới từ Tiệm Bánh", content);
+               // new MailHelper().SendMail(toEmail, "Đơn hàng mới từ Tiệm Bánh", content);
+                //Xóa hết giỏ hàng
+                Session[CartSession] = null;
+            }
+            catch (Exception ex)
+            {
+                ghi log
+                return Redirect("/Cart/UnSuccess");
+            }
+            return Redirect("/Cart/Success");
+        }
 
         public ActionResult Success()
         {

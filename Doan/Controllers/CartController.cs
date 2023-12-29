@@ -50,9 +50,9 @@ namespace Doan.Controllers
 
         }
         
-        public JsonResult Update(string cartModel)
+        public JsonResult Update(string CartModel)
         {
-            var jsonCart = new JavaScriptSerializer().Deserialize<List<CartItem>>(cartModel);
+            var jsonCart = new JavaScriptSerializer().Deserialize<List<CartItem>>(CartModel);
             var sessionCart = (List<CartItem>)Session[CartSession];
 
             foreach (var item in sessionCart)

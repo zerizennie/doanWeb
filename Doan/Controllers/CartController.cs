@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Doan.DAL;
-using Doan.Models;
+//using Doan.Models;
 using Newtonsoft.Json;
 
 namespace Doan.Controllers
@@ -131,9 +131,9 @@ namespace Doan.Controllers
             var order = new bill();
             order.order_date = DateTime.Now;
             order.order_address = address;
-            order.customer.phone_num = mobile;
-            order.customer.last_name = shipName;
-            order.customer.email = email;
+            order.bill_email= email;
+            order.bill_name = shipName;
+            order.bill_phone = mobile;
 
             try
             {
@@ -141,21 +141,26 @@ namespace Doan.Controllers
                 //Thêm Order
                 db.bills.Add(order);
                 db.SaveChanges();
-                var id = order.order_id;
+                var Id = 1; // cho id dau tien = 1
+                if (db.bills.Count() > 0) //kiem tra xem da co don hang nao chua, neu co thi tang gia tri Id
+                {
+                    Id = (int)(db.bills.Max(x => x.id) + 1);
+                }
 
-                var cart = (List<CartItem>)Session[CartSession];
+                var sessioncart = (List<CartItem>)Session[CartSession];
 
-                decimal total = 0;
-                foreach (var item in cart)
+
+                double total = 0;
+                foreach (var item in sessioncart)
                 {
                     var orderDetail = new order_detail_id();
                     orderDetail.product_id = item.product.product_id;
-                    orderDetail.order_id = id;
-                    orderDetail.product.product_price = item.product.product_price
+                    orderDetail.order_id = Id;
+                    orderDetail.product_price = item.product_price;
                     orderDetail.quantity = item.quantity;
-                    db.OrderDetail.Add(orderDetail);
+                    db.order_detail_id.Add(orderDetail);
                     db.SaveChanges();
-                    total += (item.product.product_price.GetValueOrDefault(0) * item.Quantity);
+                    total += item.product.product_price.GetValueOrDefault(0) * item.quantity;
                 }
                 string content = System.IO.File.ReadAllText(Server.MapPath("~/content/template/neworder.html"));
 
@@ -180,7 +185,7 @@ namespace Doan.Controllers
             }
             catch (Exception ex)
             {
-                ghi log
+                //ghi log
                 return Redirect("/Cart/UnSuccess");
             }
             return Redirect("/Cart/Success");

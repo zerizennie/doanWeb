@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="sosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bill">
           <Key>
             <PropertyRef Name="order_id" />
@@ -16,6 +16,10 @@
           <Property Name="payment" Type="varchar" MaxLength="255" />
           <Property Name="payment_status" Type="varchar" MaxLength="255" />
           <Property Name="total" Type="float" />
+          <Property Name="bill_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="bill_phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="bill_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="id" Type="int" />
         </EntityType>
         <EntityType Name="catetory">
           <Key>
@@ -57,6 +61,7 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
           <Property Name="order_id" Type="int" />
           <Property Name="product_id" Type="int" />
           <Property Name="quantity" Type="int" />
+          <Property Name="product_price" Type="float" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -212,8 +217,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             <End Role="shopping_cart" EntitySet="shopping_cart" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="sosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -230,6 +234,10 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <Property Name="total" Type="Double" />
           <NavigationProperty Name="customer" Relationship="Self.FK__bill__user_id__5070F446" FromRole="bill" ToRole="customer" />
           <NavigationProperty Name="order_detail_id" Relationship="Self.FK__order_det__order__5535A963" FromRole="bill" ToRole="order_detail_id" />
+          <Property Name="bill_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bill_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="bill_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int32" />
         </EntityType>
         <EntityType Name="catetory">
           <Key>
@@ -265,6 +273,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <Property Name="quantity" Type="Int32" />
           <NavigationProperty Name="bill" Relationship="Self.FK__order_det__order__5535A963" FromRole="order_detail_id" ToRole="bill" />
           <NavigationProperty Name="product" Relationship="Self.FK__order_det__produ__5629CD9C" FromRole="order_detail_id" ToRole="product" />
+          <Property Name="product_price" Type="Double" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -438,6 +447,10 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <EntitySetMapping Name="bills">
             <EntityTypeMapping TypeName="sosModel.bill">
               <MappingFragment StoreEntitySet="bill">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="bill_email" ColumnName="bill_email" />
+                <ScalarProperty Name="bill_phone" ColumnName="bill_phone" />
+                <ScalarProperty Name="bill_name" ColumnName="bill_name" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="order_date" ColumnName="order_date" />
@@ -474,6 +487,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <EntitySetMapping Name="order_detail_id">
             <EntityTypeMapping TypeName="sosModel.order_detail_id">
               <MappingFragment StoreEntitySet="order_detail_id">
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
                 <ScalarProperty Name="order_detail_id1" ColumnName="order_detail_id" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />

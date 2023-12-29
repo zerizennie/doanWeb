@@ -26,6 +26,10 @@ namespace Doan.DAL
         public string payment { get; set; }
         public string payment_status { get; set; }
         public Nullable<double> total { get; set; }
+        public string bill_name { get; set; }
+        public string bill_phone { get; set; }
+        public string bill_email { get; set; }
+        public Nullable<int> id { get; set; }
     
         public virtual customer customer { get; set; }
         public virtual ICollection<order_detail_id> order_detail_id { get; set; }

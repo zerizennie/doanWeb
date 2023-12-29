@@ -1,0 +1,44 @@
+﻿@model Doan.Models.categoryDetail
+@{
+    ViewBag.Title = "UpdateCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+    @*<h1 class="mt-4">Tables</h1>*@
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item">
+            <a href="index.html">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">Categories</li>
+        <li class="breadcrumb-item active">Add New Category</li>
+    </ol>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            TẠO DANH MỤC SẢN PHẨM MỚI
+            @*<a href="#" class="btn btn-info pull-right fa fa-plus">Add New </a>*@
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("UpdateCategory", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <label class="control-label">Mã danh mục</label>
+                    @Html.TextBoxFor(m => m.catetory_id, new { @class = "form-control", placeholder = "Nhập mã danh mục", required = "required", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(m => m.catetory_id, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Tên danh mục</label>
+                    @Html.TextBoxFor(m => m.catetory_name, new { @class = "form-control", placeholder = "Nhập tên danh mục", required = "required", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(m => m.catetory_name, "", new { @class = "text-danger" })
+                </div>
+                <br />
+
+                <a onclick="window.history.back()" class="btn btn-danger">HỦY THAO TÁC</a>
+                <input type="submit" class="btn btn-primary" value="LƯU DANH MỤC" />
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Doan.DAL.bill>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã đơn hàng</th>
+                        <th>Mã khách hàng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Địa chỉ giao hàng</th>
+                        <th>Phương thức thanh toán</th>
+                        <th>Tình trạng thanh toán</th>
+                        <th>Giá trị đơn hàng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã đơn hàng</th>
+                        <th>Mã khách hàng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Địa chỉ giao hàng</th>
+                        <th>Phương thức thanh toán</th>
+                        <th>Tình trạng thanh toán</th>
+                        <th>Giá trị đơn hàng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    @{
+                        int count = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.order_id</td>
+                                <td>@item.user_id</td>
+                                <td>@item.order_date</td>
+                                <td>@item.order_address</td>
+                                <td>@item.payment</td>
+                                <td>@item.payment_status</td>
+                                <td>@item.total</td>
+                                <td>
+                                    @Html.ActionLink("Cập nhật", "Edit", new { order = item.order_id })
+                                    @*@Html.ActionLink("Xem chi tiết", "Product...", new { product_id = item.product_id })*@
+                                </td>
+                            </tr>
+                            count++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,18 +1,16 @@
 ﻿
+
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid px-4">
-            <h1 class="mt-4">Dashboard</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Tổng quan</li>
-            </ol>
-            @*@RenderBody()*@
-        </div>
 
+<main>
+    <div class="container-fluid px-5">
+        <h1 class="mt-4">Dashboard</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Tổng quan</li>
+        </ol>
         <div class="row">
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-primary text-white mb-4">
@@ -58,7 +56,7 @@
                         <i class="fas fa-chart-area me-1"></i>
                         Doanh thu
                     </div>
-                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                    <div class="card-body"><canvas id="myAreaChart" height="40"></canvas></div>
                 </div>
             </div>
         </div>
@@ -107,9 +105,9 @@
                             <td>$170,750</td>
                         </tr>
                     </tbody>
+                </table>
             </div>
-            </table>
+            
         </div>
-</div>
-
-
+    </div>
+</main>

@@ -37,10 +37,10 @@ namespace Doan.Controllers
 
         }
 
-        private JsonResult Delete(int product_id)
+        private JsonResult Delete(long productId)
         {
             var sessionCart = (List<CartItem>)Session[CartSession];
-            sessionCart.RemoveAll(x => x.product_id == product_id); //xoa san pham theo id
+            sessionCart.RemoveAll(x => x.product_id == productId); //xoa san pham theo id
             Session[CartSession] = sessionCart;
             return
                 Json(new
@@ -49,7 +49,7 @@ namespace Doan.Controllers
                 });
 
         }
-
+        
         public JsonResult Update(string cartModel)
         {
             var jsonCart = new JavaScriptSerializer().Deserialize<List<CartItem>>(cartModel);
@@ -69,7 +69,7 @@ namespace Doan.Controllers
                 status = true
             });
         }
-        public ActionResult AddItem(long productId, int quantity)
+        public ActionResult AddItem(int productId, int quantity)
         {
 
             var product = db.products.FirstOrDefault(c => c.product_id == productId);

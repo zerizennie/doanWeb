@@ -5,6 +5,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Objects;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +15,7 @@ namespace Doan.Controllers
 {
     public class AdminController : Controller
     {
+        huhuEntities db = new huhuEntities();
         // GET: Admin
         public GenericUnitOfWork _unitOfWork = new GenericUnitOfWork();
         public List<SelectListItem> GetCategory()
@@ -22,12 +25,8 @@ namespace Doan.Controllers
             foreach (var item in cat)
             {
                 list.Add(new SelectListItem { Value = item.catetory_id.ToString(), Text = item.catetory_name });
-            }    
+            }
             return list;
-        }
-        public ActionResult Dashboard()
-        {
-            return View();
         }
         public ActionResult Categories()
         {
@@ -50,7 +49,7 @@ namespace Doan.Controllers
         {
             categoryDetail cd;
             if (catetory_id != 0)
-            { 
+            {
                 cd = JsonConvert.DeserializeObject<categoryDetail>(JsonConvert.SerializeObject(_unitOfWork.GetRepositoryInstance<catetory>().GetFirstorDefault(catetory_id)));
             }
             else
@@ -112,6 +111,36 @@ namespace Doan.Controllers
             _unitOfWork.GetRepositoryInstance<product>().Add(tbProduct);
             return RedirectToAction("Product");
         }
-        
+
+        public ActionResult Dashboard()
+        {
+            ViewBag.latestOrders = db.bills.OrderByDescending(x => x.order_id).Take(10).ToList();
+            ViewBag.TotalOrders = db.bills.Count(x => x.order_id != null);
+
+            DateTime currentDate = DateTime.Now;
+            int currentMonth = currentDate.Month;
+            int currentYear = currentDate.Year;
+            ViewBag.orderMonth = db.bills.Count(x => x.order_date.HasValue && x.order_date.Value.Month == currentMonth);
+
+            int customerCount = db.customers.Count();
+
+            // Update the ViewBag or ViewData
+            ViewBag.CustomerCount = customerCount;
+
+            double totalRevenue = db.bills
+            .Where(x => x.order_date.HasValue && x.order_date.Value.Month == currentMonth && x.order_date.Value.Year == currentYear)
+            .Sum(x => x.total) ?? 0;
+
+            ViewBag.TotalRevenue = totalRevenue.ToString("N0");
+
+
+            var latestOrders = db.bills.OrderByDescending(x => x.order_id).Take(10).ToList();
+
+            // Gửi dữ liệu đến ViewBag hoặc Model
+            ViewBag.LatestOrders = latestOrders;
+
+
+            return View();
+        }
     }
 }

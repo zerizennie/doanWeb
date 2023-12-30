@@ -17,6 +17,7 @@ namespace Doan.DAL
         public bill()
         {
             this.order_detail_id = new HashSet<order_detail_id>();
+            this.order_detail_id1 = new HashSet<order_detail_id>();
         }
     
         public int order_id { get; set; }
@@ -26,8 +27,13 @@ namespace Doan.DAL
         public string payment { get; set; }
         public string payment_status { get; set; }
         public Nullable<double> total { get; set; }
+        public string bill_name { get; set; }
+        public string bill_phone { get; set; }
+        public string bill_email { get; set; }
+        public Nullable<int> id { get; set; }
     
         public virtual customer customer { get; set; }
         public virtual ICollection<order_detail_id> order_detail_id { get; set; }
+        public virtual ICollection<order_detail_id> order_detail_id1 { get; set; }
     }
 }

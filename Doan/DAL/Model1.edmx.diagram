@@ -4,21 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="08a5d9437bc34584ad69fe4ca6ca9a69" Name="Diagram1">
-        <EntityTypeShape EntityType="sosModel.bill" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="sosModel.catetory" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="sosModel.customer" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="sosModel.order_detail_id" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="sosModel.product" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="sosModel.shopping_cart" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="sosModel.discount_info" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
-        <AssociationConnector Association="sosModel.FK__bill__user_id__5070F446" ManuallyRouted="false" />
-        <AssociationConnector Association="sosModel.FK__order_det__order__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="sosModel.FK__product__catetor__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="sosModel.FK__shopping___user___59063A47" ManuallyRouted="false" />
-        <AssociationConnector Association="sosModel.FK__order_det__produ__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="sosModel.FK__discount___produ__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="sosModel.FK__shopping___produ__59FA5E80" ManuallyRouted="false" />
+      <Diagram DiagramId="3011e5e3e1b1403190c341cd1fc1c25a" Name="Diagram1">
+        <EntityTypeShape EntityType="huhuModel.bill" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="huhuModel.catetory" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="huhuModel.customer" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="huhuModel.order_detail_id" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="huhuModel.product" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="huhuModel.shopping_cart" Width="1.5" PointX="7.875" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="huhuModel.FK__bill__user_id__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="huhuModel.FK__order_det__order__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="huhuModel.FK__product__catetor__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="huhuModel.FK__shopping___user___59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="huhuModel.FK__order_det__produ__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="huhuModel.FK__shopping___produ__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="huhuModel.FK__order_det__order__5AEE82B9" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

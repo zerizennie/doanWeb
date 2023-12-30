@@ -1,113 +1,110 @@
 ﻿
-
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    //var chartData = ViewBag.ChartData as ChartDataModel;
 }
 
+
+<style>
+    .select-wrapper {
+        position: relative;
+    }
+
+        .select-wrapper select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 100%;
+            padding-right: 1.5rem;
+        }
+
+        .select-wrapper .arrow {
+            position: absolute;
+            top: 50%;
+            right: 0.5rem;
+            transform: translateY(-50%);
+            width: 0.5rem;
+            height: 0.5rem;
+            border-left: 0.15rem solid #999;
+            border-bottom: 0.15rem solid #999;
+            transform: rotate(45deg);
+            pointer-events: none;
+        }
+</style>
 <main>
     <div class="container-fluid px-5">
-        <h1 class="mt-4">Dashboard</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Tổng quan</li>
-        </ol>
-        <div class="row">
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-primary text-white mb-4">
-                    <div class="card-body">Đơn hàng mới</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-warning text-white mb-4">
-                    <div class="card-body">Đơn đã đóng gói</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-success text-white mb-4">
-                    <div class="card-body">Đơn đã gửi</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-danger text-white mb-4">
-                    <div class="card-body">Đơn đã hoàn thành</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
+        <h1 class="mt-4">BẢNG ĐIỀU KHIỂN</h1>
+        <br />
+        @*<ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Tổng quan</li>
+            </ol>*@
+    <div class="row">
+        <div class="col-xl-6 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">Tổng đơn hàng</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <span class="big text-white font-weight-bold text-uppercase">@ViewBag.TotalOrders</span>
+                    <br />
+                    <a class="small text-white stretched-link" href="../Order/Index">Xem chi tiết</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
         </div>
+        <div class="col-xl-6 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body">Đơn hàng trong tháng</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <span class="big text-white font-weight-bold text-uppercase">@ViewBag.orderMonth</span>
+                    <a class="small text-white stretched-link" href="../Order/Index">Xem chi tiết</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">Số lượng khách hàng</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <span class="big text-white font-weight-bold text-uppercase">@ViewBag.CustomerCount</span>
+                    <a class="small text-white stretched-link" href="../Customer/Index">Xem chi tiết</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body">Tổng doanh thu trong tháng</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <span class="big text-white font-weight-bold text-uppercase">@ViewBag.TotalRevenue</span>
+                    <a class="pull-right small text-white stretched-link" href="../Order/Index">Xem chi tiết</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
-            <div class="col-xl-10">
+            <div class="col-xl-6">
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-chart-area me-1"></i>
-                        Doanh thu
+                        <i class="fas fa-shopping-cart me-1"></i>
+                        10 Đơn hàng mới nhất
                     </div>
-                    <div class="card-body"><canvas id="myAreaChart" height="40"></canvas></div>
+                    <div class="card-body">
+                        <ul>
+                            @foreach (var order in ViewBag.LatestOrders)
+                            {
+                                <li>@order.order_id - @order.order_date.ToString("dd/MM/yyyy")</li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-table me-1"></i>
-                DataTable Example
-            </div>
-            <div class="card-body">
-                <table id="datatablesSimple">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>$170,750</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-        </div>
+
     </div>
+ </div>
 </main>
+
+   

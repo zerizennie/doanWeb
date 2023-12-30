@@ -1,0 +1,101 @@
+﻿﻿@using Doan.Models;
+@model Tuple<Doan.DAL.bill, IEnumerable<Doan.DAL.order_detail_id>>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>bill</h4>
+    <hr />
+    <div class=" container">
+    <dl class="dl-horizontal">
+        <dt>
+            Mã đơn hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.order_id)
+        </dd>
+
+        <dt>
+            Mã khách hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.user_id)
+        </dd>
+
+        <dt>
+            Ngày đặt hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.order_date)
+        </dd>
+
+        <dt>
+            Địa chỉ giao hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.order_address)
+        </dd>
+
+        <dt>
+            Phương thức thanh toán
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.payment)
+        </dd>
+
+        <dt>
+            Tình trạng thanh toán
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.payment_status)
+        </dd>
+
+        <dt>
+            Tổng giá trị đơn hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.total)
+        </dd>
+
+        <dt>
+            Người nhận hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.bill_name)
+        </dd>
+
+        <dt>
+            SĐT nhận hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.bill_phone)
+        </dd>
+
+        <dt>
+            Email nhận hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.bill_email)
+        </dd>
+
+    </dl>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

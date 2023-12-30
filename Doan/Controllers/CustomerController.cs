@@ -10,7 +10,7 @@ namespace Doan.Controllers
 {
     public class CustomerController : Controller
     {
-        sosEntities00 db = new sosEntities00();
+        huhuEntities db = new huhuEntities();
 
         // GET: Customer
 
@@ -89,9 +89,9 @@ namespace Doan.Controllers
         //Post Delete Confirmed
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int user_id)
         {
-            customer cust = db.customers.Find(id);
+            customer cust = db.customers.Find(user_id);
             db.customers.Remove(cust);
             db.SaveChanges();
             return RedirectToAction("Index");

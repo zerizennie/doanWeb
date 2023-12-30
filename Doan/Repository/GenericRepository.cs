@@ -13,13 +13,13 @@ namespace Doan.Repository
     {
         DbSet<Tbl_Entity> _dbSet;
 
-        private sosEntities00 _DBEntity;
+        private huhuEntities _DBEntity;
 
         public GenericRepository()
         {
         }
 
-        public GenericRepository(sosEntities00 DBEntity)
+        public GenericRepository(huhuEntities DBEntity)
         {
             _DBEntity= DBEntity;
             _dbSet= _DBEntity.Set<Tbl_Entity>();

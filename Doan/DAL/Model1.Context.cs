@@ -13,10 +13,10 @@ namespace Doan.DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class sosEntities00 : DbContext
+    public partial class huhuEntities : DbContext
     {
-        public sosEntities00()
-            : base("name=sosEntities00")
+        public huhuEntities()
+            : base("name=huhuEntities")
         {
         }
     
@@ -31,6 +31,5 @@ namespace Doan.DAL
         public DbSet<order_detail_id> order_detail_id { get; set; }
         public DbSet<product> products { get; set; }
         public DbSet<shopping_cart> shopping_cart { get; set; }
-        public DbSet<discount_info> discount_info { get; set; }
     }
 }

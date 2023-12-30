@@ -18,8 +18,11 @@ namespace Doan.DAL
         public Nullable<int> order_id { get; set; }
         public Nullable<int> product_id { get; set; }
         public Nullable<int> quantity { get; set; }
+        public Nullable<double> product_price { get; set; }
+        public Nullable<int> order_id1 { get; set; }
     
         public virtual bill bill { get; set; }
         public virtual product product { get; set; }
+        public virtual bill bill1 { get; set; }
     }
 }

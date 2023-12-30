@@ -178,51 +178,7 @@ namespace Doan.Controllers
         }
 
         huhuEntities db = new huhuEntities();
-        //public ActionResult Register()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Register(customer user)
-        //{
-        //    //if (db.customers.Any(x => x.username == user.username))
-        //    //{
-        //    //    ViewBag.Notification = "Tài khoản đã tồn tại";
-        //    //}
-        //    //else
-        //    //{
-        //    //    db.customers.Add(user);
-        //    //    db.SaveChanges();
-
-        //    //    Session["user_id"] = user.user_id.ToString();
-        //    //    Session["username"] = user.user_id.ToString();
-        //    //    return RedirectToAction("Index", "Home");
-        //    //}
-
-        //    if(ModelState.IsValid)
-        //    {
-        //        db.customers.Add(user);
-        //        db.SaveChanges();
-
-        //        Session["Tài khoản"] = user.user_id.ToString();
-        //        Session["Mật khẩu"] = user.password.ToString();
-        //        Session["Xác nhận mật khẩu"] = user.password.ToString();
-        //        Session["Email"] = user.email.ToString();
-        //        Session["Tên"] = user.first_name.ToString();
-        //        Session["Họ"] = user.last_name.ToString();
-        //        Session["Số điện thoại"] = user.phone_num.ToString();
-        //        return RedirectToAction("Index", "Home");
-        //    }
-
-        //    else
-        //    {
-        //        return ViewBag.Notification = "Tài khoản đã tồn tại";
-        //    }
-        //}
-
-        //GET: Register
+        
 
         public ActionResult Register()
         {

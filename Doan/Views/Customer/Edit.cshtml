@@ -1,0 +1,100 @@
+﻿@model Doan.DAL.customer
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>CẬP NHẬT THÔNG TIN TÀI KHOẢN</h2>
+
+    @using (Html.BeginForm("Edit", "Customer", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.user_id)
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <label class="control-label"><b>Mã khách hàng</b></label>
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.user_id, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
+                </div>
+            </div><br />
+
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <label class="control-label"><b>Tên đăng nhập</b></label>
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                </div>
+            </div><br />
+
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <label class="control-label"><b>Email</b></label>
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div><br />
+
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <label class="control-label"><b>Mật khẩu</b></label>
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div><br />
+
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <label class="control-label"><b>Họ</b></label>
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.first_name, "", new { @class = "text-danger" })
+                </div>
+            </div><br />
+
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <label class="control-label"><b>Tên</b></label>
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
+                </div>
+            </div><br />
+
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <label class="control-label"><b>Số điện thoại</b></label>
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.phone_num, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.phone_num, "", new { @class = "text-danger" })
+                </div>
+            </div><br />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="CẬP NHẬT TÀI KHOẢN" class="btn custom-button submit-button bold-text" />
+                    <button class="custom-button create-button" onclick="location.href='@Url.Action("Product")'">QUAY VỀ DANH SÁCH KHÁCH HÀNG</button>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

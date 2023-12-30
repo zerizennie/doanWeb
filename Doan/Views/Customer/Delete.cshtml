@@ -1,0 +1,77 @@
+﻿@model Doan.DAL.customer
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <h4>HÃY CÂN NHẮC KỸ TRƯỚC KHI XÓA TÀI KHOẢN NÀY</h4>
+    <div>
+       
+        <hr />
+        <dl class="dl-horizontal">
+                <dt>
+                    Mã khách hàng
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.user_id)
+                </dd>
+
+                <dt>
+                    Tên đăng nhập
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.username)
+                </dd>
+
+                <dt>
+                    Email
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.email)
+                </dd>
+
+                <dt>
+                   Họ
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.first_name)
+                </dd>
+
+                <dt>
+                    Tên
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.last_name)
+                </dd>
+
+                <dt>
+                    Số điện thoại
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.phone_num)
+                </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="XÓA TÀI KHOẢN" class="btn custom-button submit-button bold-text" />
+            <button class="custom-button create-button" onclick="location.href='@Url.Action("Product")'">QUAY VỀ DANH SÁCH KHÁCH HÀNG</button>
+        </div>
+    </div>
+        }
+    </div>
+</div>

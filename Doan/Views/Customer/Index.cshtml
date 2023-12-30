@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Doan.DAL.customer>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container-fluid px-4">
+    <h4>DANH SÁCH TÀI KHOẢN KHÁCH HÀNG</h4>
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <a href="../Customer/Create" class="btn btn-info pull-right fa-table fa-plus">TẠO TÀI KHOẢN KHÁCH HÀNG MỚI</a>
+        </div>
+
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã khách hàng</th>
+                        <th>Tên đăng nhập</th>
+                        <th>Email</th>
+                        <th>Họ</th>
+                        <th>Tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã khách hàng</th>
+                        <th>Tên đăng nhập</th>
+                        <th>Email</th>
+                        <th>Họ</th>
+                        <th>Tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @{
+                        int count = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.user_id</td>
+                                <td>@item.username</td>
+                                <td>@item.email</td>
+                                <td>@item.first_name</td>
+                                <td>@item.last_name</td>
+                                <td>@item.phone_num</td>
+                                <td>
+                                    @Html.ActionLink("Cập nhật", "Edit", new { user_id = item.user_id }, null)
+                                    @Html.ActionLink("Xóa", "Delete", new { user_id = item.user_id }, null)
+                                    @*@Html.ActionLink("Xem chi tiết", "Product...", new { product_id = item.product_id })*@
+                                </td>
+                            </tr>
+                            count++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

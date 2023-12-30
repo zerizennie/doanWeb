@@ -13,8 +13,9 @@ namespace Doan.Models
         public int catetory_id { get; set; }
         [Required(ErrorMessage ="Name Required")]
         public string catetory_name { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDelete { get; set; }
+        public bool isActive { get; set; }
+        public bool isDelete { get; set; }
+
     }
 
     public class productDetail

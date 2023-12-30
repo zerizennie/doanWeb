@@ -24,7 +24,10 @@ namespace Doan.Repository
             _DBEntity= DBEntity;
             _dbSet= _DBEntity.Set<Tbl_Entity>();
         }
-
+        public IEnumerable<Tbl_Entity> GetProduct()
+        {
+            return _dbSet.ToList();
+        }
         public void Add(Tbl_Entity entity)
         {
            _dbSet.Add(entity);

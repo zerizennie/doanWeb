@@ -144,7 +144,7 @@ namespace Doan.Controllers
         }
 
         [HttpPost]
-        public ActionResult Payment(string shipName, string mobile, string address, string email)
+        public ActionResult Payment(string shipName, string mobile, string address, string email, string payment_methods)
         {
             var order = new bill();
             order.order_date = DateTime.Now;
@@ -152,6 +152,7 @@ namespace Doan.Controllers
             order.bill_phone = mobile;
             order.bill_name = shipName;
             order.bill_email = email;
+            order.payment = payment_methods;
 
             try
             {
@@ -166,6 +167,7 @@ namespace Doan.Controllers
                 //}
 
                 var sessioncart = (List<CartItem>)Session[CartSession];
+                List<product> products = db.products.ToList();
 
                 double total = 0;
                 foreach (var item in sessioncart)
@@ -181,6 +183,15 @@ namespace Doan.Controllers
                     order.total = total;
                     db.order_detail_id.Add(orderDetail);
                     db.SaveChanges();
+                    //Trừ số lượng sản phẩm tương ứng trong database
+                    foreach (var product in products)
+                    {
+                        if (product.product_id == item.product_id)
+                        {
+                            product.quantity = product.quantity - item.quantity;
+                            db.SaveChanges();
+                        }
+                    }
                 }
                 //Xóa hết giỏ hàng
                 Session[CartSession] = null;

@@ -64,39 +64,7 @@
 
     });
 
-    //Lấy dữ liệu hiển thị lên lưới sp
-    /*function LoadData(id, page, pageSize) {
-        $.ajax({
-            url: '/Home/HienThiSP',
-            type: 'GET',
-            data: { id: id, page: page, pageSize: pageSize },
-            success: function (res) {
-                if (res.TotalItems > 0) {
-                    var items = res.Data;
-                    var html = "";
-                    for (let i = 0; i < res.Data.length; i++) {
-                        html += '<div class="product" data-id="items[i].product_id';
-                        html += '<a href="/Product/' + items[i].product_id + '">';
-                        html += '<img src="' + items[i].product_image + '" alt="' + items[i].product_name + '">';
-                        html += '</a>';
-                        html += '<p class="name"><a href="' + items[i].product_id + '" style="color: #fa6e4f">' + items[i].product_name + '</a></p>';
-                        html += '<p class="price"><span>' + items[i].product_price + ' vnđ</span></p>';
-                        html += '<p class="ingredients"> Thành phần: ' + items[i].product_ingredients + '</p>';
-                        html += '<p class="view"><a href="/Product/' + items[i].product_id + '" style="color:#ffffff"><i class="fa-regular fa-eye bx bx-show" style="font-size:25px"></i></a></p>';
-                        html += '<p class="cart"><a href="#" style="color:#ffffff"><i class="fa-solid fa-cart-shopping bx bx-cart-alt" style="font-size:25px"></i></a></p>';
-                        html += '</div>';
-                    }
-                    $('.products').html(html);
-                    Pagination(res.CurrentPage, res.NumberPages, res.PageSize);
-                }
-                else {
-                    $('.products').html('<p class="name" style="color: #fa6e4f; font-size:22px">Hiện chưa có sản phẩm!</p>');
-                    $('.pagination').html('');
-                }
-
-            }
-        });
-    }*/
+   
     function LoadData(id, page, pageSize) {
         $.ajax({
             url: '/Home/HienThiSP',
@@ -130,72 +98,72 @@
     ShowDetailProduct(id);
     return false;
 });
-    //Chi tiết sp
-    /*function ShowDetailProduct(id) {
-        $.ajax({
-            url: '/Home/ChitietSP',
-            type: 'GET',
-            data: { id: id},
-            success: function (res) {
-                
-                var items = res.Data;
-                var html = "";
-                    
-                $('.detailContent').html(html);
-                    
-                
-            }
-        });
-    }*/
+  
+  // Chi tiết sp
+  function ShowDetailProduct(id) {
+      $.ajax({
+          url: '/Home/ChitietSP',
+          type: 'GET',
+          data: { id: id },
+          success: function (res) {
+              var product = res;
+              var html = '<div class="row-product">' +
+                  '<div class="col col-img"><img src="' + product.product_image + '" id="detail-img"></div>' +
+                  '<div class="col col-info">' +
+                  '<h2 id="detail-name">' + (product.product_name ? product.product_name : '') + '</h2>' +
+                  '<p id="detail-price">' + (product.product_price ? product.product_price + ' VND' : '') + '</p>' +
+                  '<p id="detail-ingredients">Thành phần chính: ' + (product.product_ingredients ? product.product_ingredients : '') + '</p>' +
+                  '<p id="detail-description">Miêu tả: ' + (product.product_description ? product.product_description : '') + '</p>' +
+                  '<div class="availability">' +
+                  '<div class="available">' +
+                  '<span>Có sẵn: </span>' +
+                  '<span id="quantity-available">' + (product.quantity ? product.quantity : '') + '</span>' +
+                  '</div>' +
+                  '<div class="out-of-stock">' +
+                  '<span>Hết hàng</span>' +
+                  '</div>' +
+                  '</div>' +
+                  '<div class="quantity">'+
+                  '<button id="decrement">-</button>'+
+                  '<div class="quantity-input">'+
+                  '<input type="number" id="quantity" value="1" min="1" max="' + product.quantity +'">'+
+                  '</div>'+
+                  '<button id="increment">+</button>'+
+                  '</div>'+
+                  '<button id="addToCart">Thêm vào giỏ hàng</button>' +
+                  '</div>' +
+                  '</div>';
 
-        // Chi tiết sp
-        function ShowDetailProduct(id) {
-            $.ajax({
-                url: '/Home/ChitietSP',
-                type: 'GET',
-                data: { id: id },
-                success: function (res) {
-                    var product = res;
-                    var html = '<div class="row-product">' +
-                        '<div class="col col-img"><img src="' + product.product_image + '" id="detail-img"></div>' +
-                        '<div class="col col-info">' +
-                        '<h2 id="detail-name">' + (product.product_name ? product.product_name : '') + '</h2>' +
-                        '<p id="detail-price">' + (product.product_price ? product.product_price + ' VND' : '') + '</p>' +
-                        '<p id="detail-ingredients">Thành phần chính: ' + (product.product_ingredients ? product.product_ingredients : '') + '</p>' +
-                        '<p id="detail-description">Miêu tả: ' + (product.product_description ? product.product_description : '') + '</p>' +
-                        '<div class="availability">' +
-                        '<div class="available">' +
-                        '<span>Có sẵn: </span>' +
-                        '<span id="quantity-available">' + (product.quantity ? product.quantity : '') + '</span>' +
-                        '</div>' +
-                        '<div class="out-of-stock">' +
-                        '<span>Hết hàng</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="quantity">'+
-                        '<button id="decrement">-</button>'+
-                        '<div class="quantity-input">'+
-                        '<input type="number" id="quantity" value="1" min="1" max="' + product.quantity +'">'+
-                        '</div>'+
-                        '<button id="increment">+</button>'+
-                        '</div>'+
-                        '<button id="addToCart">Thêm vào giỏ hàng</button>' +
-                        '</div>' +
-                        '</div>';
+              $('.detailContent').html(html);
 
-                    $('.detailContent').html(html);
+              // Kiểm tra số lượng sản phẩm có sẵn và hiển thị trạng thái tương ứng
+              if (product.quantity > 0) {
+                  $('.available').show();
+                  $('.out-of-stock').hide();
+              } else {
+                  $('.available').hide();
+                  $('.out-of-stock').show();
+                  $('#addToCart').hide();
+                  $.('.quantity').hide();
+              }
 
-                    // Kiểm tra số lượng sản phẩm có sẵn và hiển thị trạng thái tương ứng
-                    if (product.quantity > 0) {
-                        $('.available').show();
-                        $('.out-of-stock').hide();
-                    } else {
-                        $('.available').hide();
-                        $('.out-of-stock').show();
+              //nút tăng giảm số lượng
+               const quantityInput = document.getElementById("quantity");
+               const incrementButton = document.getElementById("increment");
+               const decrementButton = document.getElementById("decrement");
+
+               incrementButton.addEventListener("click", () => {
+                    quantityInput.stepUp(1);
+               });
+
+               decrementButton.addEventListener("click", () => {
+                    if (quantityInput.value > 1) {
+                        quantityInput.stepDown(1);
                     }
-                }
-            });
-        }
+               });
+            }
+      });
+  }
 
 
 

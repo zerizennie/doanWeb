@@ -1,4 +1,4 @@
-﻿using Doan.DAL;
+using Doan.DAL;
 using Doan.Models;
 using Doan.Repository;
 using Newtonsoft.Json;
@@ -136,7 +136,6 @@ namespace Doan.Controllers
             ViewBag.TotalRevenue = totalRevenue.ToString("N0");
             var latestOrders = db.bills.OrderByDescending(x => x.order_id).Take(10).ToList();
             ViewBag.LatestOrders = latestOrders;
-
             return View();
         }
     }

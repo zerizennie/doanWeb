@@ -3,37 +3,94 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>mămăm bakery - @ViewBag.Title</title>
+    @Styles.Render("~/Content/assets/style.css")
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/assets/js/slick/slick/slick.css")
+    @Html.Raw("<link href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css\" rel=\"stylesheet\" />")
+    @Html.Raw("<link href=\"https://fonts.googleapis.com/css2?family=Manrope&display=swap\" rel=\"stylesheet\" />")
+    @Html.Raw("<link href=\"https://fonts.googleapis.com/css2?family=Agbalumo&display=swap\" rel=\"stylesheet\" />")
+    @Html.Raw("<link href=\"https://fonts.googleapis.com/css2?family=Signika&display=swap\" rel=\"stylesheet\" />")
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
+
+    <!--Layout menu-->
+
+    <div class="wrapper">
+        <div class="top_nav">
+            <img style="max-height: 80%;object-fit:contain" src="@Url.Content("~/Content/assets/images/logo.png")" />
+            <div class="left">
+                <div class="search_bar">
+                    <input type="text" placeholder="Search">
+                    <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+            <div class="right">
+                <div>
+                    <div><a href="@Url.Action("Login", "Home")" class="user-icon"><i class="fa-regular fa-user"></i></a></div>
+                    <div><a href="@Url.Action("Index", "Cart")" class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></a></div>
+                    <div><a href="@Url.Action("Delivery", "Order")" class="deli-icon"><i class="fa-solid fa-truck"></i></a></div>
+                </div>
             </div>
         </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+
+        <div class="bottom_nav">
+            <a href="javascript:void(0)" class="showhide" style="display: inline-block;">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+            <ul class="menu" id="dropdown-menu">
+                <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                <li><a href="@Url.Action("Product", "Home")">Sản phẩm</a></li>
+                <li><a href="@Url.Action("About", "Home")">Giới thiệu</a></li>
+                <li><a href="@Url.Action("Review", "Home")">Review</a></li>
+                <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
+            </ul>
+        </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @RenderBody()
+    <hr />
+
+    <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fa-solid fa-angles-up"></i>
+    </button>
+    <!--Ket thuc-->
 </body>
+
+
+<footer id="footer">
+    <div class="row-footer">
+        <div class="col logo">
+            <img src="~/Content/assets/images/logo.png" class="logo">
+        </div>
+
+        <div class="col support">
+            <h3>HỖ TRỢ & CHÍNH SÁCH</h3>
+            <ul>
+                <li><a href="#">Hướng dẫn mua hàng</a></li>
+                <li><a href="#">Chính sách giao hàng</a></li>
+            </ul>
+        </div>
+
+        <div class="col contact">
+            <h3>LIÊN HỆ</h3>
+            <p>Hotline: 09xxxxxxxxxx</p>
+            <p>Fanpage: mămăm bakery</p>
+            <p class="email">Email: mamambakery@gmail.com</p>
+        </div>
+
+        <div class="col feedback">
+            <h3>GÓP Ý</h3>
+            <img src="~/Content/assets/images/qr.png">
+        </div>
+    </div>
+</footer>
+@Scripts.Render("~/Scripts/jquery-3.7.1.min.js")
+@Scripts.Render("~/Content/assets/js/slick/slick/slick.min.js")
+@Scripts.Render("~/Content/assets/js/script.js")
+@RenderSection("scripts", required: false)
 </html>

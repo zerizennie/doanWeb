@@ -1,33 +1,243 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Trang chủ";
 }
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+    <div class="slider">
+        <div class="image-item">
+            <div class="image">
+                <img style="width: 100%; margin-top:5%;" src="~/Content/assets/images//news-1.jpg">
+            </div>
+        </div>
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=tiramisu">
+                    <img style="width: 110%;" src="~/Content/assets/images//tiramisu.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">30,000</h3>
+            <h3 class="image-title">Tiramisu</h3>
+        </div>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=oreo-cheesecake">
+                    <img src="~/Content/assets/images//oreo-cheesecake.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">30,000</h3>
+            <h3 class="image-title">Oreo Cheesecake</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=set-tart-1">
+                    <img style="width: 90%; margin: auto;" src="~/Content/assets/images//set-tart-1.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">60,000</h3>
+            <h3 class="image-title">Set tart đặc biệt</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=set-tart-2">
+                    <img style="width: 110%;" src="~/Content/assets/images//set-tart-2.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">30,000</h3>
+            <h3 class="image-title">Set tart cơ bản</h3>
+        </div>
+    </div>
+
+    <h3 class="title">Sản Phẩm</h3>
+
+    <div class="three-slider">
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=set-donut-1">
+                    <img style="width: 100%;" src="~/Content/assets/images//set-donut-1.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">30,000</h3>
+            <h3 class="image-title">Set 2 bánh donut</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=set-macaron-4thuong">
+                    <img src="~/Content/assets/images//set-macaron-4thuong.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">80,000</h3>
+            <h3 class="image-title">Set 4 macaron (vị theo mùa)</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=set-macaron-9db">
+                    <img src="~/Content/assets/images//set-macaron-9db.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">220,000</h3>
+            <h3 class="image-title">Set 9 macaron (mix 5 vị theo mùa)</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=set-donut-2">
+                    <img style="width: 100%;" src="~/Content/assets/images//set-donut-2.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">90,000</h3>
+            <h3 class="image-title">Set 6 bánh donut</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=matchamousse">
+                    <img src="~/Content/assets/images//matchamousse.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">30,000</h3>
+            <h3 class="image-title">Matcha Mousse</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=mousse-dao">
+                    <img src="~/Content/assets/images//mousse-dao.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">30,000</h3>
+            <h3 class="image-title">Mousse Đào</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=set-pudding">
+                    <img style="width: 100%;" src="~/Content/assets/images//set-pudding.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">50,000</h3>
+            <h3 class="image-title">Set pudding (2 vị)</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=lava-chocolate">
+                    <img style="width: 100%;" src="~/Content/assets/images//lava-chocolate.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">30,000</h3>
+            <h3 class="image-title">Lava Chocolate</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=napoleon">
+                    <img style="width: 110%; margin:auto;" src="~/Content/assets/images//napoleon.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">40,000</h3>
+            <h3 class="image-title">Napoleon</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=opera">
+                    <img src="~/Content/assets/images//opera.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">40,000</h3>
+            <h3 class="image-title">Opera</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=millefeuille">
+                    <img src="~/Content/assets/images//millefeuille.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">40,000</h3>
+            <h3 class="image-title">Mille-feuille</h3>
+        </div>
+
+        <div class="image-item">
+            <div class="image">
+                <a href="details.html?id=dobos-torte">
+                    <img src="~/Content/assets/images//dobos-torte.png" alt="">
+                </a>
+            </div>
+            <h3 class="image-price">40,000</h3>
+            <h3 class="image-title">Dobos Torte</h3>
+        </div>
+
+    </div>
+
+    <h3 class="title">Giới Thiệu </h3>
+
+    <div class="intro">
+        <div class="intro-bg-in">
+            <div class="intro-text">
+                <p>
+                    <span class="name">mămăm bakery</span> xin mến chào quý khách,
+                </p>
+                <p>
+                    Chúng tôi mang đến những chiếc bánh chất lượng và độc đáo, cùng với chất lượng phục vụ tuyệt vời. Hãy để <span class="name">mămăm</span> thổi vào cuộc sống của bạn một chút ngọt ngào và hạnh phúc mỗi ngày!
+                </p>
+                <p>
+                    Chúng tôi không chỉ là cửa hàng bán bánh, mà còn là địa điểm lý tưởng cho những người yêu thưởng thức hương vị tinh tế và đẳng cấp của các loại bánh ngọt. <span class="name">mămăm bakery</span> tự hào về sự sáng tạo và đội ngũ đầu bếp chuyên nghiệp của mình, luôn nỗ lực tạo ra những sản phẩm chất lượng nhất, từng chiếc bánh là một tác phẩm nghệ thuật.
+                </p>
+                <p>
+                    Hãy ghé thăm <span class="name">mămăm bakery</span> tại: 99 Đ. Nguyễn Văn Nguyễn, Phường Tân Định, Quận 1, Thành phố Hồ Chí Minh. Hoặc để biết thêm các thông tin liên hệ khác, quý khách hàng vui lòng di chuyển đến thẻ LIÊN HỆ.
+                </p>
+                <p class="quote">
+                    <b>"Cuộc sống có thể ngọt ngào hơn bằng một miếng bánh!"</b>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="title">Review </h3>
+    <div class="con-review">
+        <div class="review">
+            <div class="review-text">
+                <div class="user-text">
+                    <i class="fa-regular fa-message"></i>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <span>JERRY CUTE</span>
+                </div>
+                <div class="user-text active-text">
+                    <i class="fa-regular fa-message"></i>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <span>Trin trin</span>
+                </div>
+                <div class="user-text">
+                    <i class="fa-regular fa-message"></i>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <span>JERRY CUTE</span>
+                </div>
+                <div class="user-text">
+                    <i class="fa-regular fa-message"></i>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <span>JERRY CUTE</span>
+                </div>
+                <div class="user-text">
+                    <i class="fa-regular fa-message"></i>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <span>JERRY CUTE</span>
+                </div>
+            </div>
+
+            <div class="review-pic">
+                <img src="~/Content/assets/images//ava.png" class="user-pic" onclick="showReview()">
+                <img src="~/Content/assets/images//ava.png" class="user-pic active-pic" onclick="showReview()">
+                <img src="~/Content/assets/images//ava.png" class="user-pic" onclick="showReview()">
+                <img src="~/Content/assets/images//ava.png" class="user-pic" onclick="showReview()">
+                <img src="~/Content/assets/images//ava.png" class="user-pic" onclick="showReview()">
+
+            </div>
+        </div>
     </div>
 </main>

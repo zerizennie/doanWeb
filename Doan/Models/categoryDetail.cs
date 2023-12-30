@@ -15,6 +15,7 @@ namespace Doan.Models
         public string catetory_name { get; set; }
         public bool isActive { get; set; }
         public bool isDelete { get; set; }
+
     }
 
     public class productDetail
@@ -37,3 +38,5 @@ namespace Doan.Models
 
     }
 }
+
+

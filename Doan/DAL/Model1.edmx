@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="huhuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="huhuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bill">
           <Key>
             <PropertyRef Name="order_id" />
@@ -42,6 +42,14 @@
           <Property Name="last_name" Type="varchar" MaxLength="40" />
           <Property Name="phone_num" Type="varchar" MaxLength="20" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'huhu.dbo.discount_info' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="discount_info">
+          <Property Name="product_id" Type="int" />
+          <Property Name="discount_percentage" Type="decimal" Precision="2" Scale="2" />
+          <Property Name="discount_start_date" Type="datetime" />
+          <Property Name="discount_end_date" Type="datetime" />
+        </EntityType>-->
         <EntityType Name="order_detail_id">
           <Key>
             <PropertyRef Name="order_detail_id" />
@@ -103,7 +111,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__order_det__order__5AEE82B9">
+      <Association Name="FK__order_det__order__5AEE82B9">
           <End Role="bill" Type="Self.bill" Multiplicity="0..1" />
           <End Role="order_detail_id" Type="Self.order_detail_id" Multiplicity="*" />
           <ReferentialConstraint>
@@ -513,7 +521,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

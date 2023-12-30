@@ -1,0 +1,85 @@
+﻿@*@model Doan.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Đăng ký";
+}
+
+<main>
+
+    @using(Html.BeginForm("Register", "Home", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="log-bg-in">
+            <div class="menuLog">
+                <ul>
+                    <li><i class="fa-regular fa-user" style="padding: 5px; border-radius: 50%; border: 2px solid #000"></i></li>
+                    <li>Đăng ký</li>
+                </ul>
+            </div>
+            <div class="formAccount">
+                <div class="row-log">
+                    @Html.LabelFor(m => m.Username, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row-log">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row-log">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row-log">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row-log">
+                    @Html.LabelFor(m => m.FirstName, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row-log">
+                    @Html.LabelFor(m => m.LastName, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row-log">
+                    @Html.LabelFor(m => m.Phone, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", style = "height:33px" })
+                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row-log">
+                    <div class="offset-md-2 col-md-9">
+                        <input type="submit" value="Đăng ký" class="btn btn-outline-dark" style="margin-top:20px;margin-bottom:-10px;width:75%" />
+                    </div>
+                </div>
+
+                <div>
+                    @ViewBag.error
+                </div>
+
+            </div>
+        </div>
+    }
+</main>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

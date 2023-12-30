@@ -17,7 +17,7 @@ namespace Doan.Repository
 
         public GenericRepository()
         {
-        }
+        }   
 
         public GenericRepository(huhuEntities DBEntity)
         {

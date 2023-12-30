@@ -3,6 +3,7 @@ using Doan.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
@@ -112,7 +113,7 @@ namespace Doan.Controllers
             return PartialView("_MenuProduct", categoryDetails);
         }
 
-        //Hiển thị SP kèm phân trang
+        //Hiển thị DS SP kèm phân trang
         public ActionResult HienThiSP(int? id, int? page, int? pageSize)
         {
             var items = db.products.ToList();
@@ -151,6 +152,37 @@ namespace Doan.Controllers
             };
 
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        //Hiển thị chi tiết sp
+        public ActionResult ChitietSP(int id)
+        {
+            var items = db.products.AsQueryable();
+            if (id >= 0)
+            {
+                items = items.Where(x => x.product_id == id);
+            }
+            var infoProduct = items.Select(p => new productDetail
+            {
+                product_id = p.product_id,
+                product_name = p.product_name,
+                product_price = p.product_price,
+                product_image = p.product_image,
+                product_ingredients = p.product_ingredients,
+                product_description = p.product_description,
+                catetory_id = p.catetory_id,
+                quantity = p.quantity,
+                end_date = p.end_date,
+                start_date = p.start_date
+            }).FirstOrDefault();
+
+
+            if (infoProduct != null)
+            {
+                return Json(infoProduct, JsonRequestBehavior.AllowGet);
+            }
+
+            // Xử lý khi không tìm thấy sản phẩm
+            return RedirectToAction("NotFound");
         }
 
         public ActionResult Review()

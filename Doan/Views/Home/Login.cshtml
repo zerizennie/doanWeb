@@ -1,25 +1,35 @@
 ﻿@model Doan.DAL.customer
 
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Đăng nhập";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Login</h2>
+<div class="log-bg-in">
+    <div class="menuLog">
+        <ul>
+            <li><i class="fa-regular fa-user" style="padding: 5px; border-radius: 50%; border: 2px solid #000"></i></li>
+            <li>Đăng nhập</li>
+        </ul>
+    </div>
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { style = "width: 80%; margin-left:16.677%" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(m => m.email)
+            @Html.TextBoxFor(m => m.email, "", new { @class = "form-control", @placeholder = "Email" })
 
-@using (Html.BeginForm("Login", "Home", FormMethod.Post))
-        {
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.email)
-                        @Html.TextBoxFor(m => m.email, "", new { @class = "form-control", @placeholder = "Email" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.password)
+            @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "Password" })
+        </div>
+        <div class="form-group">
+            <input type="submit" name="submit" class="btn btn-outline-dark" style="margin-top:20px;margin-bottom:15px;width:50%; margin-left:16.6667%;" value="Login" />
+        </div>
+    }
+    <p style="margin:auto 0">
+        @Html.ActionLink("Chưa có tài khoản? Đăng ký ngay!", "Register", "Home")
+    </p>
+</div>
 
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.password)
-                        @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "Password" })
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-primary" value="Login" />
-                    </div>
-        }

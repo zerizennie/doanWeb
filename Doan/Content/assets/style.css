@@ -1305,7 +1305,6 @@ ul li {
         color: #fa6e4f;
         font-size: 30px;
         font-weight: bolder;
-        cursor: pointer;
     }
 
     .product a {
@@ -1319,13 +1318,12 @@ ul li {
         min-height: 200px;
         display: block;
         border: 2px solid #fff;
-        cursor: pointer;
         object-fit: contain;
     }
 
 
     .product .ingredients {
-        padding: 10px auto;
+        padding: 10px;
         text-align: center;
         line-height: 1.5;
     }
@@ -1417,7 +1415,7 @@ ul li {
 }
 
 .detail-bg {
-    min-height: 50vh;
+    /*min-height: 30vh;*/
     font-size: 30px;
     width: 80%;
     background-color: #84dfdb9f;
@@ -1442,6 +1440,7 @@ ul li {
     margin-top: 5%;
     margin-bottom: 5%;
     border-radius: 10px;
+    margin-left:5%;
 }
 
 .row-product {
@@ -1511,6 +1510,8 @@ ul li {
     padding: 5px 10px;
     border-radius: 4px;
     font-size: 20px;
+    width:90%;
+    text-align:center;
 }
 
 .available {
@@ -1549,6 +1550,15 @@ ul li {
     #addToCart:hover {
         background-color: #fa6e4f;
     }
+.button-disabled {
+    cursor: default; /* Thay đổi con trỏ chuột */
+    background-color: gray; /* Thay đổi màu nền */
+}
+    .button-disabled:hover {
+        background-color: gray; /* Thay đổi màu nền khi hover */
+    }
+
+
 
 @media(min-width:450px) and (max-width:900px){
     .col.col-info, .col.col-img {
@@ -1564,7 +1574,7 @@ ul li {
     }
 
         .quantity button {
-            padding: 5px 10px;
+            padding: 6px 10px;
             font-size: 20px;
             border: none;
             background-color: #77CCC8;
@@ -1660,13 +1670,13 @@ ul li {
     }
 
     .quantity button {
-        padding: 5px 10px;
+        padding: 8px 10px;
         font-size: 20px;
         border: none;
         background-color: #77CCC8;
         cursor: pointer;
-            width: 70px;
-            color: white;
+        width: 70px;
+        color: white;
     }
 
     .quantity-input {

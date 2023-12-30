@@ -3,7 +3,7 @@
 }
 <main>
     <!--Phần chi tiết sản phẩm-->
-    <div class="detail-bg">
+    <div class="detail-bg" style="display:none;">
         <div class="close-icon"><i class="fas fa-times"></i></div>
         <div class="detailContent">
             
@@ -79,9 +79,11 @@
                         html += '<img src="' + items[i].product_image + '" alt="' + items[i].product_name + '">';
                         html += '<p class="name" style="color: #fa6e4f">' + items[i].product_name + '</a></p>';
                         html += '<p class="price"><span>' + items[i].product_price + ' vnđ</span></p>';
-                        html += '<p class="ingredients"> Thành phần: ' + items[i].product_ingredients + '</p>';
-                        html += '<p class="view"><a href="#" class="view-link" data-id="' + items[i].product_id + '" style="color:#ffffff"><i class="fa-regular fa-eye bx bx-show" style="font-size:25px"></i></a></p>';
-                        html += '<p class="cart"><a href="#" style="color:#ffffff"><i class="fa-solid fa-cart-shopping bx bx-cart-alt" style="font-size:25px"></i></a></p>';
+                        if (items[i].product_ingredients !== null) {
+                            html += '<p class="ingredients"> Thành phần: ' + items[i].product_ingredients + '</p>';
+                        }
+                        html += '<p class="view"><a href="#" class="view-link" data-id="' + items[i].product_id + '" style="color:#ffffff">Xem chi tiết</a></p>';
+                        html += '<p class="cart"><a href="#" style="color:#ffffff">Mua ngay</a></p>';
                         html += '</div>';
                     }
                     $('.products').html(html);
@@ -107,34 +109,39 @@
           data: { id: id },
           success: function (res) {
               var product = res;
-              var html = '<div class="row-product">' +
-                  '<div class="col col-img"><img src="' + product.product_image + '" id="detail-img"></div>' +
-                  '<div class="col col-info">' +
-                  '<h2 id="detail-name">' + (product.product_name ? product.product_name : '') + '</h2>' +
-                  '<p id="detail-price">' + (product.product_price ? product.product_price + ' VND' : '') + '</p>' +
-                  '<p id="detail-ingredients">Thành phần chính: ' + (product.product_ingredients ? product.product_ingredients : '') + '</p>' +
-                  '<p id="detail-description">Miêu tả: ' + (product.product_description ? product.product_description : '') + '</p>' +
-                  '<div class="availability">' +
-                  '<div class="available">' +
-                  '<span>Có sẵn: </span>' +
-                  '<span id="quantity-available">' + (product.quantity ? product.quantity : '') + '</span>' +
-                  '</div>' +
-                  '<div class="out-of-stock">' +
-                  '<span>Hết hàng</span>' +
-                  '</div>' +
-                  '</div>' +
-                  '<div class="quantity">'+
-                  '<button id="decrement">-</button>'+
-                  '<div class="quantity-input">'+
-                  '<input type="number" id="quantity" value="1" min="1" max="' + product.quantity +'">'+
-                  '</div>'+
-                  '<button id="increment">+</button>'+
-                  '</div>'+
-                  '<button id="addToCart">Thêm vào giỏ hàng</button>' +
-                  '</div>' +
-                  '</div>';
+              var html = '<div class="row-product">'
+                  html+='<div class="col col-img"><img src="' + product.product_image + '" id="detail-img"></div>'
+                  html+= '<div class="col col-info">' 
+                  html+= '<h2 id="detail-name">' + product.product_name + '</h2>' 
+                  html+= '<p id="detail-price">' + product.product_price + ' vnđ' + '</p>' 
+                  if (product.product_ingredients) {
+                      html += '<p id="detail-ingredients">Thành phần chính: ' + product.product_ingredients + '</p>';
+                  }
+                  if (product.product_description) {
+                      html += '<p id="detail-description">Miêu tả: ' + product.product_description + '</p>';
+                  }
+                  html+= '<div class="availability">' 
+                  html+= '<div class="available">' 
+                  html+= '<span id="quantity-available"> Có sẵn: ' + product.quantity + '</span>' 
+                  html+= '</div>'
+                  html+= '<div class="out-of-stock">'
+                  html+= '<span>Hết hàng</span>' 
+                  html+= '</div>' 
+                  html+= '</div>' 
+                  html+= '<div class="quantity">'
+                  html+= '<button id="decrement">-</button>'
+                  html+= '<div class="quantity-input">'
+                  html+= '<input type="number" id="quantity" value="1" min="1" max="' + product.quantity +'">'
+                  html+= '</div>'
+                  html+= '<button id="increment">+</button>'
+                  html+= '</div>'
+                  html+= '<button id="addToCart">Thêm vào giỏ hàng</button>' 
+                  html+= '</div>' 
+                  html+='</div>';
 
               $('.detailContent').html(html);
+              // Hiển thị phần chi tiết sản phẩm
+              $('.detail-bg').css('display', 'block');
 
               // Kiểm tra số lượng sản phẩm có sẵn và hiển thị trạng thái tương ứng
               if (product.quantity > 0) {
@@ -143,8 +150,11 @@
               } else {
                   $('.available').hide();
                   $('.out-of-stock').show();
+
+                  // Ẩn quantity và nút mua
+                  $('.quantity').hide();;
                   $('#addToCart').hide();
-                  $.('.quantity').hide();
+
               }
 
               //nút tăng giảm số lượng
@@ -188,6 +198,17 @@
             $('.pagination').html(str);
         }
     }
+
+        //Tắt phần nd chi tiết
+        // Lấy biểu tượng "x" và phần tử "detail-bg"
+        const closeIcon = document.querySelector('.close-icon');
+        const detailbg = document.querySelector('.detail-bg');
+
+        // Gắn sự kiện click cho biểu tượng "x"
+        closeIcon.addEventListener('click', function () {
+            // Ẩn/tắt "detail-bg" khi nhấn vào biểu tượng "x"
+            detailbg.style.display = 'none';
+        });
 
     //Load lại danh mục sp ở phân trang
     function NextPage(page, pageSize) {

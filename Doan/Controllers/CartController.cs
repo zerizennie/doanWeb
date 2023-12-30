@@ -160,7 +160,7 @@ namespace Doan.Controllers
                 //Thêm Order
                 db.bills.Add(order);
                 db.SaveChanges();
-                var Id = order.order_id; // cho id dau tien = 1
+                var Id = order.order_id; // check id
                 //if (db.bills.Count() > 0) //kiem tra xem da co don hang nao chua, neu co thi tang gia tri Id
                 //{
                 //    Id = (int)(db.bills.Max(x => x.id) + 1);
@@ -184,13 +184,19 @@ namespace Doan.Controllers
                     db.order_detail_id.Add(orderDetail);
                     db.SaveChanges();
                     //Trừ số lượng sản phẩm tương ứng trong database
-                    foreach (var product in products)
+                    //foreach (var product in products)
+                    //{
+                    //    if (product.product_id == item.product_id)
+                    //    {
+                    //        product.quantity = product.quantity - item.quantity;
+                    //        db.SaveChanges();
+                    //    }
+                    //}
+                    var product = db.products.FirstOrDefault(p => p.product_id == item.product_id);
+
+                    if (product != null)
                     {
-                        if (product.product_id == item.product_id)
-                        {
-                            product.quantity = product.quantity - item.quantity;
-                            db.SaveChanges();
-                        }
+                        product.quantity -= item.quantity;
                     }
                 }
                 //Xóa hết giỏ hàng

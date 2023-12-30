@@ -98,6 +98,7 @@ body {
     padding: 100px 0 30px;
     font-size: 20px;
     line-height: 20px;
+    z-index: 999;
 }
 
 .row-footer {
@@ -106,6 +107,7 @@ body {
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
+    
 }
 
 .col {
@@ -1414,8 +1416,9 @@ ul li {
     }
 }
 
+
 .detail-bg {
-    /*min-height: 30vh;*/
+    max-height: 100%;
     font-size: 30px;
     width: 80%;
     background-color: #84dfdb9f;
@@ -1427,7 +1430,12 @@ ul li {
     position: fixed;
     margin-left: 10%;
     border-radius: 10px;
+    overflow-y: auto;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
 }
+
 
 .detailContent {
     background-color: #fff;
@@ -1510,7 +1518,6 @@ ul li {
     padding: 5px 10px;
     border-radius: 4px;
     font-size: 20px;
-    width:90%;
     text-align:center;
 }
 
@@ -1521,6 +1528,7 @@ ul li {
 }
 
 .out-of-stock {
+    width: 90%;
     background-color: #eb3b5a;
     color: #ffffff;
     display: none;

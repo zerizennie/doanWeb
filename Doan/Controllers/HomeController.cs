@@ -119,9 +119,13 @@ namespace Doan.Controllers
         }
 
         // Lọc sản phẩm theo categoryId chỉ định
-        public ActionResult CateProduct(int id)
+        public ActionResult CateProduct(int? id)
         {
-            
+            if (id == null)
+            {
+                return RedirectToAction("Product"); // Gọi và trả về Action "Product"
+            }
+
             var items = db.products.ToList();
             if (id >= 0)
             {

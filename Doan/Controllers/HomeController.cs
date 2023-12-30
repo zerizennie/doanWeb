@@ -145,7 +145,7 @@ namespace Doan.Controllers
             return View();
         }
 
-        sosEntities00 db = new sosEntities00();
+        huhuEntities db = new huhuEntities();
         //public ActionResult Register()
         //{
         //    return View();

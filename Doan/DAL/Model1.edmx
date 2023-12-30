@@ -4,24 +4,28 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="huhuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bill">
           <Key>
             <PropertyRef Name="order_id" />
           </Key>
-          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_id" Type="int" />
           <Property Name="order_date" Type="datetime" />
           <Property Name="order_address" Type="varchar" MaxLength="500" />
           <Property Name="payment" Type="varchar" MaxLength="255" />
           <Property Name="payment_status" Type="varchar" MaxLength="255" />
           <Property Name="total" Type="float" />
+          <Property Name="bill_name" Type="varchar" MaxLength="50" />
+          <Property Name="bill_phone" Type="varchar" MaxLength="20" />
+          <Property Name="bill_email" Type="varchar" MaxLength="50" />
+          <Property Name="id" Type="int" />
         </EntityType>
         <EntityType Name="catetory">
           <Key>
             <PropertyRef Name="catetory_id" />
           </Key>
-          <Property Name="catetory_id" Type="int" Nullable="false" />
+          <Property Name="catetory_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="catetory_name" Type="varchar" MaxLength="40" />
           <Property Name="isActive" Type="bit" />
           <Property Name="isDelete" Type="bit" />
@@ -30,7 +34,7 @@
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="40" />
           <Property Name="password" Type="varchar" MaxLength="40" />
           <Property Name="email" Type="varchar" MaxLength="40" />
@@ -39,30 +43,28 @@
           <Property Name="phone_num" Type="varchar" MaxLength="20" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6013: The table/view 'huhu.dbo.discount_info' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="discount_info">
-          <Key>
-            <PropertyRef Name="product_id" />
-          </Key>
-          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" />
           <Property Name="discount_percentage" Type="decimal" Precision="2" Scale="2" />
           <Property Name="discount_start_date" Type="datetime" />
           <Property Name="discount_end_date" Type="datetime" />
-        </EntityType>
+        </EntityType>-->
         <EntityType Name="order_detail_id">
           <Key>
             <PropertyRef Name="order_detail_id" />
           </Key>
-          <Property Name="order_detail_id" Type="int" Nullable="false" />
+          <Property Name="order_detail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="order_id" Type="int" />
           <Property Name="product_id" Type="int" />
           <Property Name="quantity" Type="int" />
+          <Property Name="product_price" Type="float" />
         </EntityType>
         <EntityType Name="product">
           <Key>
             <PropertyRef Name="product_id" />
           </Key>
-          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="product_name" Type="varchar" MaxLength="40" />
           <Property Name="product_ingredients" Type="text" />
           <Property Name="product_description" Type="text" />
@@ -78,7 +80,7 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
           <Key>
             <PropertyRef Name="cart_id" />
           </Key>
-          <Property Name="cart_id" Type="int" Nullable="false" />
+          <Property Name="cart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_id" Type="int" />
           <Property Name="product_id" Type="int" />
           <Property Name="quantity" Type="int" />
@@ -96,18 +98,9 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__discount___produ__52593CB8">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="discount_info" Type="Self.discount_info" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="product">
-              <PropertyRef Name="product_id" />
-            </Principal>
-            <Dependent Role="discount_info">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'huhu.dbo.discount_info' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__discount___produ__52593CB8" />-->
         <Association Name="FK__order_det__order__5535A963">
           <End Role="bill" Type="Self.bill" Multiplicity="0..1" />
           <End Role="order_detail_id" Type="Self.order_detail_id" Multiplicity="*" />
@@ -168,28 +161,16 @@ warning 6002: The table/view 'sos.dbo.discount_info' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="sosModelStoreContainer">
+        <EntityContainer Name="huhuModelStoreContainer">
           <EntitySet Name="bill" EntityType="Self.bill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="catetory" EntityType="Self.catetory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="order_detail_id" EntityType="Self.order_detail_id" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="shopping_cart" EntityType="Self.shopping_cart" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="discount_info" EntityType="Self.discount_info" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[discount_info].[product_id] AS [product_id], 
-[discount_info].[discount_percentage] AS [discount_percentage], 
-[discount_info].[discount_start_date] AS [discount_start_date], 
-[discount_info].[discount_end_date] AS [discount_end_date]
-FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__bill__user_id__5070F446" Association="Self.FK__bill__user_id__5070F446">
             <End Role="customer" EntitySet="customer" />
             <End Role="bill" EntitySet="bill" />
-          </AssociationSet>
-          <AssociationSet Name="FK__discount___produ__52593CB8" Association="Self.FK__discount___produ__52593CB8">
-            <End Role="product" EntitySet="product" />
-            <End Role="discount_info" EntitySet="discount_info" />
           </AssociationSet>
           <AssociationSet Name="FK__order_det__order__5535A963" Association="Self.FK__order_det__order__5535A963">
             <End Role="bill" EntitySet="bill" />
@@ -216,18 +197,22 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="sosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="huhuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="bill">
           <Key>
             <PropertyRef Name="order_id" />
           </Key>
-          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_id" Type="Int32" />
           <Property Name="order_date" Type="DateTime" Precision="3" />
           <Property Name="order_address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="payment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="payment_status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="total" Type="Double" />
+          <Property Name="bill_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bill_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="bill_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" />
           <NavigationProperty Name="customer" Relationship="Self.FK__bill__user_id__5070F446" FromRole="bill" ToRole="customer" />
           <NavigationProperty Name="order_detail_id" Relationship="Self.FK__order_det__order__5535A963" FromRole="bill" ToRole="order_detail_id" />
         </EntityType>
@@ -235,7 +220,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <Key>
             <PropertyRef Name="catetory_id" />
           </Key>
-          <Property Name="catetory_id" Type="Int32" Nullable="false" />
+          <Property Name="catetory_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="catetory_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="isActive" Type="Boolean" />
           <Property Name="isDelete" Type="Boolean" />
@@ -245,7 +230,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
@@ -259,10 +244,11 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <Key>
             <PropertyRef Name="order_detail_id1" />
           </Key>
-          <Property Name="order_detail_id1" Type="Int32" Nullable="false" />
+          <Property Name="order_detail_id1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="order_id" Type="Int32" />
           <Property Name="product_id" Type="Int32" />
           <Property Name="quantity" Type="Int32" />
+          <Property Name="product_price" Type="Double" />
           <NavigationProperty Name="bill" Relationship="Self.FK__order_det__order__5535A963" FromRole="order_detail_id" ToRole="bill" />
           <NavigationProperty Name="product" Relationship="Self.FK__order_det__produ__5629CD9C" FromRole="order_detail_id" ToRole="product" />
         </EntityType>
@@ -270,7 +256,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <Key>
             <PropertyRef Name="product_id" />
           </Key>
-          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="product_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="product_ingredients" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="product_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -283,30 +269,19 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
           <Property Name="quantity" Type="Int32" />
           <NavigationProperty Name="catetory" Relationship="Self.FK__product__catetor__4D94879B" FromRole="product" ToRole="catetory" />
           <NavigationProperty Name="order_detail_id" Relationship="Self.FK__order_det__produ__5629CD9C" FromRole="product" ToRole="order_detail_id" />
-          <NavigationProperty Name="discount_info" Relationship="Self.FK__discount___produ__52593CB8" FromRole="product" ToRole="discount_info" />
           <NavigationProperty Name="shopping_cart" Relationship="Self.FK__shopping___produ__59FA5E80" FromRole="product" ToRole="shopping_cart" />
         </EntityType>
         <EntityType Name="shopping_cart">
           <Key>
             <PropertyRef Name="cart_id" />
           </Key>
-          <Property Name="cart_id" Type="Int32" Nullable="false" />
+          <Property Name="cart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_id" Type="Int32" />
           <Property Name="product_id" Type="Int32" />
           <Property Name="quantity" Type="Int32" />
           <Property Name="total" Type="Double" />
           <NavigationProperty Name="customer" Relationship="Self.FK__shopping___user___59063A47" FromRole="shopping_cart" ToRole="customer" />
           <NavigationProperty Name="product" Relationship="Self.FK__shopping___produ__59FA5E80" FromRole="shopping_cart" ToRole="product" />
-        </EntityType>
-        <EntityType Name="discount_info">
-          <Key>
-            <PropertyRef Name="product_id" />
-          </Key>
-          <Property Name="product_id" Type="Int32" Nullable="false" />
-          <Property Name="discount_percentage" Type="Decimal" Precision="2" Scale="2" />
-          <Property Name="discount_start_date" Type="DateTime" Precision="3" />
-          <Property Name="discount_end_date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="product" Relationship="Self.FK__discount___produ__52593CB8" FromRole="discount_info" ToRole="product" />
         </EntityType>
         <Association Name="FK__bill__user_id__5070F446">
           <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
@@ -368,18 +343,6 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__discount___produ__52593CB8">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="discount_info" Type="Self.discount_info" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="product">
-              <PropertyRef Name="product_id" />
-            </Principal>
-            <Dependent Role="discount_info">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__shopping___produ__59FA5E80">
           <End Role="product" Type="Self.product" Multiplicity="0..1" />
           <End Role="shopping_cart" Type="Self.shopping_cart" Multiplicity="*" />
@@ -392,14 +355,13 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="sosEntities00" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="huhuEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="bills" EntityType="Self.bill" />
           <EntitySet Name="catetories" EntityType="Self.catetory" />
           <EntitySet Name="customers" EntityType="Self.customer" />
           <EntitySet Name="order_detail_id" EntityType="Self.order_detail_id" />
           <EntitySet Name="products" EntityType="Self.product" />
           <EntitySet Name="shopping_cart" EntityType="Self.shopping_cart" />
-          <EntitySet Name="discount_info" EntityType="Self.discount_info" />
           <AssociationSet Name="FK__bill__user_id__5070F446" Association="Self.FK__bill__user_id__5070F446">
             <End Role="customer" EntitySet="customers" />
             <End Role="bill" EntitySet="bills" />
@@ -420,10 +382,6 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             <End Role="product" EntitySet="products" />
             <End Role="order_detail_id" EntitySet="order_detail_id" />
           </AssociationSet>
-          <AssociationSet Name="FK__discount___produ__52593CB8" Association="Self.FK__discount___produ__52593CB8">
-            <End Role="product" EntitySet="products" />
-            <End Role="discount_info" EntitySet="discount_info" />
-          </AssociationSet>
           <AssociationSet Name="FK__shopping___produ__59FA5E80" Association="Self.FK__shopping___produ__59FA5E80">
             <End Role="product" EntitySet="products" />
             <End Role="shopping_cart" EntitySet="shopping_cart" />
@@ -434,9 +392,9 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="sosModelStoreContainer" CdmEntityContainer="sosEntities00">
+        <EntityContainerMapping StorageEntityContainer="huhuModelStoreContainer" CdmEntityContainer="huhuEntities">
           <EntitySetMapping Name="bills">
-            <EntityTypeMapping TypeName="sosModel.bill">
+            <EntityTypeMapping TypeName="huhuModel.bill">
               <MappingFragment StoreEntitySet="bill">
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -445,11 +403,15 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
                 <ScalarProperty Name="payment" ColumnName="payment" />
                 <ScalarProperty Name="payment_status" ColumnName="payment_status" />
                 <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="bill_name" ColumnName="bill_name" />
+                <ScalarProperty Name="bill_phone" ColumnName="bill_phone" />
+                <ScalarProperty Name="bill_email" ColumnName="bill_email" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="catetories">
-            <EntityTypeMapping TypeName="sosModel.catetory">
+            <EntityTypeMapping TypeName="huhuModel.catetory">
               <MappingFragment StoreEntitySet="catetory">
                 <ScalarProperty Name="catetory_id" ColumnName="catetory_id" />
                 <ScalarProperty Name="catetory_name" ColumnName="catetory_name" />
@@ -459,7 +421,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="customers">
-            <EntityTypeMapping TypeName="sosModel.customer">
+            <EntityTypeMapping TypeName="huhuModel.customer">
               <MappingFragment StoreEntitySet="customer">
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="username" ColumnName="username" />
@@ -472,17 +434,18 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="order_detail_id">
-            <EntityTypeMapping TypeName="sosModel.order_detail_id">
+            <EntityTypeMapping TypeName="huhuModel.order_detail_id">
               <MappingFragment StoreEntitySet="order_detail_id">
                 <ScalarProperty Name="order_detail_id1" ColumnName="order_detail_id" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="products">
-            <EntityTypeMapping TypeName="sosModel.product">
+            <EntityTypeMapping TypeName="huhuModel.product">
               <MappingFragment StoreEntitySet="product">
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="product_name" ColumnName="product_name" />
@@ -499,23 +462,13 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="shopping_cart">
-            <EntityTypeMapping TypeName="sosModel.shopping_cart">
+            <EntityTypeMapping TypeName="huhuModel.shopping_cart">
               <MappingFragment StoreEntitySet="shopping_cart">
                 <ScalarProperty Name="cart_id" ColumnName="cart_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="total" ColumnName="total" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="discount_info">
-            <EntityTypeMapping TypeName="sosModel.discount_info">
-              <MappingFragment StoreEntitySet="discount_info">
-                <ScalarProperty Name="product_id" ColumnName="product_id" />
-                <ScalarProperty Name="discount_percentage" ColumnName="discount_percentage" />
-                <ScalarProperty Name="discount_start_date" ColumnName="discount_start_date" />
-                <ScalarProperty Name="discount_end_date" ColumnName="discount_end_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -535,7 +488,7 @@ FROM [dbo].[discount_info] AS [discount_info]</DefiningQuery>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

@@ -1,6 +1,7 @@
 ﻿using Doan.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -35,7 +36,32 @@ namespace Doan.Controllers
             return Details1(order_id, x, x.order_id1);
         }
 
-        
+        //Get Edit
+        [HttpGet]
+        public ActionResult Edit(int order_id)
+        {
+            bill order = db.bills.Single(x => x.order_id == order_id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View("Edit", order);
+        }
+
+        //Post Edit
+        [HttpPost]
+        public ActionResult Edit(bill order)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(order).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Order");
+            }
+
+            return View(order);
+        }
 
         //public ActionResult Details(int order_id, int? order_id1)
         //{

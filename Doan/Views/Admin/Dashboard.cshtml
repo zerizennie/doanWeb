@@ -10,55 +10,55 @@
         <h1 class="mt-4">BẢNG ĐIỀU KHIỂN</h1>
         <br />
         @*<ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Tổng quan</li>
-            </ol>*@
-    <div class="row">
-        <div class="col-xl-6 col-md-6">
-            <div class="card bg-primary text-white mb-4">
-                <div class="card-body">Tổng đơn hàng</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span class="big text-white font-weight-bold text-uppercase">@ViewBag.TotalOrders</span>
-                    <br />
-                    <a class="small text-white stretched-link" href="../Order/Index">Xem chi tiết</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-6 col-md-6">
-            <div class="card bg-warning text-white mb-4">
-                <div class="card-body">Đơn hàng trong tháng</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span class="big text-white font-weight-bold text-uppercase">@ViewBag.orderMonth</span>
-                    <a class="small text-white stretched-link" href="../Order/Index">Xem chi tiết</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-6 col-md-6">
-            <div class="card bg-success text-white mb-4">
-                <div class="card-body">Số lượng khách hàng</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span class="big text-white font-weight-bold text-uppercase">@ViewBag.CustomerCount</span>
-                    <a class="small text-white stretched-link" href="../Customer/Index">Xem chi tiết</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-6 col-md-6">
-            <div class="card bg-danger text-white mb-4">
-                <div class="card-body">Tổng doanh thu trong tháng</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span class="big text-white font-weight-bold text-uppercase">@ViewBag.TotalRevenue</span>
-                    <a class="pull-right small text-white stretched-link" href="../Order/Index">Xem chi tiết</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                </div>
-            </div>
-        </div>
+            <li class="breadcrumb-item active">Tổng quan</li>
+        </ol>*@
 
 
         <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card bg-primary text-white">
+                    <div class="card-body"><b>TỔNG ĐƠN HÀNG</b></div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <span class="big text-white font-weight-bold text-uppercase">@ViewBag.TotalOrders</span>
+                        <a class="small text-white stretched-link" href="../Order/Index">Xem chi tiết <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card bg-warning text-white">
+                    <div class="card-body"><b>ĐƠN HÀNG TRONG THÁNG</b></div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <span class="big text-white font-weight-bold text-uppercase">@ViewBag.orderMonth</span>
+                        <a class="small text-white stretched-link" href="../Order/Index">Xem chi tiết <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        <div class=" row">
+            <div class="col-md-6 mb-4">
+                <div class="card bg-success text-white">
+                    <div class="card-body"><b>SỐ LƯỢNG KHÁCH HÀNG</b></div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <span class="big text-white font-weight-bold text-uppercase">@ViewBag.CustomerCount</span>
+                        <a class="small text-white stretched-link" href="../Customer/Index">Xem chi tiết <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card bg-danger text-white">
+                    <div class="card-body"><b>TỔNG DOANH THU TRONG THÁNG</b></div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <span class="big text-white font-weight-bold text-uppercase">@ViewBag.TotalRevenue</span>
+                        <a class="small text-white stretched-link pull-right" href="../Order/Index">Xem chi tiết <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @*<div class="row">*@
             <div class="col-xl-12">
                 <div class="card mb-8">
                     <div class="card-header">
@@ -92,8 +92,8 @@
             </div>
         </div>
 
-    </div>
-    </div>
+    @*</div>*@
+    @*</div>*@
 </main>
 
    

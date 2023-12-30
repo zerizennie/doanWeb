@@ -4,88 +4,48 @@
     ViewBag.Title = "CategoryEdit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<style>
-    .bold-text {
-        font-weight: bold;
-    }
 
-    .button-container {
-        display: flex;
-    }
-
-    .custom-button {
-        cursor: pointer;
-        padding: 5px 15px;
-        margin: 5px;
-        border: 1px solid #000; /* Viền màu đen */
-        display: inline-block;
-        text-decoration: none;
-        color: inherit; /* Kế thừa màu chữ từ cha */
-        background-color: inherit; /* Kế thừa màu nền từ cha */
-        outline: none; /* Loại bỏ đường viền khi được focus */
-        /*border-radius: 6%;*/
-    }
-
-    .create-button {
-        background-color: #4287CC;
-        color: #fff;
-    }
-
-    .submit-button {
-        margin-left: 215px;
-        background-color: #11EBB3;
-        color: #000;
-    }
-
-    .custom-width {
-        width: 300%;
-    }
-
-    .hidden-field {
-        display: none;
-    }
-</style>
-<h2>Cập nhật danh mục sản phẩm</h2>
 
 <div class="container">
+    <h2>CẬP NHẬT DANH MỤC SẢN PHẨM</h2>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.catetory_id)
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.catetory_id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.catetory_name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.catetory_name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.catetory_name, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.catetory_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.catetory_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.catetory_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.CheckBox("isActive")
+                    @Html.ValidationMessageFor(model => model.isActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.isDelete, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.CheckBox("isDelete")
+                    @Html.ValidationMessageFor(model => model.isDelete, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="CẬP NHẬT" class="custom-button submit-button bold-text" />
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.CheckBox("isActive")
-                @Html.ValidationMessageFor(model => model.isActive, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.isDelete, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.CheckBox("isDelete")
-                @Html.ValidationMessageFor(model => model.isDelete, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="row form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="CẬP NHẬT" class="custom-button submit-button bold-text" />
-            </div>
-        </div>
-    </div>
     }
     <div>
         <button class="custom-button create-button" onclick="location.href='@Url.Action("Categories")">QUAY VỀ DANH SÁCH CÁC DANH MỤC</button>

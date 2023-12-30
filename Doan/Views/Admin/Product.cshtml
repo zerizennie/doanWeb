@@ -4,8 +4,9 @@
     ViewBag.Title = "Product";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h2>DANH SÁCH SẢN PHẨM</h2>
+
 <div class="card mb-4">
+    <h2>DANH SÁCH SẢN PHẨM</h2>
     <div class="card-header">
 
         <a href="../Admin/ProductAdd" class="btn btn-info pull-right fa-table fa-plus">THÊM SẢN PHẨM MỚI</a>
@@ -33,25 +34,25 @@
                 </tr>
             </tfoot>
             <tbody>
-                
-                @{ 
+
+                @{
                     int count = 1;
                     foreach (var item in Model)
                     {
-                    <tr>
-                        <td>@count</td>
-                        <td>@item.product_id</td>
-                        <td>@item.product_name</td>
-                        <td>@item.product_price</td>
-                        <td>@item.quantity</td>
-                        <td>
-                            @Html.ActionLink("Cập nhật", "ProductEdit", new { product_id = item.product_id })
-                            @*@Html.ActionLink("Xem chi tiết", "Product...", new { product_id = item.product_id })*@
-                        </td>
-                    </tr>
-                            count++;
+                        <tr>
+                            <td>@count</td>
+                            <td>@item.product_id</td>
+                            <td>@item.product_name</td>
+                            <td>@item.product_price</td>
+                            <td>@item.quantity</td>
+                            <td>
+                                @Html.ActionLink("Cập nhật", "ProductEdit", new { product_id = item.product_id })
+                                @*@Html.ActionLink("Xem chi tiết", "Product...", new { product_id = item.product_id })*@
+                            </td>
+                        </tr>
+                        count++;
                     }
-                 }
+                }
             </tbody>
         </table>
     </div>

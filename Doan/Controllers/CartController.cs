@@ -160,44 +160,31 @@ namespace Doan.Controllers
                 //Thêm Order
                 db.bills.Add(order);
                 db.SaveChanges();
-                var Id = order.order_id; // check id
-                //if (db.bills.Count() > 0) //kiem tra xem da co don hang nao chua, neu co thi tang gia tri Id
-                //{
-                //    Id = (int)(db.bills.Max(x => x.id) + 1);
-                //}
+                var Id = order.order_id; 
 
                 var sessioncart = (List<CartItem>)Session[CartSession];
-                List<product> products = db.products.ToList();
 
                 double total = 0;
                 foreach (var item in sessioncart)
                 {
                     var orderDetail = new order_detail_id();
-                    orderDetail.product_id = item.product_id;
+                    orderDetail.product_id = item.product.product_id;
                     orderDetail.order_id = Id;
-                    orderDetail.product_price = item.product_price;
+                    orderDetail.product_price = item.product.product_price;
                     orderDetail.quantity = item.quantity;
-                    //db.order_detail_id.Add(orderDetail);
-                    //db.SaveChanges();
                     total += item.product.product_price.GetValueOrDefault(0) * item.quantity;
                     order.total = total;
                     db.order_detail_id.Add(orderDetail);
-                    db.SaveChanges();
+
                     //Trừ số lượng sản phẩm tương ứng trong database
-                    //foreach (var product in products)
-                    //{
-                    //    if (product.product_id == item.product_id)
-                    //    {
-                    //        product.quantity = product.quantity - item.quantity;
-                    //        db.SaveChanges();
-                    //    }
-                    //}
-                    var product = db.products.FirstOrDefault(p => p.product_id == item.product_id);
+                    var product = db.products.FirstOrDefault(p => p.product_id == item.product.product_id);
 
                     if (product != null)
                     {
                         product.quantity -= item.quantity;
                     }
+
+                    db.SaveChanges();
                 }
                 //Xóa hết giỏ hàng
                 Session[CartSession] = null;

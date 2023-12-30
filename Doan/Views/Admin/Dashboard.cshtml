@@ -5,35 +5,8 @@
     //var chartData = ViewBag.ChartData as ChartDataModel;
 }
 
-
-<style>
-    .select-wrapper {
-        position: relative;
-    }
-
-        .select-wrapper select {
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            width: 100%;
-            padding-right: 1.5rem;
-        }
-
-        .select-wrapper .arrow {
-            position: absolute;
-            top: 50%;
-            right: 0.5rem;
-            transform: translateY(-50%);
-            width: 0.5rem;
-            height: 0.5rem;
-            border-left: 0.15rem solid #999;
-            border-bottom: 0.15rem solid #999;
-            transform: rotate(45deg);
-            pointer-events: none;
-        }
-</style>
 <main>
-    <div class="container-fluid px-5">
+    <div class="container">
         <h1 class="mt-4">BẢNG ĐIỀU KHIỂN</h1>
         <br />
         @*<ol class="breadcrumb mb-4">
@@ -84,27 +57,43 @@
             </div>
         </div>
 
+
         <div class="row">
-            <div class="col-xl-6">
-                <div class="card mb-4">
+            <div class="col-xl-12">
+                <div class="card mb-8">
                     <div class="card-header">
                         <i class="fas fa-shopping-cart me-1"></i>
-                        10 Đơn hàng mới nhất
+                        CÁC ĐƠN HÀNG MỚI NHẤT
                     </div>
                     <div class="card-body">
-                        <ul>
-                            @foreach (var order in ViewBag.LatestOrders)
-                            {
-                                <li>@order.order_id - @order.order_date.ToString("dd/MM/yyyy")</li>
-                            }
-                        </ul>
+                        <table id="datatablesSimple" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Địa chỉ giao hàng</th>
+                                    <th>Thời gian đặt hàng</th>
+                                    <th>Giá trị đơn hàng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var order in ViewBag.LatestOrders)
+                                {
+                                    <tr>
+                                        <td>@order.order_id</td>
+                                        <td>@order.order_address</td>
+                                        <td>@order.order_date</td>
+                                        <td>@order.total</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
- </div>
+    </div>
 </main>
 
    

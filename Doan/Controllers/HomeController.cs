@@ -98,7 +98,7 @@ namespace Doan.Controllers
         }
 
 
-       
+        //Danh sách Category
         public ActionResult MenuProduct()
         {
             var items = db.catetories.ToList();
@@ -106,10 +106,10 @@ namespace Doan.Controllers
             return PartialView("_MenuProduct", categoryDetails);
         }
 
+        //Tải sp
         public ActionResult LoadProduct(int? id)
         {
             var items = db.products.ToList();
-            // Lọc sản phẩm theo categoryId chỉ định
             if (id != null)
             {
                 items = items.Where(x => x.catetory_id == id).ToList();
@@ -118,17 +118,49 @@ namespace Doan.Controllers
             return PartialView("_LoadProduct",productDetails);
         }
 
+        // Lọc sản phẩm theo categoryId chỉ định
         public ActionResult CateProduct(int id)
         {
             
             var items = db.products.ToList();
-            // Lọc sản phẩm theo categoryId chỉ định
             if (id >= 0)
             {
                 items = items.Where(x => x.catetory_id == id).ToList();
             }
             var productDetails = items.Select(p => new productDetail { product_id = p.product_id, product_name = p.product_name, product_price = p.product_price, product_image = p.product_image, product_ingredients = p.product_ingredients, catetory_id = p.catetory_id }).ToList();
             return View(productDetails);
+        }
+
+        //Hiển thị chi tiết sp
+        public ActionResult ChitietSP(int id)
+        {
+            var items = db.products.AsQueryable();
+            if (id >= 0)
+            {
+                items = items.Where(x => x.product_id == id);
+            }
+            var infoProduct = items.Select(p => new productDetail
+            {
+                product_id = p.product_id,
+                product_name = p.product_name,
+                product_price = p.product_price,
+                product_image = p.product_image,
+                product_ingredients = p.product_ingredients,
+                product_description = p.product_description,
+                catetory_id = p.catetory_id,
+                quantity = p.quantity,
+                end_date = p.end_date,
+                start_date = p.start_date
+            }).FirstOrDefault();
+
+
+            if (infoProduct != null)
+            {
+                return Json(infoProduct, JsonRequestBehavior.AllowGet);
+            }
+
+            // Xử lý khi không tìm thấy sản phẩm
+            return RedirectToAction("NotFound");
         }
 
         public ActionResult Product()

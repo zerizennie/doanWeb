@@ -1,28 +1,119 @@
 ﻿@model IEnumerable<Doan.Models.productDetail>
-    @{
+@{
     ViewBag.Title = "Sản phẩm";
-    }
+}
 
-    <main>
-        <div class="row">
-            <div class="col-md-3">
-                <!-- Sidebar -->
-                <div class="sidebar">
-                    <div class="sidebar_title">
-                        <h5>Danh mục sản phẩm</h5>
-                    </div>
+<main>
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar_title">
+                    <h5>Danh mục sản phẩm</h5>
                 </div>
-                @Html.Action("MenuProduct","Home")
             </div>
-            <div class="col-md-9">
-                <!-- Main Content -->
-                <div class="main_content">
-                    <!-- Products -->
-                    <div class="products">
-                        @Html.Action("LoadProduct","Home")
-                    </div>
+            @Html.Action("MenuProduct","Home")
+        </div>
+        <div class="col-md-9">
+            <!-- Main Content -->
+            <div class="main_content">
+                <!-- Products -->
+                <div class="products">
+                    @Html.Action("LoadProduct","Home")
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+    <!--Phần chi tiết sản phẩm-->
+    <div class="detail-bg" style="display:none;">
+        <div class="close-icon"><i class="fas fa-times"></i></div>
+        <div class="detailContent">
+
+        </div>
+    </div>
+</main>
+
+@section scripts{
+    <script>
+        $(document).on('click', '.view-link', function () {
+            var id = $(this).data('id');
+            ShowDetailProduct(id);
+            return false;
+        });
+
+        function ShowDetailProduct(id) {
+            $.ajax({
+                url: '/Home/ChitietSP',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    var product = res;
+                    var html = '<div class="row-product">'
+                    html += '<div class="col col-img"><img src="' + product.product_image + '" id="detail-img"></div>'
+                    html += '<div class="col col-info">'
+                    html += '<h2 id="detail-name">' + product.product_name + '</h2>'
+                    html += '<p id="detail-price">' + product.product_price + ' vnđ' + '</p>'
+                    if (product.product_ingredients) {
+                        html += '<p id="detail-ingredients">Thành phần chính: ' + product.product_ingredients + '</p>';
+                    }
+                    if (product.product_description) {
+                        html += '<p id="detail-description">Miêu tả: ' + product.product_description + '</p>';
+                    }
+                    html += '<div class="availability">'
+                    html += '<div class="available">'
+                    html += '<span id="quantity-available"> Có sẵn: ' + product.quantity + '</span>'
+                    html += '</div>'
+                    html += '<div class="out-of-stock">'
+                    html += '<span>Hết hàng</span>'
+                    html += '</div>'
+                    html += '</div>'
+                    html += '<div class="quantity">'
+                    html += '<button id="decrement">-</button>'
+                    html += '<div class="quantity-input">'
+                    html += '<input type="number" id="quantity" value="1" min="1" max="' + product.quantity + '">'
+                    html += '</div>'
+                    html += '<button id="increment">+</button>'
+                    html += '</div>'
+                    html += '<button id="addToCart">Thêm vào giỏ hàng</button>'
+                    html += '</div>'
+                    html += '</div>';
+
+                    $('.detailContent').html(html);
+                    // Hiển thị phần chi tiết sản phẩm
+                    $('.detail-bg').css('display', 'block');
+
+                    // Kiểm tra số lượng sản phẩm có sẵn và hiển thị trạng thái tương ứng
+                    if (product.quantity > 0) {
+                        $('.available').show();
+                        $('.out-of-stock').hide();
+                    } else {
+                        $('.available').hide();
+                        $('.out-of-stock').show();
+
+                        // Ẩn quantity và nút mua
+                        $('.quantity').hide();;
+                        $('#addToCart').hide();
+
+                    }
+
+                    //nút tăng giảm số lượng
+                    const quantityInput = document.getElementById("quantity");
+                    const incrementButton = document.getElementById("increment");
+                    const decrementButton = document.getElementById("decrement");
+
+                    incrementButton.addEventListener("click", () => {
+                        quantityInput.stepUp(1);
+                    });
+
+                    decrementButton.addEventListener("click", () => {
+                        if (quantityInput.value > 1) {
+                            quantityInput.stepDown(1);
+                        }
+                    });
+                }
+            });
+        }
+
+    </script>
+}
 

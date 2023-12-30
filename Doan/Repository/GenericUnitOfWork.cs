@@ -8,7 +8,7 @@ namespace Doan.Repository
 {
     public class GenericUnitOfWork : IDisposable
     {
-        private sosEntities00 DBEntity = new sosEntities00();
+        private huhuEntities DBEntity = new huhuEntities();
         public IRepository<Tbl_EntityType> GetRepositoryInstance<Tbl_EntityType>() where Tbl_EntityType : class
         {
             return new GenericRepository<Tbl_EntityType>(DBEntity);

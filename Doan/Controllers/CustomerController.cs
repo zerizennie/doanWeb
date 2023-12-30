@@ -63,17 +63,6 @@ namespace Doan.Controllers
             return View(cust);
         }
 
-        //Get Details
-        //public ActionResult Details(int id)
-        //{
-        //    customer cust = customer.Find(id);
-        //    if (cust == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(cust);
-        //}
-
         //Get Delete
         public ActionResult Delete(int user_id)
         {
@@ -96,7 +85,6 @@ namespace Doan.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

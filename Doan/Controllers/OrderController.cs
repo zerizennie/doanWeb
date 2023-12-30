@@ -19,6 +19,8 @@ namespace Doan.Controllers
 
         public ActionResult Details1(int order_id, order_detail_id x, int? order_id1)
         {
+            //tạo tuple chứa hóa đơn (bill) và danh sách các chi tiết đơn hàng (order_detail_id).
+            //tính toán một số thông tin thống kê như tổng số lượng mục và tổng tiền -> view
             bill order = db.bills.Find(order_id);
             var order_details = db.order_detail_id.Where(y => order_id1 == order_id).ToList();
             var tuple = new Tuple<bill, IEnumerable<order_detail_id>>(order, order_details);
@@ -62,25 +64,6 @@ namespace Doan.Controllers
 
             return View(order);
         }
-
-        //public ActionResult Details(int order_id, int? order_id1)
-        //{
-        //    bill order = db.bills.Find(order_id);
-        //    var order_details = db.order_detail_id.Where(y => y.order_id1 == order_id).ToList();
-
-        //    ViewBag.TotalItems = order_details.Sum(x => x.quantity);
-
-        //    double? SumAmount = order_details.Sum(x => x.product_price);
-        //    ViewBag.Amount = SumAmount;
-
-        //    ViewBag.Discount = 0;
-        //    ViewBag.TAmount = SumAmount - 0;
-
-        //    // Tạo Tuple để truyền dữ liệu đến view
-        //    var tuple = new Tuple<bill, IEnumerable<order_detail_id>>(order, order_details);
-
-        //    return View(tuple);
-        //}
 
     }
 }

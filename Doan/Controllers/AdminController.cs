@@ -114,31 +114,28 @@ namespace Doan.Controllers
 
         public ActionResult Dashboard()
         {
-            ViewBag.latestOrders = db.bills.OrderByDescending(x => x.order_id).Take(10).ToList();
+
+            //Đếm số lượng đơn hàng đã bán được 
             ViewBag.TotalOrders = db.bills.Count(x => x.order_id != null);
 
+            //Đếm số lượng khách hàng đăng ký
+            int customerCount = db.customers.Count();
+            ViewBag.CustomerCount = customerCount;
+
+            //Đếm số lượng đơn hàng trong tháng hiện tại
             DateTime currentDate = DateTime.Now;
             int currentMonth = currentDate.Month;
             int currentYear = currentDate.Year;
             ViewBag.orderMonth = db.bills.Count(x => x.order_date.HasValue && x.order_date.Value.Month == currentMonth);
 
-            int customerCount = db.customers.Count();
-
-            // Update the ViewBag or ViewData
-            ViewBag.CustomerCount = customerCount;
-
+            //Tính tổng doanh thu cho tháng hiện tại
             double totalRevenue = db.bills
             .Where(x => x.order_date.HasValue && x.order_date.Value.Month == currentMonth && x.order_date.Value.Year == currentYear)
             .Sum(x => x.total) ?? 0;
 
             ViewBag.TotalRevenue = totalRevenue.ToString("N0");
-
-
             var latestOrders = db.bills.OrderByDescending(x => x.order_id).Take(10).ToList();
-
-            // Gửi dữ liệu đến ViewBag hoặc Model
             ViewBag.LatestOrders = latestOrders;
-
 
             return View();
         }

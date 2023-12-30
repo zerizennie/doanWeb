@@ -58,6 +58,7 @@ warning 6013: The table/view 'huhu.dbo.discount_info' does not have a primary ke
           <Property Name="order_id" Type="int" />
           <Property Name="product_id" Type="int" />
           <Property Name="quantity" Type="int" />
+          <Property Name="product_price" Type="float" />
         </EntityType>
         <EntityType Name="product">
           <Key>

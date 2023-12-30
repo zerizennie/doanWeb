@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="872f0e964732403ea7ba8a8da297269f" Name="Diagram1">
+      <Diagram DiagramId="c1a8395c65d7408eaaac6b5f8e79c352" Name="Diagram1">
         <EntityTypeShape EntityType="huhuModel.bill" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="huhuModel.catetory" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="huhuModel.customer" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />

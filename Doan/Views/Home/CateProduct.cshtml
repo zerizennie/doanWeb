@@ -28,7 +28,7 @@
                                 <p class="name"><a href="@item.product_id" style="color: #fa6e4f">@item.product_name</a></p>
                                 <p class="price"><span>@item.product_price</span></p>
                                 <p class="ingredients">@item.product_ingredients</p>
-                                <p class="cart"><a href="#" style="color:#ffffff">Thêm vào giỏ hàng<i class="bx bx-cart-alt"></i></a></p>
+                                <p class="cart"><a href="@Url.Action("AddItem", "Cart", new { @productId=@item.product_id, @quantity=1 })" style="color:#ffffff">Thêm vào giỏ hàng<i class="bx bx-cart-alt"></i></a></p>
                             </div>
                         }
                     }

@@ -1,39 +1,39 @@
 ﻿@model IEnumerable<Doan.Models.productDetail>
-@{
+    @{
     ViewBag.Title = "Sản phẩm";
-}
+    }
 
-<main>
-    <div class="row">
-        <div class="col-md-3">
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <div class="sidebar_title">
-                    <h5>Danh mục sản phẩm</h5>
+    <main>
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <div class="sidebar_title">
+                        <h5>Danh mục sản phẩm</h5>
+                    </div>
+                </div>
+                @Html.Action("MenuProduct","Home")
+            </div>
+            <div class="col-md-9">
+                <!-- Main Content -->
+                <div class="main_content">
+                    <!-- Products -->
+                    <div class="products">
+                        @Html.Action("LoadProduct","Home")
+                    </div>
                 </div>
             </div>
-            @Html.Action("MenuProduct","Home")
         </div>
-        <div class="col-md-9">
-            <!-- Main Content -->
-            <div class="main_content">
-                <!-- Products -->
-                <div class="products">
-                    @Html.Action("LoadProduct","Home")
-                </div>
+        <!--Phần chi tiết sản phẩm-->
+        <div class="detail-bg" style="display:none;">
+            <div class="close-icon"><i class="fas fa-times"></i></div>
+            <div class="detailContent">
+
             </div>
         </div>
-    </div>
-    <!--Phần chi tiết sản phẩm-->
-    <div class="detail-bg" style="display:none;">
-        <div class="close-icon"><i class="fas fa-times"></i></div>
-        <div class="detailContent">
+    </main>
 
-        </div>
-    </div>
-</main>
-
-@section scripts{
+    @section scripts{
     <script>
 
         $(document).on('click', '.view-link', function () {
@@ -84,11 +84,11 @@
                     $('.detail-bg').css('display', 'block');
 
                     // Lắng nghe sự kiện click cho nút "Thêm vào giỏ hàng"
-                    document.getElementById("addToCart").addEventListener("click", function() {
-                    var quantity = document.getElementById("quantity").value; // Lấy giá trị số lượng từ ô nhập input
-                    var productId = product.product_id;
-                    var url = "/Cart/AddItem?productId=" + productId + "&quantity=" + quantity; // Sử dụng số lượng trong URL
-                    window.location.href = url;
+                    document.getElementById("addToCart").addEventListener("click", function () {
+                        var quantity = document.getElementById("quantity").value; // Lấy giá trị số lượng từ ô nhập input
+                        var productId = product.product_id;
+                        var url = "/Cart/AddItem?productId=" + productId + "&quantity=" + quantity; // Sử dụng số lượng trong URL
+                        window.location.href = url;
                     });
 
                     // Kiểm tra số lượng sản phẩm có sẵn và hiển thị trạng thái tương ứng
@@ -120,13 +120,13 @@
                         }
                     });
 
-                   
+
                 }
             });
         }
 
 
-    
+
         //Tắt phần nd chi tiết
         // Lấy biểu tượng "x" và phần tử "detail-bg"
         const closeIcon = document.querySelector('.close-icon');
@@ -139,5 +139,39 @@
         });
 
     </script>
-}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("searchButton").addEventListener("click", function () {
+                var keyword = document.getElementById("searchInput").value.trim();
+                var url = "/Home/ResultFind?keyword=" + encodeURIComponent(keyword);
+                window.location.href = url;
+            });
+
+            document.getElementById("searchInput").addEventListener("keypress", function (event) {
+                if (event.key === 'Enter') {
+                    var keyword = document.getElementById("searchInput").value.trim();
+                    var url = "/Home/ResultFind?keyword=" + encodeURIComponent(keyword);
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("searchButton").addEventListener("click", function () {
+                var keyword = document.getElementById("searchInput").value.trim();
+                var url = "/Home/ResultFind?keyword=" + encodeURIComponent(keyword);
+                window.location.href = url;
+            });
+
+            document.getElementById("searchInput").addEventListener("keypress", function (event) {
+                if (event.key === 'Enter') {
+                    var keyword = document.getElementById("searchInput").value.trim();
+                    var url = "/Home/ResultFind?keyword=" + encodeURIComponent(keyword);
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
+    }
 

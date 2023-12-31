@@ -102,11 +102,11 @@
                     $('.detail-bg').css('display', 'block');
 
                     // Lắng nghe sự kiện click cho nút "Thêm vào giỏ hàng"
-                    document.getElementById("addToCart").addEventListener("click", function() {
-                    var quantity = document.getElementById("quantity").value; // Lấy giá trị số lượng từ ô nhập input
-                    var productId = product.product_id;
-                    var url = "/Cart/AddItem?productId=" + productId + "&quantity=" + quantity; // Sử dụng số lượng trong URL
-                    window.location.href = url;
+                    document.getElementById("addToCart").addEventListener("click", function () {
+                        var quantity = document.getElementById("quantity").value; // Lấy giá trị số lượng từ ô nhập input
+                        var productId = product.product_id;
+                        var url = "/Cart/AddItem?productId=" + productId + "&quantity=" + quantity; // Sử dụng số lượng trong URL
+                        window.location.href = url;
                     });
 
                     // Kiểm tra số lượng sản phẩm có sẵn và hiển thị trạng thái tương ứng
@@ -156,6 +156,23 @@
             detailbg.style.display = 'none';
         });
 
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("searchButton").addEventListener("click", function () {
+                var keyword = document.getElementById("searchInput").value.trim();
+                var url = "/Home/ResultFind?keyword=" + encodeURIComponent(keyword);
+                window.location.href = url;
+            });
+
+            document.getElementById("searchInput").addEventListener("keypress", function (event) {
+                if (event.key === 'Enter') {
+                    var keyword = document.getElementById("searchInput").value.trim();
+                    var url = "/Home/ResultFind?keyword=" + encodeURIComponent(keyword);
+                    window.location.href = url;
+                }
+            });
+        });
     </script>
 }
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
@@ -59,6 +59,7 @@ warning 6013: The table/view 'huhu.dbo.discount_info' does not have a primary ke
           <Property Name="product_id" Type="int" />
           <Property Name="quantity" Type="int" />
           <Property Name="product_price" Type="float" />
+          <Property Name="order_id1" Type="int" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -98,9 +99,6 @@ warning 6013: The table/view 'huhu.dbo.discount_info' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'huhu.dbo.discount_info' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__discount___produ__52593CB8" />-->
         <Association Name="FK__order_det__order__5535A963">
           <End Role="bill" Type="Self.bill" Multiplicity="0..1" />
           <End Role="order_detail_id" Type="Self.order_detail_id" Multiplicity="*" />
@@ -110,6 +108,18 @@ error 6004: The table 'huhu.dbo.discount_info' is referenced by a relationship, 
             </Principal>
             <Dependent Role="order_detail_id">
               <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      <Association Name="FK__order_det__order__5AEE82B9">
+          <End Role="bill" Type="Self.bill" Multiplicity="0..1" />
+          <End Role="order_detail_id" Type="Self.order_detail_id" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bill">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="order_detail_id">
+              <PropertyRef Name="order_id1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -176,6 +186,10 @@ error 6004: The table 'huhu.dbo.discount_info' is referenced by a relationship, 
             <End Role="bill" EntitySet="bill" />
             <End Role="order_detail_id" EntitySet="order_detail_id" />
           </AssociationSet>
+          <AssociationSet Name="FK__order_det__order__5AEE82B9" Association="Self.FK__order_det__order__5AEE82B9">
+            <End Role="bill" EntitySet="bill" />
+            <End Role="order_detail_id" EntitySet="order_detail_id" />
+          </AssociationSet>
           <AssociationSet Name="FK__order_det__produ__5629CD9C" Association="Self.FK__order_det__produ__5629CD9C">
             <End Role="product" EntitySet="product" />
             <End Role="order_detail_id" EntitySet="order_detail_id" />
@@ -193,8 +207,7 @@ error 6004: The table 'huhu.dbo.discount_info' is referenced by a relationship, 
             <End Role="shopping_cart" EntitySet="shopping_cart" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="huhuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -215,6 +228,7 @@ error 6004: The table 'huhu.dbo.discount_info' is referenced by a relationship, 
           <Property Name="id" Type="Int32" />
           <NavigationProperty Name="customer" Relationship="Self.FK__bill__user_id__5070F446" FromRole="bill" ToRole="customer" />
           <NavigationProperty Name="order_detail_id" Relationship="Self.FK__order_det__order__5535A963" FromRole="bill" ToRole="order_detail_id" />
+          <NavigationProperty Name="order_detail_id1" Relationship="huhuModel.FK__order_det__order__5AEE82B9" FromRole="bill" ToRole="order_detail_id" />
         </EntityType>
         <EntityType Name="catetory">
           <Key>
@@ -251,6 +265,8 @@ error 6004: The table 'huhu.dbo.discount_info' is referenced by a relationship, 
           <Property Name="product_price" Type="Double" />
           <NavigationProperty Name="bill" Relationship="Self.FK__order_det__order__5535A963" FromRole="order_detail_id" ToRole="bill" />
           <NavigationProperty Name="product" Relationship="Self.FK__order_det__produ__5629CD9C" FromRole="order_detail_id" ToRole="product" />
+          <Property Name="order_id1" Type="Int32" />
+          <NavigationProperty Name="bill1" Relationship="huhuModel.FK__order_det__order__5AEE82B9" FromRole="order_detail_id" ToRole="bill" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -386,7 +402,23 @@ error 6004: The table 'huhu.dbo.discount_info' is referenced by a relationship, 
             <End Role="product" EntitySet="products" />
             <End Role="shopping_cart" EntitySet="shopping_cart" />
           </AssociationSet>
+          <AssociationSet Name="FK__order_det__order__5AEE82B9" Association="huhuModel.FK__order_det__order__5AEE82B9">
+            <End Role="bill" EntitySet="bills" />
+            <End Role="order_detail_id" EntitySet="order_detail_id" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__order_det__order__5AEE82B9">
+          <End Type="huhuModel.bill" Role="bill" Multiplicity="0..1" />
+          <End Type="huhuModel.order_detail_id" Role="order_detail_id" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bill">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="order_detail_id">
+              <PropertyRef Name="order_id1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -436,6 +468,7 @@ error 6004: The table 'huhu.dbo.discount_info' is referenced by a relationship, 
           <EntitySetMapping Name="order_detail_id">
             <EntityTypeMapping TypeName="huhuModel.order_detail_id">
               <MappingFragment StoreEntitySet="order_detail_id">
+                <ScalarProperty Name="order_id1" ColumnName="order_id1" />
                 <ScalarProperty Name="order_detail_id1" ColumnName="order_detail_id" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />

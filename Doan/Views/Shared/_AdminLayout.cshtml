@@ -1,17 +1,25 @@
 ﻿<!DOCTYPE html>
 
 <html>
+
+
 <head>
+    <script src="~/Content/js/jquery.js"></script>
+    @*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>*@
+    <script src="~/Content/js/plugins/morris/raphael.min.js"></script>
+    <script src="~/Content/js/plugins/morris/morris.min.js"></script>
+    <script src="~/Content/js/plugins/morris/morris-data.js"></script>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="~/AdminStyle/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
+
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Mammam bakery</a>
+        <a class="navbar-brand ps-3" href="index.html">mămăm bakery</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
@@ -40,49 +48,40 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="../Admin/Dashboard">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
+                            BẢNG ĐIỀU KHIỂN
                         </a>
-                        <a class="nav-link" href="tables.html">
+                        <a class="nav-link" href="../Admin/Categories">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Danh mục
+                            DANH MỤC SẢN PHẨM
                         </a>
-                        <a class="nav-link" href="tables.html">
+                        <a class="nav-link" href="../Admin/Product">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Sản phẩm
+                            SẢN PHẨM
+                        </a>
+
+                        <a class="nav-link" href="../Order/Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            ĐƠN HÀNG
+                        </a>
+
+                        <a class="nav-link" href="../Customer/Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            KHÁCH HÀNG
                         </a>
 
                         <a class="nav-link" href="tables.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Đơn hàng
+                            ĐĂNG XUẤT
                         </a>
 
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Khách hàng
-                        </a>
-
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Cài đặt
-                        </a>
-
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Đăng xuất
-                        </a>
-
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Tables
-                        </a>
 
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
-                    mammam
+                    mămăm admin
                 </div>
             </nav>
         </div>
@@ -93,7 +92,7 @@
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Tổng quan</li>
                     </ol>*@
-                    @RenderBody()
+                @RenderBody()
                 @*</div>*@
 
 
@@ -121,3 +120,44 @@
 <script src="~/AdminStyle/assets/demo/chart-area-demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 <script src="~/AdminStyle/js/datatables-simple-demo.js"></script>
+
+<style>
+    .bold-text {
+        font-weight: bold;
+    }
+
+    .button-container {
+        display: flex;
+    }
+
+    .custom-button {
+        cursor: pointer;
+        padding: 5px 15px;
+        margin: 5px;
+        border: 1px solid #000; /* Viền màu đen */
+        display: inline-block;
+        text-decoration: none;
+        color: inherit; /* Kế thừa màu chữ từ cha */
+        background-color: inherit; /* Kế thừa màu nền từ cha */
+        outline: none; /* Loại bỏ đường viền khi được focus */
+    }
+
+    .create-button {
+        background-color: #4287CC;
+        color: #fff;
+    }
+
+    .submit-button {
+        margin-left: 215px;
+        background-color: #11EBB3;
+        color: #000;
+    }
+
+    .custom-width {
+        width: 300%;
+    }
+
+    .hidden-field {
+        display: none;
+    }
+</style>

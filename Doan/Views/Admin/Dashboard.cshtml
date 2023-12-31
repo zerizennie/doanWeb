@@ -2,109 +2,91 @@
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    //var chartData = ViewBag.ChartData as ChartDataModel;
 }
 
-    <main>
-        <div class="container-fluid px-5">
-            <h1 class="mt-4">Dashboard</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Tổng quan</li>
-            </ol>
-            <div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Đơn hàng mới</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning text-white mb-4">
-                        <div class="card-body">Đơn đã đóng gói</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Đơn đã gửi</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">Đơn đã hoàn thành</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
+<main>
+    <div class="container">
+        <h1 class="mt-4">BẢNG ĐIỀU KHIỂN</h1>
+        <br />
+
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card bg-primary text-white">
+                    <div class="card-body"><b>TỔNG ĐƠN HÀNG</b></div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <span class="big text-white font-weight-bold text-uppercase">@ViewBag.TotalOrders</span>
+                        <a class="small text-white stretched-link" href="../Order/Index">Xem chi tiết <i class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-10">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-area me-1"></i>
-                            Doanh thu
-                        </div>
-                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card bg-warning text-white">
+                    <div class="card-body"><b>ĐƠN HÀNG TRONG THÁNG</b></div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <span class="big text-white font-weight-bold text-uppercase">@ViewBag.orderMonth</span>
+                        <a class="small text-white stretched-link" href="../Order/Index">Xem chi tiết <i class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    DataTable Example
+            </div>
+        <div class=" row">
+            <div class="col-md-6 mb-4">
+                <div class="card bg-success text-white">
+                    <div class="card-body"><b>SỐ LƯỢNG KHÁCH HÀNG</b></div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <span class="big text-white font-weight-bold text-uppercase">@ViewBag.CustomerCount</span>
+                        <a class="small text-white stretched-link" href="../Customer/Index">Xem chi tiết <i class="fas fa-angle-right"></i></a>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <table id="datatablesSimple">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>2011/07/25</td>
-                                <td>$170,750</td>
-                            </tr>
-                        </tbody>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card bg-danger text-white">
+                    <div class="card-body"><b>TỔNG DOANH THU TRONG THÁNG</b></div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <span class="big text-white font-weight-bold text-uppercase">@ViewBag.TotalRevenue</span>
+                        <a class="small text-white stretched-link pull-right" href="../Order/Index">Xem chi tiết <i class="fas fa-angle-right"></i></a>
+                    </div>
                 </div>
-                </table>
             </div>
         </div>
+
+            <div class="col-xl-12">
+                <div class="card mb-8">
+                    <div class="card-header">
+                        <i class="fas fa-shopping-cart me-1"></i>
+                        CÁC ĐƠN HÀNG MỚI NHẤT
+                    </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Địa chỉ giao hàng</th>
+                                    <th>Thời gian đặt hàng</th>
+                                    <th>Giá trị đơn hàng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var order in ViewBag.LatestOrders)
+                                {
+                                    <tr>
+                                        <td>@order.order_id</td>
+                                        <td>@order.order_address</td>
+                                        <td>@order.order_date</td>
+                                        <td>@order.total</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>
+
+   
+

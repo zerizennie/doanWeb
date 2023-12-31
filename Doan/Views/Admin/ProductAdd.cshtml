@@ -1,0 +1,147 @@
+﻿@model Doan.DAL.product
+
+@{
+    ViewBag.Title = "ProductAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+<h2>THÊM SẢN PHẨM</h2>
+@using (Html.BeginForm("ProductAdd", "Admin", FormMethod.Post, new {enctype = "multipart/form-data"})) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+    @*<h4>SẢN PHẨM</h4>*@
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label class="control-label"><b>ID sản phẩm</b></label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.product_id, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.product_id, "", new { @class = "text-danger" })
+        </div>
+    </div><br />
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label class="control-label"><b>Tên sản phẩm</b></label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.product_name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.product_name, "", new { @class = "text-danger" })
+        </div>
+    </div><br />
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label class="control-label"><b>Thành phần sản phẩm</b></label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.product_ingredients, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.product_ingredients, "", new { @class = "text-danger" })
+        </div>
+    </div><br />
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label class="control-label"><b>Mô tả sản phẩm</b></label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.product_description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.product_description, "", new { @class = "text-danger" })
+        </div>
+    </div><br />
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label class="control-label"><b>Giá sản phẩm</b></label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.product_price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.product_price, "", new { @class = "text-danger" })
+        </div>
+    </div><br />
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label class="control-label"><b>Hình ảnh sản phẩm</b></label>
+        </div>
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.product_image, new { htmlAttributes = new { @class = "form-control" } })*@
+            <input type="file" name="file" id="file" style="width:100%;" />
+            @Html.ValidationMessageFor(model => model.product_image, "", new { @class = "text-danger" })
+        </div>
+    </div><br />
+
+    @{ 
+        List<SelectListItem> data = ViewBag.CategoryList;
+    }
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label class="control-label"><b>Danh mục sản phẩm</b></label>
+        </div>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.catetory_id, data, "--Chọn danh mục sản phẩm--", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.catetory_id, "", new { @class = "text-danger" })
+        </div>
+    </div><br />
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label class="control-label"><b>Giá sản phẩm hiện tại (nếu có áp dụng chương trình khuyến mãi)</b></label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.current_price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.current_price, "", new { @class = "text-danger" })
+        </div>
+    </div><br />
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label class="control-label"><b>Ngày bắt đầu áp dụng giá khuyến mãi</b></label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.start_date, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.start_date, "", new { @class = "text-danger" })
+        </div>
+    </div><br />
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label class="control-label"><b>Ngày kết thúc áp dụng giá khuyến mãi</b></label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.start_date, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.start_date, "", new { @class = "text-danger" })
+        </div>
+    </div><br />
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label class="control-label"><b>Số lượng sản phẩm</b></label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+        </div>
+    </div><br />
+
+    <div class="row form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="THÊM" class="custom-button submit-button bold-text" />
+        </div>
+    </div>
+
+    <div>
+        <button class="custom-button create-button" onclick="location.href='@Url.Action("Product")'">QUAY VỀ DANH SÁCH SẢN PHẨM</button>
+    </div>
+
+</div>
+}
+
+</div>

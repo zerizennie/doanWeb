@@ -1,46 +1,30 @@
-﻿@model List<Doan.DAL.catetory>
+@model List<Doan.DAL.catetory>
 @{
     ViewBag.Title = "Categories";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+<h2>DANH MỤC SẢN PHẨM</h2>
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Tables</h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-        <li class="breadcrumb-item active">Tables</li>
-    </ol>
     <div class="card mb-4">
-        <div class="card-body">
-            DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-            <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-            .
-        </div>
-    </div>
-
-    <div class="card mb-4">
-        <div class="card-header">
-            <i class="fas fa-table me-1"></i>
-            Catetory Detail
-            <a href="#" class="btn btn-info pull-right fa-table fa-plus">Add</a>
+        <div class="card-header">            
+            <a href="../Admin/AddCategory" class="btn btn-info pull-right fa-table fa-plus">Tạo danh mục mới</a>
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>Category ID</th>
-                        <th>Category Name</th>
-                        <th>Action</th>
+                        <th>STT</th>
+                        <th>Mã danh mục</th>
+                        <th>Tên danh mục</th>
+                        <th>Thao tác</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <
-                        <th>No.</th>
-                        <th>Category ID</th>
-                        <th>Category Name</th>
-                        <th>Action</th>
+                        <th>STT</th>
+                        <th>Mã danh mục</th>
+                        <th>Tên danh mục</th>
+                        <th>Thao tác</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -50,7 +34,7 @@
                             <td>@(Model.IndexOf(item)+1)</td>
                             <td>@item.catetory_id</td>
                             <td>@item.catetory_name</td>
-                            <td><a href="#">Edit</a></td>
+                            <td>@Html.ActionLink("Cập nhật", "CategoryEdit", new { category_id = item.catetory_id })</td>
                         </tr>
                     }
                 </tbody>

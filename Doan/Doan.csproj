@@ -218,8 +218,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="DAL\bill.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -538,6 +540,23 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Admin\Categories.cshtml" />
+    <Content Include="Views\Admin\UpdateCategory.cshtml" />
+    <Content Include="Views\Admin\Product.cshtml" />
+    <Content Include="Views\Admin\ProductEdit.cshtml" />
+    <Content Include="Views\Admin\ProductAdd.cshtml" />
+    <Content Include="Views\Admin\CategoryEdit.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Order\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="ProductImg\" />
     <Content Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <Content Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <Content Include="Views\Home\Register.cshtml" />

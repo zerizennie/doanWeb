@@ -25,11 +25,11 @@ namespace Doan.DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<bill> bills { get; set; }
-        public virtual DbSet<catetory> catetories { get; set; }
-        public virtual DbSet<customer> customers { get; set; }
-        public virtual DbSet<order_detail_id> order_detail_id { get; set; }
-        public virtual DbSet<product> products { get; set; }
-        public virtual DbSet<shopping_cart> shopping_cart { get; set; }
+        public DbSet<bill> bills { get; set; }
+        public DbSet<catetory> catetories { get; set; }
+        public DbSet<customer> customers { get; set; }
+        public DbSet<order_detail_id> order_detail_id { get; set; }
+        public DbSet<product> products { get; set; }
+        public DbSet<shopping_cart> shopping_cart { get; set; }
     }
 }

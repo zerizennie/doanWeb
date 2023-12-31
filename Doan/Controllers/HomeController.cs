@@ -98,7 +98,7 @@ namespace Doan.Controllers
         }
 
 
-       
+        //Danh sách Category
         public ActionResult MenuProduct()
         {
             var items = db.catetories.ToList();
@@ -106,10 +106,10 @@ namespace Doan.Controllers
             return PartialView("_MenuProduct", categoryDetails);
         }
 
+        //Tải sp
         public ActionResult LoadProduct(int? id)
         {
             var items = db.products.ToList();
-            // Lọc sản phẩm theo categoryId chỉ định
             if (id != null)
             {
                 items = items.Where(x => x.catetory_id == id).ToList();
@@ -118,11 +118,15 @@ namespace Doan.Controllers
             return PartialView("_LoadProduct",productDetails);
         }
 
-        public ActionResult CateProduct(int id)
+        // Lọc sản phẩm theo categoryId chỉ định
+        public ActionResult CateProduct(int? id)
         {
-            
+            if (id == null)
+            {
+                return RedirectToAction("Product"); // Gọi và trả về Action "Product"
+            }
+
             var items = db.products.ToList();
-            // Lọc sản phẩm theo categoryId chỉ định
             if (id >= 0)
             {
                 items = items.Where(x => x.catetory_id == id).ToList();
@@ -131,10 +135,52 @@ namespace Doan.Controllers
             return View(productDetails);
         }
 
+        //Hiển thị chi tiết sp
+        public ActionResult ChitietSP(int id)
+        {
+            var items = db.products.AsQueryable();
+            if (id >= 0)
+            {
+                items = items.Where(x => x.product_id == id);
+            }
+            var infoProduct = items.Select(p => new productDetail
+            {
+                product_id = p.product_id,
+                product_name = p.product_name,
+                product_price = p.product_price,
+                product_image = p.product_image,
+                product_ingredients = p.product_ingredients,
+                product_description = p.product_description,
+                catetory_id = p.catetory_id,
+                quantity = p.quantity,
+                end_date = p.end_date,
+                start_date = p.start_date
+            }).FirstOrDefault();
+
+
+            if (infoProduct != null)
+            {
+                return Json(infoProduct, JsonRequestBehavior.AllowGet);
+            }
+
+            // Xử lý khi không tìm thấy sản phẩm
+            return RedirectToAction("NotFound");
+
+        }
+
+        //tìm sp
+        public ActionResult ResultFind(string keyword)
+        {
+            var products = db.products.ToList();
+            products = db.products.Where(p => p.product_name.Contains(keyword)).ToList();
+
+            var FindResult = products.Select(p => new productDetail { product_id = p.product_id, product_name = p.product_name, product_price = p.product_price, product_image = p.product_image, product_ingredients = p.product_ingredients, catetory_id = p.catetory_id }).ToList();
+            return View(FindResult);
+        }
+
         public ActionResult Product()
         {
             ViewBag.Message = "Your product page.";
-
             return View();
         }
 
@@ -146,51 +192,7 @@ namespace Doan.Controllers
         }
 
         huhuEntities db = new huhuEntities();
-        //public ActionResult Register()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Register(customer user)
-        //{
-        //    //if (db.customers.Any(x => x.username == user.username))
-        //    //{
-        //    //    ViewBag.Notification = "Tài khoản đã tồn tại";
-        //    //}
-        //    //else
-        //    //{
-        //    //    db.customers.Add(user);
-        //    //    db.SaveChanges();
-
-        //    //    Session["user_id"] = user.user_id.ToString();
-        //    //    Session["username"] = user.user_id.ToString();
-        //    //    return RedirectToAction("Index", "Home");
-        //    //}
-
-        //    if(ModelState.IsValid)
-        //    {
-        //        db.customers.Add(user);
-        //        db.SaveChanges();
-
-        //        Session["Tài khoản"] = user.user_id.ToString();
-        //        Session["Mật khẩu"] = user.password.ToString();
-        //        Session["Xác nhận mật khẩu"] = user.password.ToString();
-        //        Session["Email"] = user.email.ToString();
-        //        Session["Tên"] = user.first_name.ToString();
-        //        Session["Họ"] = user.last_name.ToString();
-        //        Session["Số điện thoại"] = user.phone_num.ToString();
-        //        return RedirectToAction("Index", "Home");
-        //    }
-
-        //    else
-        //    {
-        //        return ViewBag.Notification = "Tài khoản đã tồn tại";
-        //    }
-        //}
-
-        //GET: Register
+        
 
         public ActionResult Register()
         {

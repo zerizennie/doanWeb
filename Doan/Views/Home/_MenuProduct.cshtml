@@ -3,11 +3,11 @@
     @if (Model != null && Model.Any())
     {
     <ul class="sidebar_categories">
-        <li><a href="/Home/Product" class="categoryLink" data-categoryid="">Tất cả</a></li>
         @foreach (var item in Model)
         {
         <li><a href="/Home/CateProduct/@item.catetory_id" class="categoryLink" data-categoryid="@item.catetory_id">@item.catetory_name</a></li>
         }
+        <li><a href="/Home/Product" class="categoryLink" data-categoryid="">Tất cả sản phẩm</a></li>
     </ul>
 
     }

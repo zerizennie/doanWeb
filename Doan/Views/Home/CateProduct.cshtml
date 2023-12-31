@@ -28,17 +28,135 @@
                                 <p class="name"><a href="@item.product_id" style="color: #fa6e4f">@item.product_name</a></p>
                                 <p class="price"><span>@item.product_price</span></p>
                                 <p class="ingredients">@item.product_ingredients</p>
-                                <p class="cart"><a href="@Url.Action("AddItem", "Cart", new { @productId=@item.product_id, @quantity=1 })" style="color:#ffffff">Thêm vào giỏ hàng<i class="bx bx-cart-alt"></i></a></p>
+                                <p class="view"><a href="#" class="view-link" data-id="@item.product_id" style="color:#ffffff">Xem chi tiết</a></p>
+                                <p class="cart"><a href="@Url.Action("AddItem", "Cart", new { @productId=@item.product_id, @quantity=1 })" style="color:#ffffff">Mua nhanh<i class="bx bx-cart-alt"></i></a></p>
                             </div>
                         }
                     }
-                    else 
+                    else
                     {
                         <p class="name" style="color: #fa6e4f; font-size:25px">Hiện chưa có sản phẩm!</p>
                     }
-</div>
+                </div>
             </div>
         </div>
     </div>
+    <!--Phần chi tiết sản phẩm-->
+    <div class="detail-bg" style="display:none;">
+        <div class="close-icon"><i class="fas fa-times"></i></div>
+        <div class="detailContent">
+
+        </div>
+    </div>
 </main>
+
+
+@section scripts{
+    <script>
+
+        $(document).on('click', '.view-link', function () {
+            var id = $(this).data('id');
+            ShowDetailProduct(id);
+            return false;
+        });
+
+        function ShowDetailProduct(id) {
+            $.ajax({
+                url: '/Home/ChitietSP',
+                type: 'GET',
+                data: { id: id },
+                success: function (res) {
+                    var product = res;
+                    var html = '<div class="row-product">'
+                    html += '<div class="col col-img"><img src="' + product.product_image + '" id="detail-img"></div>'
+                    html += '<div class="col col-info">'
+                    html += '<h2 id="detail-name">' + product.product_name + '</h2>'
+                    html += '<p id="detail-price">' + product.product_price + ' vnđ' + '</p>'
+                    if (product.product_ingredients) {
+                        html += '<p id="detail-ingredients">Thành phần chính: ' + product.product_ingredients + '</p>';
+                    }
+                    if (product.product_description) {
+                        html += '<p id="detail-description">Miêu tả: ' + product.product_description + '</p>';
+                    }
+                    html += '<div class="availability">'
+                    html += '<div class="available">'
+                    html += '<span id="quantity-available"> Có sẵn: ' + product.quantity + '</span>'
+                    html += '</div>'
+                    html += '<div class="out-of-stock">'
+                    html += '<span>Hết hàng</span>'
+                    html += '</div>'
+                    html += '</div>'
+                    html += '<div class="quantity">'
+                    html += '<button id="decrement">-</button>'
+                    html += '<div class="quantity-input">'
+                    html += '<input type="number" id="quantity" value="1" min="1" max="' + product.quantity + '">'
+                    html += '</div>'
+                    html += '<button id="increment">+</button>'
+                    html += '</div>'
+                    html += '<button id="addToCart">Thêm vào giỏ hàng</button>'
+                    html += '</div>'
+                    html += '</div>';
+
+                    $('.detailContent').html(html);
+                    // Hiển thị phần chi tiết sản phẩm
+                    $('.detail-bg').css('display', 'block');
+
+                    // Lắng nghe sự kiện click cho nút "Thêm vào giỏ hàng"
+                    document.getElementById("addToCart").addEventListener("click", function() {
+                    var quantity = document.getElementById("quantity").value; // Lấy giá trị số lượng từ ô nhập input
+                    var productId = product.product_id;
+                    var url = "/Cart/AddItem?productId=" + productId + "&quantity=" + quantity; // Sử dụng số lượng trong URL
+                    window.location.href = url;
+                    });
+
+                    // Kiểm tra số lượng sản phẩm có sẵn và hiển thị trạng thái tương ứng
+                    if (product.quantity > 0) {
+                        $('.available').show();
+                        $('.out-of-stock').hide();
+                    } else {
+                        $('.available').hide();
+                        $('.out-of-stock').show();
+
+                        // Ẩn quantity và nút mua
+                        $('.quantity').hide();;
+                        $('#addToCart').hide();
+
+                    }
+
+                    //nút tăng giảm số lượng
+                    const quantityInput = document.getElementById("quantity");
+                    const incrementButton = document.getElementById("increment");
+                    const decrementButton = document.getElementById("decrement");
+
+                    incrementButton.addEventListener("click", () => {
+                        quantityInput.stepUp(1);
+                    });
+
+                    decrementButton.addEventListener("click", () => {
+                        if (quantityInput.value > 1) {
+                            quantityInput.stepDown(1);
+                        }
+                    });
+
+
+                }
+            });
+        }
+
+
+
+        //Tắt phần nd chi tiết
+        // Lấy biểu tượng "x" và phần tử "detail-bg"
+        const closeIcon = document.querySelector('.close-icon');
+        const detailbg = document.querySelector('.detail-bg');
+
+        // Gắn sự kiện click cho biểu tượng "x"
+        closeIcon.addEventListener('click', function () {
+            // Ẩn/tắt "detail-bg" khi nhấn vào biểu tượng "x"
+            detailbg.style.display = 'none';
+        });
+
+    </script>
+}
+
 

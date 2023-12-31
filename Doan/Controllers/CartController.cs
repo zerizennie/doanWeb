@@ -145,7 +145,7 @@ namespace Doan.Controllers
         }
 
         [HttpPost]
-        public ActionResult Payment(string shipName, string mobile, string address, string email)
+        public ActionResult Payment(string shipName, string mobile, string address, string email, string payment_methods)
         {
             var order = new bill();
             order.order_date = DateTime.Now;
@@ -153,6 +153,7 @@ namespace Doan.Controllers
             order.bill_phone = mobile;
             order.bill_name = shipName;
             order.bill_email = email;
+            order.payment = payment_methods;
 
             try
             {
@@ -160,11 +161,7 @@ namespace Doan.Controllers
                 //Thêm Order
                 db.bills.Add(order);
                 db.SaveChanges();
-                var Id = order.order_id; // cho id dau tien = 1
-                //if (db.bills.Count() > 0) //kiem tra xem da co don hang nao chua, neu co thi tang gia tri Id
-                //{
-                //    Id = (int)(db.bills.Max(x => x.id) + 1);
-                //}
+                var Id = order.order_id; 
 
                 var sessioncart = (List<CartItem>)Session[CartSession];
 
@@ -172,15 +169,22 @@ namespace Doan.Controllers
                 foreach (var item in sessioncart)
                 {
                     var orderDetail = new order_detail_id();
-                    orderDetail.product_id = item.product_id;
+                    orderDetail.product_id = item.product.product_id;
                     orderDetail.order_id = Id;
-                    orderDetail.product_price = item.product_price;
+                    orderDetail.product_price = item.product.product_price;
                     orderDetail.quantity = item.quantity;
-                    //db.order_detail_id.Add(orderDetail);
-                    //db.SaveChanges();
                     total += item.product.product_price.GetValueOrDefault(0) * item.quantity;
                     order.total = total;
                     db.order_detail_id.Add(orderDetail);
+
+                    //Trừ số lượng sản phẩm tương ứng trong database
+                    var product = db.products.FirstOrDefault(p => p.product_id == item.product.product_id);
+
+                    if (product != null)
+                    {
+                        product.quantity -= item.quantity;
+                    }
+
                     db.SaveChanges();
                 }
                 //Xóa hết giỏ hàng

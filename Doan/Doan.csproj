@@ -553,6 +553,7 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\Details.cshtml" />
     <Content Include="Views\Order\Edit.cshtml" />
+    <Content Include="Views\Home\_HienThiSP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />

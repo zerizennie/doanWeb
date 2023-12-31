@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Doan.Models.productDetail>
+
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <div class="image-item">
+            <div class="product" style="height: 630px; width: 90%; margin-left: 5%; border:solid 2px rgba(0, 0, 0, 0.2) ;box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);">
+                <img src="~/ProductImg/@item.product_image" alt="@item.product_name" style="width: 300px; height: 300px; object-fit: contain; display: block; margin: 0 auto;">
+                <p class="name">@item.product_name</p>
+                <p class="price"><span>@item.product_price</span></p>
+                <p class="ingredients">@item.product_ingredients</p>
+                <p class="view"><a href="#" class="view-link" data-id="@item.product_id" style="color:#ffffff">Xem chi tiết</a></p>
+                <p class="cart"><a href="@Url.Action("AddItem", "Cart" , new { @productId=@item.product_id, @quantity=1 })" style="color:#ffffff">Mua nhanh<i class="bx bx-cart-alt"></i></a></p>
+            </div>
+        </div>
+    }
+}

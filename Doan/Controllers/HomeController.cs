@@ -135,8 +135,20 @@ namespace Doan.Controllers
             return View(productDetails);
         }
 
-        //Hiển thị chi tiết sp
-        public ActionResult ChitietSP(int id)
+
+        //Hiển thị DS cho trang index
+        public ActionResult HienThiSP(int? id)
+        {
+            var items = db.products.ToList();
+            if (id != null)
+            {
+                items = items.Where(x => x.catetory_id == id).ToList();
+            }
+            var productDetails = items.Select(p => new productDetail { product_id = p.product_id, product_name = p.product_name, product_price = p.product_price, product_image = p.product_image, product_ingredients = p.product_ingredients, catetory_id = p.catetory_id }).ToList();
+            return PartialView("_HienThiSP", productDetails);
+        }
+            //Hiển thị chi tiết sp
+            public ActionResult ChitietSP(int id)
         {
             var items = db.products.AsQueryable();
             if (id >= 0)

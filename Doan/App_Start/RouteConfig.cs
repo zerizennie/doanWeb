@@ -27,6 +27,13 @@ namespace Doan
                 namespaces: new[] { "Doan.Controllers" }
 
             );
+            routes.MapRoute(
+               name: "FindProduct",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Home", action = "ResultFind", id = UrlParameter.Optional },
+               namespaces: new[] { "Doan.Controllers" }
+
+           );
         }
     }
 }

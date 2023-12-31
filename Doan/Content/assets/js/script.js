@@ -130,6 +130,22 @@ document.getElementById('do_submit').addEventListener('click', function(event) {
   });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("searchButton").addEventListener("click", function () {
+        var keyword = document.getElementById("searchInput").value.trim();
+        console.log("Search URL:", url);  // Thêm dòng này để ghi thông báo vào bảng điều khiển
+        var url = "/Home/ResultFind?keyword=" + encodeURIComponent(keyword);
+        window.location.href = url;
+    });
+
+    document.getElementById("searchInput").addEventListener("keypress", function (event) {
+        if (event.key === 'Enter') {
+            var keyword = document.getElementById("searchInput").value.trim();
+            var url = "/Home/ResultFind?keyword=" + encodeURIComponent(keyword);
+            window.location.href = url;
+        }
+    });
+});
   window.addEventListener('DOMContentLoaded', function() {
     adjustReviewHeight();
   });

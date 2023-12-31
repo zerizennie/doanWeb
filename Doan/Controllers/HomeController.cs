@@ -180,7 +180,7 @@ namespace Doan.Controllers
 
         }
 
-        //tìm sp theo ten sp
+        //tìm sp
         public ActionResult ResultFind(string keyword)
         {
             var products = db.products.ToList();

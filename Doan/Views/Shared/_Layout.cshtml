@@ -23,14 +23,14 @@
             <div class="left">
                 <div class="search_bar">
                     <input type="text" id="searchInput" placeholder="Tên sản phẩm...">
-                    <button type="submit" id="searchButton" class="searchButton" onclick="searchProduct()"><i class="fa fa-search"></i></button>
+                    <button type="submit" id="searchButton" class="searchButton"><i class="fa fa-search"></i></button>
                 </div>
             </div>
             <div class="right">
                 <div>
                     <div><a href="@Url.Action("Login", "Home")" class="user-icon"><i class="fa-regular fa-user"></i></a></div>
                     <div><a href="@Url.Action("Index", "Cart")" class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></a></div>
-                    <div><a href="#" class="deli-icon"><i class="fa-solid fa-truck"></i></a></div>
+                    <div><a href="@Url.Action("Delivery", "Order")" class="deli-icon"><i class="fa-solid fa-truck"></i></a></div>
                 </div>
             </div>
         </div>
@@ -94,4 +94,3 @@
 @Scripts.Render("~/Content/assets/js/script.js")
 @RenderSection("scripts", required: false)
 </html>
-

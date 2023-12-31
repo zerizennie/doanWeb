@@ -5,7 +5,7 @@
     foreach (var item in Model)
     {
     <div class="product">
-        <img src="~/ProductImg/@item.product_image" alt="@item.product_name">
+        <img src="~/ProductImg/@item.product_image" alt="@item.product_name" style="width: 300px; height: 250px; object-fit: contain; display: block; margin: 0 auto;">
         <p class="name">@item.product_name</p>
         <p class="price"><span>@item.product_price</span></p>
         <p class="ingredients">@item.product_ingredients</p>

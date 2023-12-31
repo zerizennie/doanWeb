@@ -120,7 +120,7 @@ document.getElementById('do_submit').addEventListener('click', function(event) {
   var nameInput = document.getElementById('name');
   var phoneInput = document.getElementById('phone');
   var emailInput = document.getElementById('email');
-  var titleInput = document.getElementById('title');
+  var subjectInput = document.getElementById('subject');
   var contentInput = document.getElementById('content');
   
   if (nameInput.value.trim() === '' && emailInput.value.trim() === '' && phoneInput.value.trim() === '' && subjectInput.value.trim() === '' && contentInput.value.trim() === '') {
@@ -130,6 +130,22 @@ document.getElementById('do_submit').addEventListener('click', function(event) {
   });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("searchButton").addEventListener("click", function () {
+        var keyword = document.getElementById("searchInput").value.trim();
+        console.log("Search URL:", url);  // Thêm dòng này để ghi thông báo vào bảng điều khiển
+        var url = "/Home/ResultFind?keyword=" + encodeURIComponent(keyword);
+        window.location.href = url;
+    });
+
+    document.getElementById("searchInput").addEventListener("keypress", function (event) {
+        if (event.key === 'Enter') {
+            var keyword = document.getElementById("searchInput").value.trim();
+            var url = "/Home/ResultFind?keyword=" + encodeURIComponent(keyword);
+            window.location.href = url;
+        }
+    });
+});
   window.addEventListener('DOMContentLoaded', function() {
     adjustReviewHeight();
   });

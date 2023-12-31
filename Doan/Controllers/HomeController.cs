@@ -167,7 +167,17 @@ namespace Doan.Controllers
             return RedirectToAction("NotFound");
 
         }
-       
+
+        //tìm sp
+        public ActionResult ResultFind(string keyword)
+        {
+            var products = db.products.ToList();
+            products = db.products.Where(p => p.product_name.Contains(keyword)).ToList();
+
+            var FindResult = products.Select(p => new productDetail { product_id = p.product_id, product_name = p.product_name, product_price = p.product_price, product_image = p.product_image, product_ingredients = p.product_ingredients, catetory_id = p.catetory_id }).ToList();
+            return View(FindResult);
+        }
+
         public ActionResult Product()
         {
             ViewBag.Message = "Your product page.";

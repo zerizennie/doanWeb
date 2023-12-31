@@ -555,8 +555,6 @@
     <Content Include="Views\Order\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="ProductImg\" />
     <Content Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <Content Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <Content Include="Views\Home\Register.cshtml" />
@@ -570,6 +568,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\assets\js\slick\.git\objects\info\" />
     <Folder Include="Content\assets\js\slick\.git\refs\tags\" />
+    <Folder Include="ProductImg\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

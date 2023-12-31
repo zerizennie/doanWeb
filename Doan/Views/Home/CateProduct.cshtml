@@ -29,7 +29,7 @@
                                 <p class="price"><span>@item.product_price</span></p>
                                 <p class="ingredients">@item.product_ingredients</p>
                                 <p class="view"><a href="#" class="view-link" data-id="@item.product_id" style="color:#ffffff">Xem chi tiết</a></p>
-                                <p class="cart"><a href="@Url.Action("AddItem", "Cart", new { @productId=@item.product_id, @quantity=1 })" style="color:#ffffff">Thêm vào giỏ hàng<i class="bx bx-cart-alt"></i></a></p>
+                                <p class="cart"><a href="@Url.Action("AddItem", "Cart", new { @productId=@item.product_id, @quantity=1 })" style="color:#ffffff">Mua nhanh<i class="bx bx-cart-alt"></i></a></p>
                             </div>
                         }
                     }

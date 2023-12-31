@@ -165,12 +165,12 @@ namespace Doan.Controllers
 
             // Xử lý khi không tìm thấy sản phẩm
             return RedirectToAction("NotFound");
-        }
 
+        }
+       
         public ActionResult Product()
         {
             ViewBag.Message = "Your product page.";
-
             return View();
         }
 
